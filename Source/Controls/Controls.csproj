@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2D9C28F-AC50-488B-B604-770683BD0C64}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KLib.Controls</RootNamespace>
+    <AssemblyName>KLib.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ookii.Dialogs">
+      <HintPath>..\..\Framework\Ookii.Dialogs.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ColorSlider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColorSlider.designer.cs">
+      <DependentUpon>ColorSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridViewNumericColumn.cs" />
+    <Compile Include="EnumDropDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EnumDropDown.designer.cs">
+      <DependentUpon>EnumDropDown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FileBrowser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FileBrowser.designer.cs">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Histogram\AxisScale.cs" />
+    <Compile Include="Histogram\Histogram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Histogram\ThresholdBar.cs" />
+    <Compile Include="KCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KColorBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KColorBox.Designer.cs">
+      <DependentUpon>KColorBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KColorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KColorDialog.Designer.cs">
+      <DependentUpon>KColorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KTextBox.designer.cs">
+      <DependentUpon>KTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KNumericBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KNumericBox.designer.cs">
+      <DependentUpon>KNumericBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KResizableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KResizableControl.Designer.cs">
+      <DependentUpon>KResizableControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KUserControl.designer.cs">
+      <DependentUpon>KUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KUserListBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="KUserListBox.designer.cs">
+      <DependentUpon>KUserListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LedBulb.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MsgBox.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ValueSlider.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ValueSlider.designer.cs">
+      <DependentUpon>ValueSlider.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="EnumDropDown.resx">
+      <DependentUpon>EnumDropDown.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FileBrowser.resx">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Histogram\Histogram.resx">
+      <DependentUpon>Histogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KCheckBox.resx">
+      <DependentUpon>KCheckBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KColorBox.resx">
+      <DependentUpon>KColorBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KColorDialog.resx">
+      <DependentUpon>KColorDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KTextBox.resx">
+      <DependentUpon>KTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KNumericBox.resx">
+      <DependentUpon>KNumericBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KResizableControl.resx">
+      <DependentUpon>KResizableControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KUserListBox.resx">
+      <DependentUpon>KUserListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ValueSlider.resx">
+      <DependentUpon>ValueSlider.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "D:\Development\KLib\Framework"
+
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

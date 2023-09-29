@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KLib.Geometry</name>
+    </assembly>
+    <members>
+        <member name="T:KLib.Geometry.RBRectangle">
+            <summary>
+            RBRectangle class description. Hooray!
+            </summary>
+        </member>
+        <member name="T:KLib.Geometry.RBCircle">
+            <summary>
+            RBCircle class description. Hooray!
+            </summary>
+        </member>
+    </members>
+</doc>
