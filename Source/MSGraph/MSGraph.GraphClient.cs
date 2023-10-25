@@ -218,7 +218,7 @@ namespace KLib.MSGraph
 
             var ui = await GetUserInfo();
 
-            if (ui.userPrincipalName.ToLower().Contains("kehancock"))
+            if (ui.userPrincipalName.ToLower().Contains("hancock"))
             {
                 string cmd = "/drive/root/children?select=id,name,folder,parentReference";
                 var result = await GetHttpContentAsync(cmd);
