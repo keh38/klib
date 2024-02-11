@@ -123,12 +123,19 @@ namespace KLib.Controls
 
         private void ResetScale()
         {
-            valueTrackBar.Maximum = (int)((_maxVal - _minVal)/_resol);
+            valueTrackBar.Maximum = (int)((_maxVal - _minVal) / _resol);
             valueTrackBar.TickFrequency = (int)(_stepVal / _resol);
 
-            int numPlacesAfterDecimalPoint = -(int)(Math.Round(Math.Log10(_resol)));
-            string fmt = (numPlacesAfterDecimalPoint > 0) ? "F" + numPlacesAfterDecimalPoint.ToString() : "F0";
-            valueNumeric.TextFormat = fmt;
+            if (_isInteger)
+            {
+                valueNumeric.TextFormat = "";
+            }
+            else
+            {
+                int numPlacesAfterDecimalPoint = -(int)(Math.Round(Math.Log10(_resol)));
+                string fmt = (numPlacesAfterDecimalPoint > 0) ? "F" + numPlacesAfterDecimalPoint.ToString() : "F0";
+                valueNumeric.TextFormat = fmt;
+            }
         }
 
         private void RepositionTextBox()
