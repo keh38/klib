@@ -100,8 +100,8 @@
             this.blueSlider.TabIndex = 6;
             this.blueSlider.TickSpacing = 32D;
             this.blueSlider.Title = "Blue";
-            this.blueSlider.Value = 0D;
-            this.blueSlider.ValueAsFloat = 0F;
+            this.blueSlider.Value = 25D;
+            this.blueSlider.ValueAsFloat = 25F;
             this.blueSlider.ValueChanged += new System.EventHandler(this.blueSlider_ValueChanged);
             // 
             // greenSlider
@@ -118,8 +118,8 @@
             this.greenSlider.TabIndex = 5;
             this.greenSlider.TickSpacing = 32D;
             this.greenSlider.Title = "Green";
-            this.greenSlider.Value = 0D;
-            this.greenSlider.ValueAsFloat = 0F;
+            this.greenSlider.Value = 1D;
+            this.greenSlider.ValueAsFloat = 1F;
             this.greenSlider.ValueChanged += new System.EventHandler(this.greenSlider_ValueChanged);
             // 
             // redSlider
@@ -136,8 +136,8 @@
             this.redSlider.TabIndex = 4;
             this.redSlider.TickSpacing = 32D;
             this.redSlider.Title = "Red";
-            this.redSlider.Value = 0D;
-            this.redSlider.ValueAsFloat = 0F;
+            this.redSlider.Value = 100D;
+            this.redSlider.ValueAsFloat = 100F;
             this.redSlider.ValueChanged += new System.EventHandler(this.redSlider_ValueChanged);
             // 
             // KColorDialog

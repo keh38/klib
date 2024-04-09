@@ -16,4 +16,9 @@
 /Source/Utilities/bin
 /Source/VolumeManager/obj
 /Source/VolumeManager/bin
+<<<<<<< HEAD
 /Source/.vs
+=======
+/Source/ZedGraph/bin
+/Source/ZedGraph/obj
+>>>>>>> 880ff78e3bacba1796ec591325a66be5303f7a20
