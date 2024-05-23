@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Turandot_Editor
+namespace KLib.Controls
 {
     public class KCheckBox : CheckBox
     {
@@ -51,14 +51,24 @@ namespace Turandot_Editor
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            Brush brush = Brushes.Black;
+            Pen pen = Pens.Black;
+
+            if (!Enabled)
+            {
+                brush = Brushes.LightGray;
+                pen = Pens.LightGray;
+            }
+
+
             e.Graphics.Clear(BackColor);
 
             e.Graphics.FillRectangle(Brushes.White, _boxRect);
-            e.Graphics.DrawRectangle(Pens.Black, _boxRect);
+            e.Graphics.DrawRectangle(pen, _boxRect);
             using (StringFormat stringFormat = new StringFormat())
             {
                 stringFormat.LineAlignment = StringAlignment.Near;
-                e.Graphics.DrawString(Text, Font, Brushes.Black, _textRect, stringFormat);
+                e.Graphics.DrawString(Text, Font, brush, _textRect, stringFormat);
             }
 
             if (Checked)
