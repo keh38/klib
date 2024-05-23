@@ -11,6 +11,8 @@ namespace KLib.Controls
 		public const int WH_CBT = 5;
 		public const int HCBT_ACTIVATE = 5;
 
+        public const int MF_BYPOSITION = 0x400;
+
         public const int WH_CALLWNDPROCRET = 12;
         public const int WM_DESTROY = 0x0002;
         public const int WM_INITDIALOG = 0x0110;
@@ -100,12 +102,18 @@ namespace KLib.Controls
 		[return: MarshalAs(UnmanagedType.Bool)]
 		public static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int x, int y, int cx, int cy, uint uFlags);
 
-		#endregion Stock P/Invokes
+        [DllImport("User32")]
+        public static extern int RemoveMenu(IntPtr hMenu, int nPosition, int wFlags);
+        [DllImport("User32")]
+        public static extern IntPtr GetSystemMenu(IntPtr hWnd, bool bRevert);
+        [DllImport("User32")]
+        public static extern int GetMenuItemCount(IntPtr hWnd);
 
+        #endregion Stock P/Invokes
 
-		#region Simplified interfaces
+        #region Simplified interfaces
 
-		public static string GetClassName(IntPtr hWnd)
+        public static string GetClassName(IntPtr hWnd)
 		{
 			StringBuilder ClassName = new StringBuilder(100);
 			//Get the window class name
@@ -132,6 +140,15 @@ namespace KLib.Controls
 			GetWindowText(hItem, sb, sb.Capacity);
 			return sb.ToString();
 		}
+
+        // See: https://midnightprogrammer.net/post/disable-x-close-button-on-your-windows-form-application/
+        public static void DisableXButton(IntPtr hWnd)
+        {
+            IntPtr hMenu = Win32.GetSystemMenu(hWnd, false);
+            int menuItemCount = Win32.GetMenuItemCount(hMenu);
+            Win32.RemoveMenu(hMenu, menuItemCount - 1, MF_BYPOSITION);
+        }
+
         #endregion Simplified interfaces
 
 
