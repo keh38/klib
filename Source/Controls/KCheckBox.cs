@@ -43,7 +43,7 @@ namespace Turandot_Editor
             _textRect = new Rectangle(2 * Margin.Left + imageWidth, h / 2 - sz.Height / 2, sz.Width + 50, sz.Height);
             _boxRect = new Rectangle(boxcenter - _boxSize / 2, h / 2 - _boxSize / 2, _boxSize, _boxSize);
 
-            SetClientSizeCore(2*Margin.Left + imageWidth + sz.Width + Margin.Right+50, h+3);
+            SetClientSizeCore(2*Margin.Left + imageWidth + sz.Width + Margin.Right+50, h+1);
         }
 
         protected override void OnPaint(PaintEventArgs e)
