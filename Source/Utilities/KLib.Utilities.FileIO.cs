@@ -123,5 +123,14 @@ namespace KLib.Utilities
             return JsonConvert.DeserializeObject<T>(objString);
         }
 
+        public static void AppendTextFile(string path, string text)
+        {
+            using (Stream s = File.Open(path, FileMode.Append))
+            {
+                byte[] b = System.Text.Encoding.ASCII.GetBytes(text);
+                s.Write(b, 0, b.Length);
+            }
+        }
+
     }
 }

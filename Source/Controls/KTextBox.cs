@@ -47,6 +47,12 @@ namespace KLib.Controls
             }
         }
 
+        public HorizontalAlignment TextAlign
+        {
+            get { return textBox.TextAlign; }
+            set { textBox.TextAlign = value; }
+        }
+
         public void SetContextMenu(ContextMenuStrip cms)
         {
             textBox.ContextMenuStrip = cms;
