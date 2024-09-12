@@ -17,7 +17,7 @@ namespace KLib.Utilities
         private double _storedDeviate;
         private readonly Random _random;
 
-        /// <summary>
+        /// <summary>  
         /// Create GaussianRandom object.
         /// </summary>
         /// <param name="random">Optional object of class <see cref="Random"/>, a uniform random number generator.</param>
