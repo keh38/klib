@@ -94,12 +94,13 @@ namespace KLib.Net
         /// <returns>Returns IPEndPoint object</returns>
         public static IPEndPoint Discover(string name)
         {
+            UdpClient udp = null;
             IPEndPoint endPoint = null;
 
             try
             {
                 var addy = FindServerAddress();
-                Debug.WriteLine("listening on: " + addy);
+                Debug.WriteLine("discovering on: " + addy);
 
                 IPAddress localAddress;
                 if (addy.Equals("localhost"))
@@ -116,7 +117,7 @@ namespace KLib.Net
                 var address = IPAddress.Parse("234.5.6.7");
                 var ipEndPoint = new IPEndPoint(address, 10000);
 
-                var udp = new UdpClient(ipLocal);
+                udp = new UdpClient(ipLocal);
                 udp.Client.ReceiveTimeout = 500;
 
                 udp.JoinMulticastGroup(address, localAddress);
@@ -129,13 +130,16 @@ namespace KLib.Net
                 var port = Int32.Parse(Encoding.Default.GetString(bytes));
                 endPoint = new IPEndPoint(anyIP.Address, port);
 
-                udp.Close();
-
                 Debug.WriteLine("host = " + endPoint);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
+            }
+
+            if (udp != null)
+            {
+                udp.Close();
             }
 
             return endPoint;
