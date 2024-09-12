@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\KLib.Net.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,7 @@
   <ItemGroup>
     <Compile Include="ARP.cs" />
     <Compile Include="ARPTable.cs" />
+    <Compile Include="Discovery.cs" />
     <Compile Include="IPInfo.cs" />
     <Compile Include="KTcpListener.cs" />
     <Compile Include="Ping.cs" />
