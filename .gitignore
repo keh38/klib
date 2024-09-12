@@ -22,3 +22,6 @@
 /Source/ZedGraph/bin
 /Source/ZedGraph/obj
 >>>>>>> 880ff78e3bacba1796ec591325a66be5303f7a20
+/Documentation/.vs
+/Documentation/Net/Help
+/Source/Net/nuget.config
