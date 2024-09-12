@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KLib.Net</name>
+    </assembly>
+    <members>
+        <member name="M:KLib.Net.ARP.GetARPResult">
+            <summary>
+            This runs the "arp" utility in Windows to retrieve all the MAC / IP Address entries.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KLib.Net.Discovery.FindServerAddress(System.Boolean)">
+            <summary>
+            Finds IP address belonging to a LAN on which to run a TCP server.
+            </summary>
+            <remarks>
+            Parses ARP table to find a valid LAN address (starting with 169.254 or 11.12.13). Optionally defaults to localhost if no NIC found.
+            </remarks>
+            <param name="canUseLocalhost">specifies whether a localhost connection is allowed. Defaults to true.</param>
+            <returns>IP address of NIC attached to LAN</returns>
+        </member>
+        <member name="M:KLib.Net.Discovery.Discover(System.String)">
+            <summary>
+            Send UDP multicast message to find discoverable TCP server address
+            </summary>
+            <param name="name">Name of desired TCP server (typically all caps)</param>
+            <returns>Returns IPEndPoint object</returns>
+        </member>
+    </members>
+</doc>

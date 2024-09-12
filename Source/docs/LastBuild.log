@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shfbBuild product="Sandcastle Help File Builder and Tools" version="2024.2.18.0" projectFile="D:\Development\KLib\Source\KLib Documentation.shfbproj" started="9/11/2024 9:29:20 PM">
+<buildStep step="Initializing">
+The Sandcastle tools are located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder&#39;
+Locating components in the following folder(s):
+    D:\Development\KLib\Source
+    C:\ProgramData\EWSoftware\Sandcastle Help File Builder\Components and Plug-Ins
+    C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components
+Using framework reflection data for &#39;.NET Framework 4.5.2&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Data\.NETFramework&#39;
+Using presentation style &#39;Default2022&#39; located in &#39;C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022&#39;
+Loading and initializing plug-ins...
+Website Table of Contents Generator Version 2024.2.18.0
+Copyright &#169; 2006-2024, Eric Woodruff, All Rights Reserved
+-------------------------------
+Clearing any prior web/markdown output...
+</buildStep>
+<buildStep step="ValidatingDocumentationSources">
+Validating and copying documentation source information
+Source: D:\Development\KLib\Framework\KLib.Geometry.dll
+    Found assembly &#39;D:\Development\KLib\Framework\KLib.Geometry.dll&#39;
+Source: D:\Development\KLib\Framework\KLib.Geometry.xml
+Source: D:\Development\KLib\Framework\KLib.Utilities.dll
+    Found assembly &#39;D:\Development\KLib\Framework\KLib.Utilities.dll&#39;
+Source: D:\Development\KLib\Framework\KLib.Utilities.xml
+Source: D:\Development\KLib\Framework\KLib.Net.dll
+    Found assembly &#39;D:\Development\KLib\Framework\KLib.Net.dll&#39;
+Source: D:\Development\KLib\Framework\KLib.Net.xml
+
+Copying XML comments files
+    D:\Development\KLib\Framework\KLib.Geometry.xml -&gt; D:\Development\KLib\Source\Help\Working\KLib.Geometry.xml
+    D:\Development\KLib\Framework\KLib.Utilities.xml -&gt; D:\Development\KLib\Source\Help\Working\KLib.Utilities.xml
+    D:\Development\KLib\Framework\KLib.Net.xml -&gt; D:\Development\KLib\Source\Help\Working\KLib.Net.xml
+</buildStep>
+<buildStep step="GenerateSharedContent">
+Generating shared content files (en-US, English (United States))...
+    Last step completed in 00:00:00.0050
+</buildStep>
+<buildStep step="GenerateApiFilter">
+Generating API filter for MRefBuilder...
+    Last step completed in 00:00:00.0173
+</buildStep>
+<buildStep step="GenerateReflectionInfo">
+Generating reflection information...
+[C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\MSBuild.exe - GenerateRefInfo-87d24b64-ebf1-4030-9709-6f25cf9d8f0e.proj]
+Build started 9/11/2024 9:29:21 PM.
+Project &quot;D:\Development\KLib\Source\Help\Working\GenerateRefInfo-87d24b64-ebf1-4030-9709-6f25cf9d8f0e.proj&quot; on node 1 (default targets).
+PrepareForBuild:
+  Creating directory &quot;obj\Debug\&quot;.
+GenerateRefInfo:
+  Microsoft.Build (v15.9.21+g9802d43bc3)
+  c Microsoft Corporation. All rights reserved.
+  No source code context base path specified.  Source context information is unavailable.
+  Loaded 3 assemblies for reflection and 1 dependency assemblies.
+  Wrote information on 7 namespaces, 28 types, and 260 members
+  Merging duplicate type and member information
+  Merged 0 duplicate type(s) and 0 duplicate member(s)
+Done Building Project &quot;D:\Development\KLib\Source\Help\Working\GenerateRefInfo-87d24b64-ebf1-4030-9709-6f25cf9d8f0e.proj&quot; (default targets).
+    Last step completed in 00:00:00.5652
+</buildStep>
+<buildStep step="ApplyDocumentModel">
+Applying document model to reflection output...
+    Last step completed in 00:00:00.0728
+</buildStep>
+<buildStep step="AddNamespaceGroups">
+Adding namespace group entries...
+Added 3 namespace group entries
+    Last step completed in 00:00:00.0509
+</buildStep>
+<buildStep step="AddApiTopicFilenames">
+Adding topic filenames to API members...
+    Last step completed in 00:00:00.0509
+</buildStep>
+<buildStep step="GenerateApiTopicManifest">
+Generating API topic manifest...
+    Last step completed in 00:00:00.0409
+</buildStep>
+<buildStep step="GenerateNamespaceSummaries">
+Generating namespace summary information...
+    Last step completed in 00:00:00.0239
+</buildStep>
+<buildStep step="CopyAdditionalContent">
+Copying additional content files...
+No additional content to copy
+    Last step completed in 00:00:00.0020
+</buildStep>
+<buildStep step="MergeTablesOfContents">
+Merging conceptual and additional tables of contents...
+    Last step completed in 00:00:00.0000
+</buildStep>
+<buildStep step="GenerateIntermediateTableOfContents">
+Generating intermediate table of contents file for API content...
+Generating conceptual content intermediate TOC file...
+    Last step completed in 00:00:00.0259
+</buildStep>
+<buildStep step="CreateBuildAssemblerConfigs">
+Creating Sandcastle configuration files...
+    Last step completed in 00:00:00.3980
+</buildStep>
+<buildStep step="CombiningIntermediateTocFiles">
+Combining conceptual and API intermediate TOC files...
+    Last step completed in 00:00:00.0239
+</buildStep>
+<buildStep step="MergeCustomConfigs">
+Merging custom build component configurations
+D:\Development\KLib\Source\Help\Working\BuildAssembler.config
+  Updating reference topic configurations.
+  No conceptual content.  Removing conceptual content components.
+    Last step completed in 00:00:00.0239
+</buildStep>
+<buildStep step="BuildTopics">
+Building help topics...
+<plugIn name="Website Table of Contents Generator" behavior="Before" priority="1000">
+Loading TOC info and adding unique IDs to parent nodes
+</plugIn>Loading configuration...
+Processing topics...
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Expressions] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ContainsPDF(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ContainsPDF(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ContainsPDF(System.String)] Missing &lt;param name=&quot;expr&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.Evaluate(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.Evaluate(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.Evaluate(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateComparison(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateComparison(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateComparison(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToDoubleScalar(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToDoubleScalar(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToDoubleScalar(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToInt(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToInt(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToInt(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToIntScalar(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToIntScalar(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.EvaluateToIntScalar(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Expressions.LastError] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegEx(System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegEx(System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegEx(System.String,System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegEx(System.String,System.String)] Missing &lt;param name=&quot;pattern&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegExInt(System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegExInt(System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegExInt(System.String,System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.SimpleRegExInt(System.String,System.String)] Missing &lt;param name=&quot;pattern&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ToVectorString(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ToVectorString(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.ToVectorString(System.Double[])] Missing &lt;param name=&quot;vals&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluate(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluate(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluate(System.String)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluateScalar(System.String,System.Double@)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluateScalar(System.String,System.Double@)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluateScalar(System.String,System.Double@)] Missing &lt;param name=&quot;expression&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.TryEvaluateScalar(System.String,System.Double@)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.UniformRandomNumber(System.Double,System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.UniformRandomNumber(System.Double,System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.UniformRandomNumber(System.Double,System.Double)] Missing &lt;param name=&quot;min&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.UniformRandomNumber(System.Double,System.Double)] Missing &lt;param name=&quot;max&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Expressions.PropVal] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.PropVal.#ctor(System.String,System.Double)] Missing &lt;param name=&quot;prop&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.PropVal.#ctor(System.String,System.Double)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.Expressions.PropVal.prop] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.PropVal.ToString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Expressions.PropVal.ToString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.Expressions.PropVal.value] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Tools] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;param name=&quot;val&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;param name=&quot;width&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;param name=&quot;font&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Tools.CompactPath(System.String,System.Int32,System.Drawing.Font,System.Windows.Forms.TextFormatFlags)] Missing &lt;param name=&quot;flags&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.XmlColor] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.XmlColor.#ctor(System.Drawing.Color)] Missing &lt;param name=&quot;c&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.XmlColor.A] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.XmlColor.B] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.XmlColor.G] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.XmlColor.IsEqualTo(KLib.XmlColor)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.XmlColor.IsEqualTo(KLib.XmlColor)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.XmlColor.IsEqualTo(KLib.XmlColor)] Missing &lt;param name=&quot;other&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.XmlColor.R] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.XmlColor.SystemColor] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Crypto] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Crypto.#ctor(KLib.Crypto.Crypto.CryptoTypes)] Missing &lt;param name=&quot;CryptoType&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Crypto.Crypto.CryptoTypes] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String)] Missing &lt;param name=&quot;inputText&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;param name=&quot;inputText&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.Hash(System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;param name=&quot;hashingType&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.isHashEqual(System.String,System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.isHashEqual(System.String,System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.isHashEqual(System.String,System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;param name=&quot;inputText&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.isHashEqual(System.String,System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;param name=&quot;hashText&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.Hashing.isHashEqual(System.String,System.String,KLib.Crypto.Hashing.HashingTypes)] Missing &lt;param name=&quot;hashingType&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Crypto.Hashing.HashingTypes] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Crypto.PublicKey] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Crypto.PublicKey.PublicKeyCrypto] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.#ctor(System.String)] Missing &lt;param name=&quot;containerName&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.#ctor(System.String,System.Boolean)] Missing &lt;param name=&quot;src&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.#ctor(System.String,System.Boolean)] Missing &lt;param name=&quot;isContainerName&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.CreateKeys(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.CreateKeys(System.String)] Missing &lt;param name=&quot;containerName&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Decrypt(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Decrypt(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Decrypt(System.String)] Missing &lt;param name=&quot;ciphertext&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Encrypt(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Encrypt(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.Encrypt(System.String)] Missing &lt;param name=&quot;plaintext&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.GetPublicKey] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.GetPublicKey] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.KeyFromContainer(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.KeyFromContainer(System.String)] Missing &lt;param name=&quot;containerName&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.KeyFromXML(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Crypto.PublicKey.PublicKeyCrypto.KeyFromXML(System.String)] Missing &lt;param name=&quot;xmlString&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Geometry] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Geometry.Geometry] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;pt&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;center&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;innerRadius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.AnnulusContains(System.Drawing.Point,System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;outerRadius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.CircleContains(System.Drawing.Point,System.Drawing.Point,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.CircleContains(System.Drawing.Point,System.Drawing.Point,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.CircleContains(System.Drawing.Point,System.Drawing.Point,System.Int32)] Missing &lt;param name=&quot;pt&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.CircleContains(System.Drawing.Point,System.Drawing.Point,System.Int32)] Missing &lt;param name=&quot;center&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.CircleContains(System.Drawing.Point,System.Drawing.Point,System.Int32)] Missing &lt;param name=&quot;radius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;x1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;y1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;x2&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;y2&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Drawing.Point,System.Drawing.Point)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Drawing.Point,System.Drawing.Point)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;p1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.Distance(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;p2&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointDiff(System.Drawing.Point,System.Drawing.Point)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointDiff(System.Drawing.Point,System.Drawing.Point)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointDiff(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;p1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointDiff(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;p2&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointOffset(System.Drawing.Point,System.Drawing.Point)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointOffset(System.Drawing.Point,System.Drawing.Point)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointOffset(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;point&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.PointOffset(System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;offset&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.RectangleByCenter(System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.RectangleByCenter(System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.RectangleByCenter(System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;center&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.RectangleByCenter(System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;width&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.Geometry.RectangleByCenter(System.Drawing.Point,System.Int32,System.Int32)] Missing &lt;param name=&quot;height&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Geometry.KPointF] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.#ctor(KLib.Geometry.KPointF)] Missing &lt;param name=&quot;p&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.#ctor(System.Drawing.Point)] Missing &lt;param name=&quot;p&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.#ctor(System.Single,System.Single)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.#ctor(System.Single,System.Single)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Add(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Add(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Add(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Add(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.CrossProduct(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.CrossProduct(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.CrossProduct(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.CrossProduct(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(KLib.Geometry.KPointF,KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(KLib.Geometry.KPointF,KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(KLib.Geometry.KPointF,KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;segmentStart&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(KLib.Geometry.KPointF,KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;segmentEnd&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(KLib.Geometry.KPointF,KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;point&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;segmentStart&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;segmentEnd&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.DistToLineSegment(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)] Missing &lt;param name=&quot;point&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(KLib.Geometry.KPointF,System.Single)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(KLib.Geometry.KPointF,System.Single)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(System.Single,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(System.Single,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Divide(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Dot(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Dot(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Dot(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;v1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Dot(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;v2&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Equals(System.Object)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Equals(System.Object)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Equals(System.Object)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.KPointF.Length] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.KPointF.LengthSquared] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Negate] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Negate] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Addition(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Addition(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Addition(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Addition(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(KLib.Geometry.KPointF,System.Single)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(KLib.Geometry.KPointF,System.Single)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(System.Single,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(System.Single,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Division(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Equality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Equality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Equality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Equality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Inequality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Inequality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Inequality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Inequality(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(KLib.Geometry.KPointF,System.Single)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;coefficient&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Multiply(System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Subtraction(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Subtraction(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Subtraction(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_Subtraction(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_UnaryNegation(KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_UnaryNegation(KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.op_UnaryNegation(KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Rotate(System.Single)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Rotate(System.Single)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Rotate(System.Single)] Missing &lt;param name=&quot;angle&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Scale(System.Single,System.Single,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Scale(System.Single,System.Single,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Scale(System.Single,System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;xScale&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Scale(System.Single,System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;yScale&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Scale(System.Single,System.Single,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Subtract(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Subtract(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Subtract(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF0&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.KPointF.Subtract(KLib.Geometry.KPointF,KLib.Geometry.KPointF)] Missing &lt;param name=&quot;KPointF1&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.Geometry.KPointF.X] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [F:KLib.Geometry.KPointF.Y] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.#ctor(System.Drawing.Point,System.Int32)] Missing &lt;param name=&quot;location&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.#ctor(System.Drawing.Point,System.Int32)] Missing &lt;param name=&quot;radius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.#ctor(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.#ctor(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.#ctor(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;R&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.Bounds] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.Center] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.ControlPointCursor] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;tolerance&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.Diameter] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Drag(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.FromString(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.FromString(System.String)] Missing &lt;param name=&quot;str&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.GetControlPointRects(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.GetControlPointRects(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.GetControlPointRects(System.Int32)] Missing &lt;param name=&quot;size&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.Left] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Resize(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Resize(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Resize(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Resize(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Rmin&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.Resize(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Rmax&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.ResizeOnly] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBCircle.Top] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ToString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBCircle.ToString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.#ctor(System.Drawing.Rectangle)] Missing &lt;param name=&quot;rect&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;W&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;H&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.ControlPointCursor] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;tolerance&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Drag(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.FromString(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.FromString(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.FromString(System.String)] Missing &lt;param name=&quot;str&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.GetControlPointRects(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.GetControlPointRects(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.GetControlPointRects(System.Int32)] Missing &lt;param name=&quot;size&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Height] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Initialize] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Left] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Resize(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Resize(System.Int32,System.Int32)] Missing &lt;param name=&quot;W&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.Resize(System.Int32,System.Int32)] Missing &lt;param name=&quot;H&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Top] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ToString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RBRectangle.ToString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Value] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Width] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.X] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RBRectangle.Y] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Geometry.RotatedRectangle] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Drawing.Point,System.Drawing.Point,System.Double)] Missing &lt;param name=&quot;loc&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Drawing.Point,System.Drawing.Point,System.Double)] Missing &lt;param name=&quot;sz&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Drawing.Point,System.Drawing.Point,System.Double)] Missing &lt;param name=&quot;phi&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)] Missing &lt;param name=&quot;W&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)] Missing &lt;param name=&quot;H&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Double)] Missing &lt;param name=&quot;phi&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Drawing.Point)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Drawing.Point)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Drawing.Point)] Missing &lt;param name=&quot;pt&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Contains(System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RotatedRectangle.ControlPointCursor] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ControlPointSelected(System.Int32,System.Int32,System.Int32)] Missing &lt;param name=&quot;radius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Drag(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;X&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.Drag(System.Int32,System.Int32)] Missing &lt;param name=&quot;Y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.FromString(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.FromString(System.String)] Missing &lt;param name=&quot;str&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.GetControlPoints(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.GetControlPoints(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.GetControlPoints(System.Int32)] Missing &lt;param name=&quot;radius&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ToString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Geometry.RotatedRectangle.ToString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Geometry.RotatedRectangle.Vertices] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Net] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.ARP] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.ARP.GetARPTables] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.ARP.GetARPTables] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.ARPTable] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.ARPTable.#ctor(System.String)] Missing &lt;param name=&quot;hostAddress&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.ARPTable.ClientInfo] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.ARPTable.HostAddress] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.ARPTable.ToString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.ARPTable.ToString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.Discovery] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Discovery.FindServerAddress] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Discovery.FindServerAddress] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.IPInfo] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.IPInfo.#ctor(System.String,System.String,System.String)] Missing &lt;param name=&quot;ipAddress&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.IPInfo.#ctor(System.String,System.String,System.String)] Missing &lt;param name=&quot;macAddress&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.IPInfo.#ctor(System.String,System.String,System.String)] Missing &lt;param name=&quot;type&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.IPInfo.HostName] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.IPInfo.IPAddress] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.IPInfo.MacAddress] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.IPInfo.Type] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.KTcpClient] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Close] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.Net.IPEndPoint)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.Net.IPEndPoint)] Missing &lt;param name=&quot;localEP&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.String)] Missing &lt;param name=&quot;server&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.String,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.String,System.Int32)] Missing &lt;param name=&quot;hostName&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.Connect(System.String,System.Int32)] Missing &lt;param name=&quot;port&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.KTcpClient.LastError] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadByteArrayFromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadByteArrayFromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadIntFromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadIntFromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadStringFromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.ReadStringFromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.KTcpClient.ReceiveTimeout] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.Net.IPEndPoint,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.Net.IPEndPoint,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.Net.IPEndPoint,System.String)] Missing &lt;param name=&quot;localEP&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.Net.IPEndPoint,System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String,System.Int32,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String,System.Int32,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String,System.Int32,System.String)] Missing &lt;param name=&quot;address&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String,System.Int32,System.String)] Missing &lt;param name=&quot;port&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommand(System.String,System.Int32,System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArray(System.String,System.Byte[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArray(System.String,System.Byte[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArray(System.String,System.Byte[])] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArray(System.String,System.Byte[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArrayReceiveByteArray(System.String,System.Byte[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArrayReceiveByteArray(System.String,System.Byte[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArrayReceiveByteArray(System.String,System.Byte[])] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandAndByteArrayReceiveByteArray(System.String,System.Byte[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandReceiveByteArray(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandReceiveByteArray(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.SendCommandReceiveByteArray(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [P:KLib.Net.KTcpClient.SendTimeout] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAndBytes(System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAndBytes(System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAndBytes(System.String,System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAndBytes(System.String,System.String)] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAsByteArray(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAsByteArray(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringAsByteArray(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringsAsByteArrays(System.String[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringsAsByteArrays(System.String[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringsAsByteArrays(System.String[])] Missing &lt;param name=&quot;str&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringToOutputStream(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringToOutputStream(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpClient.WriteStringToOutputStream(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.KTcpListener] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.AcceptTcpClient] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.CloseListener] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.CloseTcpClient] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.Pending] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.Pending] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadByteArrayFromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadByteArrayFromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadBytes] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadBytes] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadInt32FromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadInt32FromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadString] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadString] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadStringFromInputStream] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.ReadStringFromInputStream] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.SendAcknowledgement] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.SendAcknowledgement(System.Boolean)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.SendAcknowledgement(System.Boolean)] Missing &lt;param name=&quot;success&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32)] Missing &lt;param name=&quot;port&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32,System.Boolean)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32,System.Boolean)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32,System.Boolean)] Missing &lt;param name=&quot;port&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.StartListener(System.Int32,System.Boolean)] Missing &lt;param name=&quot;reverseWriteBytes&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteByteArray(System.Byte[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteByteArray(System.Byte[])] Missing &lt;param name=&quot;byteArray&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteInt32ToOutputStream(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteInt32ToOutputStream(System.Int32)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteIntToOutputStream(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteIntToOutputStream(System.Int32)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteLineToOutputStream(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteLineToOutputStream(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteStringAsByteArray(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.KTcpListener.WriteStringAsByteArray(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Net.Pinger] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.EndSweep] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.InitSweep] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.PingAddress(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.PingAddress(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.PingAddress(System.String)] Missing &lt;param name=&quot;address&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.Sweep] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.Sweep] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.SweepRange(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.SweepRange(System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.SweepRange(System.Int32,System.Int32)] Missing &lt;param name=&quot;lower&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Net.Pinger.SweepRange(System.Int32,System.Int32)] Missing &lt;param name=&quot;upper&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Utilities] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Utilities.FileIO] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.AppendTextFile(System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.AppendTextFile(System.String,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.AppendTextFile(System.String,System.String)] Missing &lt;param name=&quot;text&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;param name=&quot;json&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObject``1(System.String,System.String,System.String)] Missing &lt;param name=&quot;next&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObjectString(System.String,System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObjectString(System.String,System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObjectString(System.String,System.String,System.String)] Missing &lt;param name=&quot;json&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObjectString(System.String,System.String,System.String)] Missing &lt;param name=&quot;name&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ExtractJsonObjectString(System.String,System.String,System.String)] Missing &lt;param name=&quot;next&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.FromXMLString``1(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.FromXMLString``1(System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.FromXMLString``1(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.FromXMLString``1(System.String)] Missing &lt;param name=&quot;xml&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromJson``1(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromJson``1(System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromJson``1(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromJson``1(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromXML``1(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromXML``1(System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromXML``1(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.RestoreFromXML``1(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToJson``1(``0,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToJson``1(``0,System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToJson``1(``0,System.String)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToJson``1(``0,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToXML``1(``0,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToXML``1(``0,System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToXML``1(``0,System.String)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.SaveToXML``1(``0,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ToXMLString``1(``0)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ToXMLString``1(``0)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ToXMLString``1(``0)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.ToXMLString``1(``0)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlDeserialize``1(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlDeserialize``1(System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlDeserialize``1(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlDeserialize``1(System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlSerialize``1(``0,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlSerialize``1(``0,System.String)] Missing &lt;typeparam name=&quot;T&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlSerialize``1(``0,System.String)] Missing &lt;param name=&quot;obj&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.FileIO.XmlSerialize``1(``0,System.String)] Missing &lt;param name=&quot;path&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Utilities.KMath] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Clamp(System.Double,System.Double,System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Clamp(System.Double,System.Double,System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Clamp(System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Clamp(System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;min&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Clamp(System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;max&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CoeffVar(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CoeffVar(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CoeffVar(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CumSum(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CumSum(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.CumSum(System.Double[])] Missing &lt;param name=&quot;x&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.FloorToInt(System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.FloorToInt(System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.FloorToInt(System.Double)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.GeoMean(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.GeoMean(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.GeoMean(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsEven(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsEven(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsEven(System.Int32)] Missing &lt;param name=&quot;val&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsMultipleOf(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsMultipleOf(System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsMultipleOf(System.Int32,System.Int32)] Missing &lt;param name=&quot;val&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.IsMultipleOf(System.Int32,System.Int32)] Missing &lt;param name=&quot;root&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Log2(System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Log2(System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Log2(System.Double)] Missing &lt;param name=&quot;value&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Int32[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Int32[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Max(System.Int32[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MaxAbs(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MaxAbs(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MaxAbs(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Mean(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Mean(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Mean(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MeanSquare(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MeanSquare(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.MeanSquare(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Median(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Median(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Median(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Min(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Min(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Min(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.NextRandomInt(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.NextRandomInt(System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.NextRandomInt(System.Int32,System.Int32)] Missing &lt;param name=&quot;minVal&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.NextRandomInt(System.Int32,System.Int32)] Missing &lt;param name=&quot;maxVal&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Double[])] Missing &lt;param name=&quot;y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32)] Missing &lt;param name=&quot;N&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32,System.Int32)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32,System.Int32)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32,System.Int32)] Missing &lt;param name=&quot;N&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32,System.Int32)] Missing &lt;param name=&quot;numElements&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Permute(System.Int32[])] Missing &lt;param name=&quot;y&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS_dB(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS_dB(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.RMS_dB(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.StdDev(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.StdDev(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.StdDev(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.SumOfSquares(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.SumOfSquares(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.SumOfSquares(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Unique(System.Double[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Unique(System.Double[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.KMath.Unique(System.Double[])] Missing &lt;param name=&quot;data&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.RaisedCosineRandom.#ctor(System.Int32,System.Double)] Missing &lt;param name=&quot;exp&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.RaisedCosineRandom.#ctor(System.Int32,System.Double)] Missing &lt;param name=&quot;m&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.RaisedCosineRandom.GetInvCDF(System.Double[]@)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.RaisedCosineRandom.GetInvCDF(System.Double[]@)] Missing &lt;param name=&quot;x&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;dx&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;x&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;a&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;b&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;mu&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double,System.Double[]@,System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;sigma&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;x&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;a&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;b&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;mu&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.TruncatedNormalRandom.PDF(System.Double[],System.Double,System.Double,System.Double,System.Double)] Missing &lt;param name=&quot;sigma&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Utilities.ZedGraphUtils] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Missing &lt;param name=&quot;zgc&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Missing &lt;param name=&quot;xlabel&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Missing &lt;param name=&quot;ylabel&quot;/&gt; documentation
+SHFB: Warning BE0066: ResolveReferenceLinksComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Unknown reference link target &#39;T:ZedGraph.ZedGraphControl&#39;.
+SHFB: Warning BE0066: ResolveReferenceLinksComponent: [M:KLib.Utilities.ZedGraphUtils.InitZedGraph(ZedGraph.ZedGraphControl,System.String,System.String)] Unknown reference link target &#39;T:ZedGraph.GraphPane&#39;.
+SHFB: Warning BE0066: ShowMissingComponent: [N:KLib.Utilities.ExtensionMethods] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [T:KLib.Utilities.ExtensionMethods.MyExtensions] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ContainsChar(System.String,System.Char)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ContainsChar(System.String,System.Char)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ContainsChar(System.String,System.Char)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ContainsChar(System.String,System.Char)] Missing &lt;param name=&quot;c&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FirstLetterToUpperCase(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FirstLetterToUpperCase(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FirstLetterToUpperCase(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FromVectorString(System.String)] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FromVectorString(System.String)] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.FromVectorString(System.String)] Missing &lt;param name=&quot;s&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToDouble(System.Single[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToDouble(System.Single[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToDouble(System.Single[])] Missing &lt;param name=&quot;vals&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToVectorString(System.Single[])] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToVectorString(System.Single[])] Missing &lt;returns&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [M:KLib.Utilities.ExtensionMethods.MyExtensions.ToVectorString(System.Single[])] Missing &lt;param name=&quot;vals&quot;/&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [G:KLib.Utilities] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [G:KLib] Missing &lt;summary&gt; documentation
+SHFB: Warning BE0066: ShowMissingComponent: [G:KLib.Crypto] Missing &lt;summary&gt; documentation
+Processed 356 topic(s)
+639 warning(s)
+CopyFromIndexComponent: &quot;reflection&quot; in-memory cache entries used: 6 of 15.
+CopyFromIndexComponent: &quot;comments&quot; in-memory cache entries used: 4 of 30.
+<plugIn name="Website Table of Contents Generator" behavior="After" priority="1000">
+Generating TOC fragment files
+</plugIn>    Last step completed in 00:00:05.3657
+</buildStep>
+<buildStep step="CopyStandardHelpContent">
+Copying standard help content...
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\bulma.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\bulma.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\bulma.css.map -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\bulma.css.map
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\bulma.min.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\bulma.min.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\font-awesome.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\font-awesome.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\font-awesome.min.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\font-awesome.min.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\ja-JP.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\ja-JP.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\ko-KR.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\ko-KR.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\presentationStyle.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\presentationStyle.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\vs.min.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\vs.min.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\zh-CN.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\zh-CN.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\css\zh-TW.css -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\css\zh-TW.css
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\icons\favicon.ico -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\icons\favicon.ico
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\scripts\clipboard.min.js -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\scripts\clipboard.min.js
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\scripts\highlight.min.js -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\scripts\highlight.min.js
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\scripts\jquery-3.5.1.min.js -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\scripts\jquery-3.5.1.min.js
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\scripts\presentationStyle.js -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\scripts\presentationStyle.js
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-brands-400.ttf -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-brands-400.ttf
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-brands-400.woff2 -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-brands-400.woff2
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-regular-400.ttf -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-regular-400.ttf
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-regular-400.woff2 -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-regular-400.woff2
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-solid-900.ttf -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-solid-900.ttf
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-solid-900.woff2 -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-solid-900.woff2
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-v4compatibility.ttf -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-v4compatibility.ttf
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\webfonts\fa-v4compatibility.woff2 -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\webfonts\fa-v4compatibility.woff2
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\GeneralError.html -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\GeneralError.html
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\index.html -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\index.html
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\PageNotFound.html -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\PageNotFound.html
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\search.html -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\search.html
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.aspx -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\SearchHelp.aspx
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.inc.php -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\SearchHelp.inc.php
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\SearchHelp.php -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\SearchHelp.php
+C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\Components\Default2022\RootWebsiteContent\Web.Config -&gt; D:\Development\KLib\Source\Help\Working\Output\Website\Web.Config
+    Last step completed in 00:00:00.1546
+</buildStep>
+<buildStep step="GenerateFullTextIndex">
+Generating full-text index for the website...
+
+    Last step completed in 00:00:00.1682
+</buildStep>
+<buildStep step="CopyingWebsiteFiles">
+Copying website files to output folder...
+
+Copied 500 files
+Copied 517 files for the website content
+    Last step completed in 00:00:00.2433
+</buildStep>
+<buildStep step="CleanIntermediates">
+Removing intermediate files...
+    Last step completed in 00:00:00.0638
+</buildStep>
+<buildStep step="Completed">
+
+Build completed successfully at 9/11/2024 9:29:28 PM.  Total time: 00:00:08.0763
+
+</buildStep>
+</shfbBuild>

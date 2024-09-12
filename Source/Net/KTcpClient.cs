@@ -20,6 +20,11 @@ namespace KLib.Net
 
         private string _lastError;
 
+        public void Connect(IPEndPoint localEP)
+        {
+            _socket = new TcpClient(localEP);
+        }
+
         public void Connect(string server)
         {
             var parts = server.Split(':');
@@ -60,6 +65,11 @@ namespace KLib.Net
         public int SendCommand(string s)
         {
             return WriteStringAsByteArray(s);
+        }
+
+        public static int SendCommand(IPEndPoint localEP, string s)
+        {
+            return SendCommand(localEP.Address.ToString(), localEP.Port, s);
         }
 
         public static int SendCommand(string address, int port, string s)
