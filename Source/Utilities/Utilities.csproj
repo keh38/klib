@@ -60,6 +60,7 @@
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Graphics\KLib.XmlColor.cs" />
     <Compile Include="KLib.Utilities.FileIO.cs" />
+    <Compile Include="KLib.Windows.cs" />
     <Compile Include="Math\Math.cs" />
     <Compile Include="Math\TruncatedNormalRandom.cs" />
     <Compile Include="Math\RaisedCosineRandom.cs" />

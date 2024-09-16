@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KLib
 {
-    class WindowsAPI
+    public static class Windows
     {
         public class ChildControl
         {
@@ -78,15 +78,15 @@ namespace KLib
 
         public static string GetWindowText(IntPtr hWnd)
         {
-            int capacity = WindowsAPI.GetWindowTextLength(hWnd) * 2;
+            int capacity = Windows.GetWindowTextLength(hWnd) * 2;
             StringBuilder stringBuilder = new StringBuilder(capacity);
-            WindowsAPI.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
+            Windows.GetWindowText(hWnd, stringBuilder, stringBuilder.Capacity);
             return stringBuilder.ToString();
         }
 
         public static void ButtonClick(IntPtr hWnd)
         {
-            SendMessage(hWnd, WindowsAPI.BM_CLICK, IntPtr.Zero, IntPtr.Zero);
+            SendMessage(hWnd, Windows.BM_CLICK, IntPtr.Zero, IntPtr.Zero);
         }
 
         public static List<IntPtr> GetAllChildHandles(IntPtr hWnd)
@@ -98,8 +98,8 @@ namespace KLib
 
             try
             {
-                WindowsAPI.EnumWindowProc childProc = new WindowsAPI.EnumWindowProc(EnumWindow);
-                WindowsAPI.EnumChildWindows(hWnd, childProc, pointerChildHandlesList);
+                Windows.EnumWindowProc childProc = new Windows.EnumWindowProc(EnumWindow);
+                Windows.EnumChildWindows(hWnd, childProc, pointerChildHandlesList);
             }
             finally
             {
@@ -108,6 +108,20 @@ namespace KLib
 
             return childHandles;
         }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        public const int SW_SHOWNORMAL = 1;
+        public const int SW_SHOWMAXIMIZED = 3;
+        public const int SW_SHOW = 5;
+        public const int SW_RESTORE = 9;
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
+
+        [DllImport("user32.dll")]
+        public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);
 
         private static bool EnumWindow(IntPtr hWnd, IntPtr lParam)
         {
