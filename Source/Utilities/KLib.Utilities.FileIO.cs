@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Newtonsoft.Json;
+using ProtoBuf;
 
 namespace KLib.Utilities
 {
@@ -130,6 +131,28 @@ namespace KLib.Utilities
                 byte[] b = System.Text.Encoding.ASCII.GetBytes(text);
                 s.Write(b, 0, b.Length);
             }
+        }
+
+        public static byte[] ToProtoBuf<T>(T obj)
+        {
+            byte[] pbuf;
+            using (var ms = new System.IO.MemoryStream())
+            {
+                Serializer.Serialize<T>(ms, obj);
+                pbuf = ms.ToArray();
+            }
+            return pbuf;
+        }
+
+        public static T FromProtoBuf<T>(byte[] pbuf)
+        {
+            T obj = default(T);
+            using (var ms = new System.IO.MemoryStream(pbuf))
+            {
+                obj = Serializer.Deserialize<T>(ms);
+            }
+
+            return obj;
         }
 
     }

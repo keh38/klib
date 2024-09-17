@@ -22,7 +22,7 @@ namespace KLib.Net
 
         public void Connect(IPEndPoint localEP)
         {
-            _socket = new TcpClient(localEP);
+            _socket = new TcpClient(localEP.Address.ToString(), localEP.Port);
         }
 
         public void Connect(string server)
@@ -202,6 +202,25 @@ namespace KLib.Net
             }
 
             return result;
+        }
+
+        public static int SendCommandAndByteArray(IPEndPoint localEP, string s, byte[] data)
+        {
+            int result = -1;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendCommandAndByteArray(s, data);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+
         }
 
         public int SendCommandAndByteArray(string s, byte[] data)
