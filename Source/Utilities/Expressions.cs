@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-using KLib.Utilities;
+using KLib.KMath;
 using KLib.Utilities.ExtensionMethods;
 
 namespace KLib
@@ -105,7 +105,7 @@ namespace KLib
             try
             {
                 double[] vals = Evaluate(expression);
-                int rn = KMath.NextRandomInt((int)0, (int)vals.Length);
+                int rn = MathUtils.NextRandomInt((int)0, (int)vals.Length);
                 value = vals[rn];
             }
             catch (Exception ex)
@@ -241,25 +241,25 @@ namespace KLib
             {
                 case "max":
                     valuesOut = new double[1];
-                    valuesOut[0] = KMath.Max(values);
+                    valuesOut[0] = MathUtils.Max(values);
                     break;
                 case "mean":
                     valuesOut = new double[1];
-                    valuesOut[0] = KMath.Mean(values);
+                    valuesOut[0] = MathUtils.Mean(values);
                     break;
                 case "median":
                     valuesOut = new double[1];
-                    valuesOut[0] = KMath.Median(values);
+                    valuesOut[0] = MathUtils.Median(values);
                     break;
                 case "min":
                     valuesOut = new double[1];
-                    valuesOut[0] = KMath.Min(values);
+                    valuesOut[0] = MathUtils.Min(values);
                     break;
                 case "perm":
-                    valuesOut = KMath.Permute(values);
+                    valuesOut = MathUtils.Permute(values);
                     break;
                 case "unique":
-                    valuesOut = KMath.Unique(values);
+                    valuesOut = MathUtils.Unique(values);
                     break;
             }
             return valuesOut;
@@ -285,7 +285,7 @@ namespace KLib
             m = Regex.Match(expression, pattern);
             if (m.Success)
             {
-                expression = expression.Replace(m.Groups[1].Value, KMath.Mean(ParseMatrixString("[" + m.Groups[2].Value + "]")).ToString());
+                expression = expression.Replace(m.Groups[1].Value, MathUtils.Mean(ParseMatrixString("[" + m.Groups[2].Value + "]")).ToString());
                 return expression;
             }
 
@@ -323,7 +323,7 @@ namespace KLib
             if (m.Success)
             {
                 double op = double.Parse(m.Groups[2].Value);
-                expression = expression.Replace(m.Groups[1].Value, Math.Sqrt(op).ToString());
+                expression = expression.Replace(m.Groups[1].Value, System.Math.Sqrt(op).ToString());
                 return expression;
             }
 

@@ -30,7 +30,7 @@ using System.IO;
 using System.Security.Cryptography;
 using Microsoft.Identity.Client;
 
-using KLib.Utilities;
+using KLib;
 
 namespace KLib.MSGraph
 {

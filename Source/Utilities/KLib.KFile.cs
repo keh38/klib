@@ -9,9 +9,9 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 using ProtoBuf;
 
-namespace KLib.Utilities
+namespace KLib
 {
-    public class FileIO
+    public static class KFile
     {
         public static void SaveToXML<T>(T obj, string path)
         {

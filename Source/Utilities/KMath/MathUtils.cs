@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KLib.Utilities
+namespace KLib.KMath
 {
-    public class KMath
+    public class MathUtils
     {
         private static Random _rn = null;
 
@@ -156,12 +156,12 @@ namespace KLib.Utilities
             Array.Sort(data);
             if (data.Length % 2 == 1)
             {
-                int i = KMath.FloorToInt(data.Length / 2f) + 1;
+                int i = MathUtils.FloorToInt(data.Length / 2f) + 1;
                 med = data[i];
             }
             else
             {
-                int i = KMath.FloorToInt(data.Length / 2f);
+                int i = MathUtils.FloorToInt(data.Length / 2f);
                 med = 0.5f * (data[i] + data[i + 1]);
             }
 
@@ -232,12 +232,12 @@ namespace KLib.Utilities
 
         public static bool IsEven(int val)
         {
-            return val == 2 * KMath.FloorToInt((double)val / 2f);
+            return val == 2 * MathUtils.FloorToInt((double)val / 2f);
         }
 
         public static bool IsMultipleOf(int val, int root)
         {
-            return (val - root * KMath.FloorToInt((double)val / (double)root) == 0);
+            return (val - root * MathUtils.FloorToInt((double)val / (double)root) == 0);
         }
 
 

@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-
 namespace CSUST.Data
 {
     /// <summary>
@@ -163,7 +162,7 @@ namespace CSUST.Data
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
             base.OnKeyPress(e);
-            
+
             // The value changes when a digit, the decimal separator or the negative sign is pressed.
             bool notifyValueChange = false;
 
@@ -305,6 +304,35 @@ namespace CSUST.Data
 
         [
             Category("Appearance"),
+            DefaultValue(false),
+            Description("Removing trailing zeros from floating point number.")
+        ]
+        public bool RemoveTrailingZeros
+        {
+            get { return this.NumEditCellTemplate.RemoveTrailingZeros; }
+            set
+            {
+                this.NumEditCellTemplate.RemoveTrailingZeros = value;
+                if (this.DataGridView != null)
+                {
+                    DataGridViewRowCollection dataGridViewRows = this.DataGridView.Rows;
+                    int rowCount = dataGridViewRows.Count;
+                    for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
+                    {
+                        DataGridViewRow dataGridViewRow = dataGridViewRows.SharedRow(rowIndex);
+                        TNumEditDataGridViewCell dataGridViewCell = dataGridViewRow.Cells[this.Index] as TNumEditDataGridViewCell;
+                        if (dataGridViewCell != null)
+                        {
+                            dataGridViewCell.EnableRemoveTrailingZeros(rowIndex, value);
+                        }
+                    }
+                    this.DataGridView.InvalidateColumn(this.Index);
+                }
+            }
+        }
+    
+        [
+            Category("Appearance"),
             DefaultValue(true),
             Description("Whether negative sign is allowed or not.")
         ]
@@ -381,6 +409,7 @@ namespace CSUST.Data
         private bool m_showNullWhenZero = false;
         private bool m_allowNegative = true;
         private int m_decimalLength = 0;
+        private bool m_removeTrailingZeros = false;
 
         private static Type defaultEditType = typeof(TNumEditDataGridViewEditingControl);
         private static Type defaultValueType = typeof(System.Decimal);
@@ -396,6 +425,20 @@ namespace CSUST.Data
                 if (m_decimalLength != value)
                 {
                     SetDecimalLength(this.RowIndex, value);
+                    OnCommonChange();  // Assure that the cell/column gets repainted and autosized if needed
+                }
+            }
+        }
+
+        [DefaultValue(false)]
+        public bool RemoveTrailingZeros
+        {
+            get { return m_removeTrailingZeros; }
+            set
+            {
+                if (m_removeTrailingZeros != value)
+                {
+                    EnableRemoveTrailingZeros(this.RowIndex, value);
                     OnCommonChange();  // Assure that the cell/column gets repainted and autosized if needed
                 }
             }
@@ -477,6 +520,7 @@ namespace CSUST.Data
                 dataGridViewCell.DecimalLength = this.DecimalLength;
                 dataGridViewCell.AllowNegative = this.AllowNegative;
                 dataGridViewCell.ShowNullWhenZero = this.ShowNullWhenZero;
+                dataGridViewCell.RemoveTrailingZeros = this.RemoveTrailingZeros;
             }
             return dataGridViewCell;
         }
@@ -490,6 +534,9 @@ namespace CSUST.Data
                 numEditBox.BorderStyle = BorderStyle.None;
                 numEditBox.DecimalLength = this.DecimalLength;
                 numEditBox.AllowNegative = this.AllowNegative;
+                numEditBox.RemoveTrailingZeros = this.RemoveTrailingZeros;
+
+                numEditBox.TextAlign = HorizontalAlignment.Center;
 
                 string initialFormattedValueStr = initialFormattedValue as string;
 
@@ -548,10 +595,16 @@ namespace CSUST.Data
                 return base.GetFormattedValue(null, rowIndex, ref cellStyle, valueTypeConverter, formattedValueTypeConverter, context);
             }
 
+            if (m_removeTrailingZeros)
+            {
+                return KLib.KString.RemoveTrailingZeros(formattedText);
+            }
+
             if (unformattedDecimal == formattedDecimal)
             {
                 return formattedDecimal.ToString("F" + m_decimalLength.ToString());
             }
+
             return formattedText;
         }
 
@@ -586,6 +639,15 @@ namespace CSUST.Data
             if (OwnsEditingControl(rowIndex))
             {
                 this.EditingTNumEditBox.DecimalLength = value;
+            }
+        }
+
+        internal void EnableRemoveTrailingZeros(int rowIndex, bool value)
+        {
+            m_removeTrailingZeros = value;
+            if (OwnsEditingControl(rowIndex))
+            {
+                this.EditingTNumEditBox.RemoveTrailingZeros = value;
             }
         }
 

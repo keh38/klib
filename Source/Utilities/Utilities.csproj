@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KLib</RootNamespace>
-    <AssemblyName>KLib.Utilities</AssemblyName>
+    <AssemblyName>KLib</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\KLib.Utilities.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\KLib.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\KLib.Utilities.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\KLib.xml</DocumentationFile>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
@@ -81,12 +81,13 @@
     <Compile Include="Expressions.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Graphics\KLib.XmlColor.cs" />
-    <Compile Include="KLib.Utilities.FileIO.cs" />
+    <Compile Include="KLib.KString.cs" />
+    <Compile Include="KLib.KFile.cs" />
     <Compile Include="KLib.Windows.cs" />
-    <Compile Include="Math\Math.cs" />
-    <Compile Include="Math\TruncatedNormalRandom.cs" />
-    <Compile Include="Math\RaisedCosineRandom.cs" />
-    <Compile Include="Math\GaussianRandom.cs" />
+    <Compile Include="KMath\MathUtils.cs" />
+    <Compile Include="KMath\TruncatedNormalRandom.cs" />
+    <Compile Include="KMath\RaisedCosineRandom.cs" />
+    <Compile Include="KMath\GaussianRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\Tools.cs" />
     <Compile Include="Graphics\ZedGraphUtils.cs" />

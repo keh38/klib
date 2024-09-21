@@ -145,6 +145,7 @@ namespace CSUST.Data
         private int m_decimalLength = 0;
         private bool m_allowNegative = true;
         private string m_valueFormatStr = string.Empty;
+        private bool m_removeTrailingZeros = false;
         
         private char m_decimalSeparator = '.';
         private char m_negativeSign = '-';
@@ -172,13 +173,13 @@ namespace CSUST.Data
 
         #region  disabled public properties
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
-        [DefaultValue(typeof(HorizontalAlignment), "Right")]
-        public new HorizontalAlignment TextAlign
-        {
-            get { return base.TextAlign; }
-        }
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        //[Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
+        //[DefaultValue(typeof(HorizontalAlignment), "Right")]
+        //public new HorizontalAlignment TextAlign
+        //{
+        //    get { return base.TextAlign; }
+        //}
 
         [Browsable(false), EditorBrowsable(EditorBrowsableState.Never)]
         public new string[] Lines
@@ -251,7 +252,14 @@ namespace CSUST.Data
                 decimal val;
                 if (decimal.TryParse(value, out val))
                 {
-                    base.Text = val.ToString(m_valueFormatStr);
+                    if (m_removeTrailingZeros)
+                    {
+                        base.Text = KLib.KString.RemoveTrailingZeros(val.ToString(m_valueFormatStr));
+                    }
+                    else
+                    {
+                        base.Text = val.ToString(m_valueFormatStr);
+                    }
                 }
                 else
                 {
@@ -295,6 +303,7 @@ namespace CSUST.Data
                         m_decimalLength = value;
                     }
                     this.SetValueFormatStr();
+
                     base.Text = this.Value.ToString(m_valueFormatStr);
                 }
             }
@@ -337,6 +346,22 @@ namespace CSUST.Data
                 if (m_allowNegative != value)
                 {
                     m_allowNegative = value;
+                }
+            }
+        }
+
+        // added by keh (9/21/2024)
+        [Category("Custom")]
+        [Description("Remove trailing zeros from floating point number")]
+        [DefaultValue(true)]
+        public bool RemoveTrailingZeros
+        {
+            get { return m_removeTrailingZeros; }
+            set
+            {
+                if (m_removeTrailingZeros != value)
+                {
+                    m_removeTrailingZeros = value;
                 }
             }
         }
@@ -523,7 +548,7 @@ namespace CSUST.Data
                 this.SelectionStart = 1;
                 this.SelectionLength = 1;  // replace thre first char, ie. 0
             }
-            else if (m_decimalLength > 0)
+            else if (m_decimalLength > 0 && !m_removeTrailingZeros)
             {
                 if (base.Text[0] == '0' && dotPos == 2 && this.SelectionStart <= 1)
                 {
@@ -687,7 +712,14 @@ namespace CSUST.Data
 
             if (this.SelectedText.Length == base.Text.Length)
             {
-                base.Text = 0.ToString(m_valueFormatStr);
+                if (m_removeTrailingZeros)
+                {
+                    base.Text = ".";
+                }
+                else
+                {
+                    base.Text = 0.ToString(m_valueFormatStr);
+                }
                 return;
             }
 

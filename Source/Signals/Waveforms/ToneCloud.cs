@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using KLib.Utilities;
+using KLib.KMath;
 
 namespace KLib.Signals.Waveforms
 {
@@ -120,7 +120,7 @@ namespace KLib.Signals.Waveforms
 
             FrequencyRes_Hz = 1;
 
-            randt = new TruncatedNormalRandom();
+            randt = new KMath.TruncatedNormalRandom();
         }
 
         /// <summary>

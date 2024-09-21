@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
+using KLib;
 using KLib.MSGraph.Data;
-using KLib.Utilities;
 
 namespace KLib.MSGraph
 {
@@ -136,7 +136,7 @@ namespace KLib.MSGraph
             {
                 if (File.Exists(_acctInfoPath))
                 {
-                    var acct = FileIO.XmlDeserialize<AccountInfo>(_acctInfoPath);
+                    var acct = KFile.XmlDeserialize<AccountInfo>(_acctInfoPath);
                     var a = new MsalAccount(acct.ObjectID, acct.TokenID);
 
                     _authResult = await _app.AcquireTokenSilent(_scopes, a)
@@ -165,7 +165,7 @@ namespace KLib.MSGraph
                     .ExecuteAsync();
 
                 var account = new AccountInfo(_authResult.UniqueId, _authResult.TenantId);
-                FileIO.XmlSerialize(account, _acctInfoPath);
+                KFile.XmlSerialize(account, _acctInfoPath);
             }
             //catch (MsalException msalex)
             //{

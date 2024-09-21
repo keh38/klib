@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace KLib.Utilities
+namespace KLib.KMath
 {
     /// <summary>
     /// Generate random numbers from a truncated normal distribution (bounded support)
