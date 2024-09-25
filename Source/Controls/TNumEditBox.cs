@@ -450,6 +450,7 @@ namespace CSUST.Data
         protected override void OnKeyPress(KeyPressEventArgs e)
         {
             base.OnKeyPress(e);
+            return;
 
             if (this.ReadOnly)
             {

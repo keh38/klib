@@ -25,3 +25,5 @@
 /Documentation/.vs
 /Documentation/Net/Help
 /Source/Net/nuget.config
+/Source/SlackAPI/obj
+/Source/SlackAPI/bin
