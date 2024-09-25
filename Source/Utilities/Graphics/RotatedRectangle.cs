@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
-namespace KLib.Geometry
+namespace KLib.Graphics
 {
     public class RotatedRectangle
     {

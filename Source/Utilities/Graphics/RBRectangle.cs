@@ -12,15 +12,13 @@ using System.Runtime.Serialization;
 using Vector = System.Windows.Vector;
 
 
-namespace KLib.Geometry
+namespace KLib.Graphics
 {
     /// <summary>
     /// RBRectangle class description. Hooray!
     /// </summary>
-    [DataContract]
     public class RBRectangle
     {
-        [DataMember]
         private Rectangle rect;
 
         private Point[] controlPoints;

@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace KLib
+namespace KLib.Graphics
 {
     public class XmlColor
     {
