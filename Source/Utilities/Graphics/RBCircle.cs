@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Vector = System.Windows.Vector;
 
 
-namespace KLib.Graphics
+namespace KLib.KGraphics
 {
     /// <summary>
     /// RBCircle class description. Hooray!

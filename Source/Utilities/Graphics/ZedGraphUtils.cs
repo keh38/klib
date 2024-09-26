@@ -5,7 +5,7 @@ using System.Text;
 
 using ZedGraph;
 
-namespace KLib.Graphics
+namespace KLib.KGraphics
 {
     public class ZedGraphUtils
     {

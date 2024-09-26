@@ -84,6 +84,7 @@
     <Compile Include="Graphics\RBCircle.cs" />
     <Compile Include="Graphics\RBRectangle.cs" />
     <Compile Include="Graphics\RotatedRectangle.cs" />
+    <Compile Include="Graphics\Tools.cs" />
     <Compile Include="KLib.Expressions.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Graphics\XmlColor.cs" />
@@ -96,7 +97,6 @@
     <Compile Include="KMath\RaisedCosineRandom.cs" />
     <Compile Include="KMath\GaussianRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Graphics\Tools.cs" />
     <Compile Include="Graphics\ZedGraphUtils.cs" />
   </ItemGroup>
   <ItemGroup>

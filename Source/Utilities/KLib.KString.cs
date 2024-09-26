@@ -1,4 +1,9 @@
-﻿namespace KLib
+﻿using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace KLib
 {
     public static class KString
     {

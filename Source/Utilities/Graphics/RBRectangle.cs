@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 using Vector = System.Windows.Vector;
 
 
-namespace KLib.Graphics
+namespace KLib.KGraphics
 {
     /// <summary>
     /// RBRectangle class description. Hooray!

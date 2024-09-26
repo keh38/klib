@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace KLib.Graphics
+namespace KLib.KGraphics
 {
     public class Tools
     {
