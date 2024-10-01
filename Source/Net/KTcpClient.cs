@@ -17,6 +17,7 @@ namespace KLib.Net
         public int SendTimeout { get; set; }
         public int ReceiveTimeout { get; set; }
         public string LastError { get { return _lastError; } }
+        public static bool ReverseBytes { set; get; } = false;
 
         private string _lastError;
 
@@ -60,7 +61,24 @@ namespace KLib.Net
             }
 
             return result;
+        }
 
+        public static int SendMessage(IPEndPoint localEP, string s, string data)
+        {
+            int result = -1;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessage(s, data);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
         }
 
         public static string SendMessageReceiveString(IPEndPoint localEP, string message)
@@ -72,6 +90,60 @@ namespace KLib.Net
                 var client = new KTcpClient();
                 client.Connect(localEP.Address.ToString(), localEP.Port);
                 result = client.SendMessageReceiveString(message);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static string SendMessageReceiveString(IPEndPoint localEP, string message, string data)
+        {
+            string result = null;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessageReceiveString(message, data);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static byte[] SendMessageReceiveByteArray(IPEndPoint localEP, string message)
+        {
+            byte[] result = null;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessageReceiveByteArray(message);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static byte[] SendMessageReceiveByteArray(IPEndPoint localEP, string message, byte[] data)
+        {
+            byte[] result = null;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessageReceiveByteArray(message, data);
                 client.Close();
             }
             catch (Exception ex)
@@ -109,19 +181,33 @@ namespace KLib.Net
         {
             int success = 0;
 
-            var byteArray = System.Text.Encoding.UTF8.GetBytes(message);
-            int nbytes = byteArray.Length;
-
             using (NetworkStream theStream = _socket.GetStream())
             using (BinaryReader theReader = new BinaryReader(theStream))
             using (BinaryWriter theWriter = new BinaryWriter(theStream))
             {
                 WriteStringAsByteArray(theWriter, message);
 
-                success = theReader.ReadInt32();
+                success = ProcessInt32(theReader.ReadInt32());
             }
 
             return success;
+        }
+
+        public int SendMessage(string s, string data)
+        {
+            int result = -1;
+
+            using (NetworkStream theStream = _socket.GetStream())
+            using (BinaryReader theReader = new BinaryReader(theStream))
+            using (BinaryWriter theWriter = new BinaryWriter(theStream))
+            {
+                WriteStringAsByteArray(theWriter, s);
+                WriteStringAsByteArray(theWriter, data);
+
+                result = ProcessInt32(theReader.ReadInt32());
+            }
+
+            return result;
         }
 
         public int SendMessage(string s, byte[] data)
@@ -134,11 +220,11 @@ namespace KLib.Net
             {
                 WriteStringAsByteArray(theWriter, s);
 
-                theWriter.Write(data.Length);
+                theWriter.Write(ProcessInt32(data.Length));
                 theWriter.Write(data);
                 theWriter.Flush();
 
-                result = theReader.ReadInt32();
+                result = ProcessInt32(theReader.ReadInt32());
             }
 
             return result;
@@ -148,18 +234,13 @@ namespace KLib.Net
         {
             byte[] result = null;
 
-            var byteArray = System.Text.Encoding.UTF8.GetBytes(message);
-            int nbytes = byteArray.Length;
-
             using (NetworkStream theStream = _socket.GetStream())
             using (BinaryReader theReader = new BinaryReader(theStream))
             using (BinaryWriter theWriter = new BinaryWriter(theStream))
             {
-                theWriter.Write(nbytes);
-                theWriter.Write(byteArray);
-                theWriter.Flush();
+                WriteStringAsByteArray(theWriter, message);
 
-                int count = theReader.ReadInt32();
+                int count = ProcessInt32(theReader.ReadInt32());
                 result = theReader.ReadBytes(count);
             }
 
@@ -180,7 +261,29 @@ namespace KLib.Net
                 theWriter.Write(data);
                 theWriter.Flush();
 
-                int count = theReader.ReadInt32();
+                int count = ProcessInt32(theReader.ReadInt32());
+                if (count > 0)
+                {
+                    result = theReader.ReadBytes(count);
+                }
+            }
+
+            return result;
+        }
+
+        public byte[] SendMessageReceiveByteArray(string message, string data)
+        {
+            byte[] result = null;
+
+            using (NetworkStream theStream = _socket.GetStream())
+            using (BinaryReader theReader = new BinaryReader(theStream))
+            using (BinaryWriter theWriter = new BinaryWriter(theStream))
+            {
+                WriteStringAsByteArray(theWriter, message);
+                WriteStringAsByteArray(theWriter, data);
+                theWriter.Flush();
+
+                int count = ProcessInt32(theReader.ReadInt32());
                 if (count > 0)
                 {
                     result = theReader.ReadBytes(count);
@@ -196,6 +299,12 @@ namespace KLib.Net
             return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
         }
 
+        public string SendMessageReceiveString(string message, string data)
+        {
+            var bytes = SendMessageReceiveByteArray(message, data);
+            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+        }
+
         public void Close()
         {
             if (_socket != null)
@@ -208,11 +317,24 @@ namespace KLib.Net
         private void WriteStringAsByteArray(BinaryWriter theWriter, string message)
         {
             var byteArray = Encoding.UTF8.GetBytes(message);
-            int nbytes = byteArray.Length;
 
-            theWriter.Write(nbytes);
+            theWriter.Write(ProcessInt32(byteArray.Length));
             theWriter.Write(byteArray);
             theWriter.Flush();
+        }
+
+        private int ProcessInt32(int raw)
+        {
+            int value = raw;
+
+            if (ReverseBytes)
+            {
+                var bytes = BitConverter.GetBytes(value);
+                Array.Reverse(bytes);
+                value = BitConverter.ToInt32(bytes, 0);
+            }
+
+            return value;
         }
 
     }

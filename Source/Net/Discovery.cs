@@ -11,6 +11,8 @@ namespace KLib.Net
 {
     public static class Discovery
     {
+        public static string ByteFormat { get; private set; }
+
         public static string FindServerAddress()
         {
             return FindServerAddress(true);
@@ -126,11 +128,15 @@ namespace KLib.Net
                 var anyIP = new IPEndPoint(IPAddress.Any, 0);
 
                 var bytes = udp.Receive(ref anyIP);
+                var response = Encoding.Default.GetString(bytes);
+                var responseParts = response.Split(';');
 
-                var port = Int32.Parse(Encoding.Default.GetString(bytes));
+                var port = Int32.Parse(responseParts[0]);
                 endPoint = new IPEndPoint(anyIP.Address, port);
 
                 Debug.WriteLine("host = " + endPoint);
+
+                ByteFormat = (responseParts.Length > 1) ? responseParts[1] : "";
             }
             catch (Exception ex)
             {

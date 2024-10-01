@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 using KLib.KMath;
-using KLib.Utilities.ExtensionMethods;
+using KLib.ExtensionMethods;
 
 namespace KLib
 {

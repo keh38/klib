@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KLib.Utilities.ExtensionMethods
+namespace KLib.ExtensionMethods
 {
     public static class MyExtensions
     {

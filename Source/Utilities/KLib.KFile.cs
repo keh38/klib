@@ -7,12 +7,23 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using ProtoBuf;
 
 namespace KLib
 {
     public static class KFile
     {
+        public static string JSONSerializeToString<T>(T t)
+        {
+            return JsonConvert.SerializeObject(t, Newtonsoft.Json.Formatting.Indented, new StringEnumConverter { CamelCaseText = false });
+        }
+
+        public static T JSONDeserializeFromString<T>(string text)
+        {
+            return JsonConvert.DeserializeObject<T>(text);
+        }
+
         public static void SaveToXML<T>(T obj, string path)
         {
             XmlSerializer serializer = new XmlSerializer(typeof(T));
