@@ -1,6 +1,8 @@
 ## Changelog
 
 ### Unreleased
+#### Added
+- Discovery: option to specify server (faster than querying Windows for it)
 #### Fixed
 - Controls: ValueSlider integer text format
 

@@ -93,15 +93,16 @@ namespace KLib.Net
         /// Send UDP multicast message to find discoverable TCP server address
         /// </summary>
         /// <param name="name">Name of desired TCP server (typically all caps)</param>
+        /// <param name="address"></param>
         /// <returns>Returns IPEndPoint object</returns>
-        public static IPEndPoint Discover(string name)
+        public static IPEndPoint Discover(string name, string server="")
         {
             UdpClient udp = null;
             IPEndPoint endPoint = null;
 
             try
             {
-                var addy = FindServerAddress();
+                var addy = string.IsNullOrEmpty(server) ? FindServerAddress() : server;
                 Debug.WriteLine("discovering on: " + addy);
 
                 IPAddress localAddress;
