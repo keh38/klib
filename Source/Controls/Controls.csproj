@@ -131,6 +131,7 @@
     <Compile Include="TNumEditDataGridViewElements.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utilities.cs" />
     <Compile Include="ValueSlider.cs">
       <SubType>UserControl</SubType>
     </Compile>
