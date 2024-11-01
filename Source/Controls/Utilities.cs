@@ -20,13 +20,23 @@ namespace KLib.Controls
             }
         }
 
-        public static void CheckEnumItems<T>(CheckedListBox box, List<T> items)
+        public static void SetCheckedEnumItems<T>(CheckedListBox box, List<T> items)
         {
-            box.ClearSelected();
+            for (int k = 0; k < box.Items.Count; k++) box.SetItemChecked(k, false);
             foreach (var e in items)
             {
                 box.SetItemChecked(Convert.ToInt32(e), true);
             }
+        }
+
+        public static List<T> GetCheckedEnumItems<T>(CheckedListBox box)
+        {
+            List<T> checkedItems = new List<T>();
+            foreach (var i in box.CheckedIndices)
+            {
+                checkedItems.Add((T)i);
+            }
+            return checkedItems;
         }
 
     }
