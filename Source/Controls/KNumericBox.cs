@@ -92,7 +92,6 @@ namespace KLib.Controls
             set; get;
         }
 
-
         public double Value
         {
             get { return _value; }
@@ -345,7 +344,7 @@ namespace KLib.Controls
             }
             else if (IsInteger && !string.IsNullOrEmpty(TextFormat))
             {
-                var m = Regex.Match(text, @"([\d]+)");
+                var m = Regex.Match(text, @"([\-\d]+)");
                 if (m.Success && double.TryParse(m.Groups[1].Value, out v))
                 { 
                     if (v != _value)
