@@ -19,6 +19,9 @@ namespace KLib.Net
         private BinaryReader _theReader;
         private BinaryWriter _theWriter;
 
+        private string _address;
+        private int _port;
+
         private bool _reverseWriteBytes = false;
 
         public bool StartListener(int port)
@@ -30,12 +33,26 @@ namespace KLib.Net
         {
             _reverseWriteBytes = reverseWriteBytes;
 
-//            _listener = new TcpListener(IPAddress.Parse(hostname), port);
-            _listener = new TcpListener(port);
+            _address = Discovery.FindServerAddress();
+            _port = port;
+
+            IPAddress localAddress;
+            if (_address.Equals("localhost"))
+            {
+                localAddress = IPAddress.Loopback;
+            }
+            else
+            {
+                localAddress = IPAddress.Parse(_address);
+            }
+            _listener = new TcpListener(localAddress, port);
+//            _listener = new TcpListener(port);
             _listener.Start();
             
             return true;
         }
+
+        public string ListeningOn { get { return $"{_address}:{_port}"; } }
 
         public void CloseListener()
         {

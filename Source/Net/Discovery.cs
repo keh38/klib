@@ -135,7 +135,7 @@ namespace KLib.Net
                 var port = Int32.Parse(responseParts[0]);
                 endPoint = new IPEndPoint(anyIP.Address, port);
 
-                Debug.WriteLine("host = " + endPoint);
+                //Debug.WriteLine("host = " + endPoint);
 
                 ByteFormat = (responseParts.Length > 1) ? responseParts[1] : "";
             }
