@@ -141,7 +141,7 @@ namespace KLib.Net
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex.Message);
+                Debug.WriteLine($"Discover error: {ex.Message}");
             }
 
             if (udp != null)
