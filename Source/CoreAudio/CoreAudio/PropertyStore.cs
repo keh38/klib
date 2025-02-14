@@ -96,5 +96,15 @@ namespace CoreAudio
         {
             _Store = store;
         }
+
+        /// <summary>
+        /// Sets property value at specified key
+        /// </summary>
+        /// <param name="key">Index</param>
+        /// <param name="value">Value</param>
+        public void SetValue(PROPERTYKEY key, PropVariant value)
+        {
+            Marshal.ThrowExceptionForHR(_Store.SetValue(ref key, ref value));
+        }
     }
 }

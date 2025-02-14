@@ -43,7 +43,7 @@ namespace CoreAudio
 
         void GetPropertyInformation()
         {
-            Marshal.ThrowExceptionForHR(_RealDevice.OpenPropertyStore(EStgmAccess.STGM_READ, out IPropertyStore propertyStore));
+            Marshal.ThrowExceptionForHR(_RealDevice.OpenPropertyStore(EStgmAccess.STGM_READWRITE, out IPropertyStore propertyStore));
             _PropertyStore = new PropertyStore(propertyStore);
         }
 

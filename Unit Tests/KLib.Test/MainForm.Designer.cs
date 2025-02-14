@@ -37,6 +37,7 @@
             this.RandomButton = new System.Windows.Forms.Button();
             this.TestControlsButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.AudioButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -134,11 +135,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "KLib.Controls";
             // 
+            // AudioButton
+            // 
+            this.AudioButton.Location = new System.Drawing.Point(18, 192);
+            this.AudioButton.Name = "AudioButton";
+            this.AudioButton.Size = new System.Drawing.Size(160, 23);
+            this.AudioButton.TabIndex = 5;
+            this.AudioButton.Text = "Audio";
+            this.AudioButton.UseVisualStyleBackColor = true;
+            this.AudioButton.Click += new System.EventHandler(this.AudioButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 235);
+            this.Controls.Add(this.AudioButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -164,6 +176,7 @@
         private System.Windows.Forms.Button FFTWButton;
         private System.Windows.Forms.Button TestControlsButton;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Button AudioButton;
     }
 }
 

@@ -31,14 +31,14 @@ namespace KLibUnitTests
 
         private void RippleDemoButton_Click(object sender, EventArgs e)
         {
-            RippleDemoForm dlg = new RippleDemoForm();
-            dlg.ShowDialog();
+            //RippleDemoForm dlg = new RippleDemoForm();
+            //dlg.ShowDialog();
         }
 
         private void ToneCloudButton_Click(object sender, EventArgs e)
         {
-            ToneCloudDemo dlg = new ToneCloudDemo();
-            dlg.ShowDialog();
+            //ToneCloudDemo dlg = new ToneCloudDemo();
+            //dlg.ShowDialog();
         }
 
         private void RandomButton_Click(object sender, EventArgs e)
@@ -53,5 +53,10 @@ namespace KLibUnitTests
             //dlg.ShowDialog();
         }
 
+        private void AudioButton_Click(object sender, EventArgs e)
+        {
+            var dlg = new AudioForm();
+            dlg.ShowDialog();
+        }
     }
 }

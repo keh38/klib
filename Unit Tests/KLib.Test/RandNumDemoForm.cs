@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-using KLib.Utilities;
+using KLib.KGraphics;
+using KLib.KMath;
 using ZedGraph;
 
 namespace KLibUnitTests

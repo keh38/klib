@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>KLibUnitTests</RootNamespace>
     <AssemblyName>KSignalLibraryDemo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -40,8 +40,14 @@
     <Reference Include="alglibnet2">
       <HintPath>..\..\..\Third Party\Math\alglib\csharp\alglibnet2.dll</HintPath>
     </Reference>
+    <Reference Include="CoreAudio">
+      <HintPath>..\..\Framework\CoreAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Exocortex.DSP">
       <HintPath>..\..\..\Third Party\ExocortexDSP_v1.2\bin\Release\Exocortex.DSP.dll</HintPath>
+    </Reference>
+    <Reference Include="KLib">
+      <HintPath>..\..\Framework\KLib.dll</HintPath>
     </Reference>
     <Reference Include="KLib.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -65,10 +71,16 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph">
-      <HintPath>..\..\..\3rd Party\zedgraph_dll_v515\zedgraph_dll_v5.1.5\ZedGraph.dll</HintPath>
+      <HintPath>..\..\Framework\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AudioForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AudioForm.Designer.cs">
+      <DependentUpon>AudioForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls Demo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,12 +93,6 @@
     <Compile Include="RandNumDemoForm.Designer.cs">
       <DependentUpon>RandNumDemoForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Ripple Demo Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Ripple Demo Form.Designer.cs">
-      <DependentUpon>Ripple Demo Form.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,20 +101,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tone Cloud Demo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tone Cloud Demo.Designer.cs">
-      <DependentUpon>Tone Cloud Demo.cs</DependentUpon>
-    </Compile>
+    <EmbeddedResource Include="AudioForm.resx">
+      <DependentUpon>AudioForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls Demo.resx">
       <DependentUpon>Controls Demo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RandNumDemoForm.resx">
       <DependentUpon>RandNumDemoForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Ripple Demo Form.resx">
-      <DependentUpon>Ripple Demo Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -123,9 +123,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Tone Cloud Demo.resx">
-      <DependentUpon>Tone Cloud Demo.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

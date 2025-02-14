@@ -27,3 +27,7 @@
 /Source/Net/nuget.config
 /Source/SlackAPI/obj
 /Source/SlackAPI/bin
+/Unit Tests/KLib.Test/obj
+/Unit Tests/KLib.Test/bin
+/Unit Tests/KLib.Test/.vs
+/Unit Tests/KLib.Test/MSGraphDemo/obj

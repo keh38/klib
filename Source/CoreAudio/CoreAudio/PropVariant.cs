@@ -89,6 +89,27 @@ namespace CoreAudio
                 return "FIXME Type = " + ve;
             }
         }
-        
-    } 
+
+        /// <summary>
+        /// Creates a new PropVariant containing a uint value
+        /// </summary>
+        public static PropVariant FromUInt(uint value)
+        {
+            return new PropVariant() { vt = (short)VarEnum.VT_UI4, ulVal = value };
+        }
+
+        /// <summary>
+        /// Creates a new PropVariant containing a blob value
+        /// </summary>
+        public static PropVariant FromBlob(byte[] value)
+        {
+            Blob b = new Blob();
+            b.Length = value.Length;
+
+            b.Data = Marshal.AllocHGlobal(value.Length);
+            Marshal.Copy(value, 0, b.Data, value.Length);
+
+            return new PropVariant() { vt = (short)VarEnum.VT_BLOB, blobVal = b };
+        }
+    }
 }
