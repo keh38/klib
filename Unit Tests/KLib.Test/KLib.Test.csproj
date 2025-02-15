@@ -51,7 +51,7 @@
     </Reference>
     <Reference Include="KLib.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\Source\Controls\bin\Debug\KLib.Controls.dll</HintPath>
+      <HintPath>..\..\Framework\KLib.Controls.dll</HintPath>
     </Reference>
     <Reference Include="KLib.Signals, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

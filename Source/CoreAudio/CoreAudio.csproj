@@ -143,6 +143,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "D:\Development\KLib\Framework"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Framework"</PostBuildEvent>
   </PropertyGroup>
 </Project>

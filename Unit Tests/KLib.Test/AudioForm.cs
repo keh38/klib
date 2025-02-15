@@ -47,7 +47,7 @@ namespace KLibUnitTests
                     var wfe = WaveFormatEx.FromBytes(b);
                     sb.Append(wfe.ToString());
                     wfe.nChannels = (ushort) (mask == 3 ? 2 : 8);
-                    wfe.nSamplesPerSec = 44100;
+                    wfe.nSamplesPerSec = 48000;
                     wfe.nAvgBytesPerSec = wfe.nChannels * wfe.nSamplesPerSec * 2;
                     wfe.nBlockAlign = (ushort)(wfe.nChannels * 2);
                     wfe.dwChannelMask = mask;
