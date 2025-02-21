@@ -41,9 +41,44 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoreAudio\ActivateAudioInterfaceCompletionHandler.cs" />
     <Compile Include="CoreAudio\AudioCaptureClient.cs" />
     <Compile Include="CoreAudio\AudioClient.cs" />
+    <Compile Include="CoreAudio\AudioClientBufferFlags.cs" />
+    <Compile Include="CoreAudio\AudioClientProperties.cs" />
+    <Compile Include="CoreAudio\AudioClientShareMode.cs" />
+    <Compile Include="CoreAudio\AudioClientStreamFlags.cs" />
+    <Compile Include="CoreAudio\AudioClientStreamOptions.cs" />
+    <Compile Include="CoreAudio\AudioClockClient.cs" />
     <Compile Include="CoreAudio\AudioRenderClient.cs" />
+    <Compile Include="CoreAudio\AudioStreamCategory.cs" />
+    <Compile Include="CoreAudio\AudioStreamVolume.cs" />
+    <Compile Include="CoreAudio\Enumerations\ChannelMapping.cs" />
+    <Compile Include="CoreAudio\Interfaces\ErrorCodes.cs" />
+    <Compile Include="CoreAudio\Interfaces\IKsJackDescription.cs" />
+    <Compile Include="CoreAudio\Interfaces\PartType.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IActivateAudioInterfaceAsyncOperation.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IActivateAudioInterfaceCompletionHandler.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IAgileObject.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IAudioClient2.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IAudioClock2.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IAudioRenderClient.cs" />
+    <Compile Include="CoreAudio\Interfaces\WASAPI\IAudioStreamVolume.cs" />
+    <Compile Include="CoreAudio\KsJackDescription.cs" />
+    <Compile Include="CoreAudio\NativeMethods.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\AdpcmWaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\AudioMediaSubtypes.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\Gsm610WaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\ImaAdpcmWaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\Mp3WaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\OggWaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\TrueSpeechWaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WaveFormat.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WaveFormatCustomMarshaler.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WaveFormatEncoding.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WaveFormatExtensible.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WaveFormatExtraData.cs" />
+    <Compile Include="NAudio.Wave\WaveFormats\WmaWaveFormat.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="CoreAudio\AudioEndpointVolume.cs" />
     <Compile Include="CoreAudio\AudioEndpointVolumeCallback.cs" />
@@ -146,6 +181,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Framework"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "D:\Development\KLib\Framework"</PostBuildEvent>
   </PropertyGroup>
 </Project>

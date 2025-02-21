@@ -24,36 +24,62 @@
 
 using System;
 using System.Runtime.InteropServices;
+using NAudio.Wave;
 
 namespace CoreAudio.Interfaces
 {
+    /// <summary>
+    /// Windows CoreAudio IAudioClient interface
+    /// Defined in AudioClient.h
+    /// </summary>
     [Guid("1CB9AD4C-DBFA-4c32-B178-C2F568A703B2"),
-    InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-    internal interface IAudioClient 
+        InterfaceType(ComInterfaceType.InterfaceIsIUnknown),
+        ComImport]
+    public interface IAudioClient
     {
         [PreserveSig]
-        AUDCLNT_RETURNFLAGS Initialize(AUDCLNT_SHAREMODE ShareMode, AUDCLNT_STREAMFLAGS StreamFlags, long hnsBufferDuration, long hnsPeriodicity, WAVEFORMATEX pFormat, Guid AudioSessionGuid);
+        int Initialize(AudioClientShareMode shareMode,
+            AudioClientStreamFlags streamFlags,
+            long hnsBufferDuration, // REFERENCE_TIME
+            long hnsPeriodicity, // REFERENCE_TIME
+            [In] WaveFormat pFormat,
+            [In] ref Guid audioSessionGuid);
+
+        /// <summary>
+        /// The GetBufferSize method retrieves the size (maximum capacity) of the endpoint buffer.
+        /// </summary>
+        int GetBufferSize(out uint bufferSize);
+
+        [return: MarshalAs(UnmanagedType.I8)]
+        long GetStreamLatency();
+
+        int GetCurrentPadding(out int currentPadding);
+
         [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetBufferSize(out uint pNumBufferFrames);
+        int IsFormatSupported(
+            AudioClientShareMode shareMode,
+            [In] WaveFormat pFormat,
+            IntPtr closestMatchFormat); // or outIntPtr??
+
+        int GetMixFormat(out IntPtr deviceFormatPointer);
+
+        // REFERENCE_TIME is 64 bit int        
+        int GetDevicePeriod(out long defaultDevicePeriod, out long minimumDevicePeriod);
+
+        int Start();
+
+        int Stop();
+
+        int Reset();
+
+        int SetEventHandle(IntPtr eventHandle);
+
+        /// <summary>
+        /// The GetService method accesses additional services from the audio client object.
+        /// </summary>
+        /// <param name="interfaceId">The interface ID for the requested service.</param>
+        /// <param name="interfacePointer">Pointer to a pointer variable into which the method writes the address of an instance of the requested interface. </param>
         [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetStreamLatency(out long phnsLatency);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetCurrentPadding(out long pNumPaddingFrames);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS IsFormatSupported(AUDCLNT_SHAREMODE ShareMode, WAVEFORMATEX pFormat, out WAVEFORMATEX ppClosestMatch);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetMixFormat(out WAVEFORMATEX ppDeviceFormat);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetDevicePeriod(out long phnsDefaultDevicePeriod, out long phnsMinimumDevicePeriod);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS Start();
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS Stop();
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS Reset();
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS SetEventHandle(IntPtr eventHandle);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetService(ref Guid riid, [Out, MarshalAs(UnmanagedType.IUnknown)] out object ppv);
+        int GetService([In, MarshalAs(UnmanagedType.LPStruct)] Guid interfaceId, [Out, MarshalAs(UnmanagedType.IUnknown)] out object interfacePointer);
     }
 }

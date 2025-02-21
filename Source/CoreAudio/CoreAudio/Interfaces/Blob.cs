@@ -24,7 +24,7 @@ using System;
 
 namespace CoreAudio.Interfaces
 {
-    internal struct Blob
+    public struct Blob
     {
          public int Length;
          public IntPtr Data;

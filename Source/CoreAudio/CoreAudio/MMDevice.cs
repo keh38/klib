@@ -91,6 +91,13 @@ namespace CoreAudio
 
         #region Properties
 
+        /// <summary>
+        /// Audio Client
+        /// Makes a new one each call to allow caller to manage when to dispose
+        /// n.b. should probably not be a property anymore
+        /// </summary>
+        public AudioClient AudioClient => GetAudioClient();
+
         public AudioSessionManager2 AudioSessionManager2
         {
             get

@@ -43,8 +43,8 @@ namespace CoreAudio
         [PreserveSig]
         public int OnNotify(uint dwSenderProcessId, ref Guid pguidEventContext)
         {
-            if(Process.GetCurrentProcess().Id != dwSenderProcessId)
-                _Parent.FireNotification(dwSenderProcessId, ref pguidEventContext);
+            //if(Process.GetCurrentProcess().Id != dwSenderProcessId)
+            //    _Parent.FireNotification(dwSenderProcessId, ref pguidEventContext);
             return 0;
         }
 

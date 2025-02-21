@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using NAudio.CoreAudioApi.Interfaces;
+using CoreAudio.Interfaces;
 using System.Runtime.InteropServices;
 
-namespace NAudio.CoreAudioApi
+namespace CoreAudio
 {
     /// <summary>
     /// Audio Render Client

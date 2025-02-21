@@ -22,6 +22,7 @@
 
 /* Created by Xavier Flix (2010/11/18) */
 
+using System;
 using System.Runtime.InteropServices;
 
 namespace CoreAudio.Interfaces
@@ -30,11 +31,22 @@ namespace CoreAudio.Interfaces
     InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
     internal interface IAudioCaptureClient
     {
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetBuffer(out byte[] ppData, out _AUDCLNT_BUFFERFLAGS pNumFramesToRead, ulong pu64DevicePosition, ulong pu64QPCPosition);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS ReleaseBuffer(uint NumFramesRead);
-        [PreserveSig]
-        AUDCLNT_RETURNFLAGS GetNextPacketSize(out uint pNumFramesInNextPacket);
+        //[PreserveSig]
+        //AUDCLNT_RETURNFLAGS GetBuffer(out byte[] ppData, out _AUDCLNT_BUFFERFLAGS pNumFramesToRead, ulong pu64DevicePosition, ulong pu64QPCPosition);
+        //[PreserveSig]
+        //AUDCLNT_RETURNFLAGS ReleaseBuffer(uint NumFramesRead);
+        //[PreserveSig]
+        //AUDCLNT_RETURNFLAGS GetNextPacketSize(out uint pNumFramesInNextPacket);
+        int GetBuffer(
+            out IntPtr dataBuffer,
+            out int numFramesToRead,
+            out AudioClientBufferFlags bufferFlags,
+            out long devicePosition,
+            out long qpcPosition);
+
+        int ReleaseBuffer(int numFramesRead);
+
+        int GetNextPacketSize(out int numFramesInNextPacket);
+
     }
 }

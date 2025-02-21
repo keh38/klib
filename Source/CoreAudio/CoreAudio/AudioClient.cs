@@ -1,54 +1,88 @@
 ﻿using System;
-using System.Threading;
-using CoreAudio.Interfaces;
+using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-//using NAudio.Wave;
+
+using CoreAudio.Interfaces;
+using NAudio.Wave;
 
 namespace CoreAudio
 {
     /// <summary>
-    /// Windows Vista CoreAudio AudioClient
+    /// Windows CoreAudio AudioClient
     /// </summary>
     public class AudioClient : IDisposable
     {
-        IAudioClient audioClientInterface;
-        WaveFormat mixFormat;
-        AudioRenderClient audioRenderClient;
-        AudioCaptureClient audioCaptureClient;
+        private IAudioClient audioClientInterface;
+        private WaveFormatExtensible mixFormat;
+        private AudioRenderClient audioRenderClient;
+        private AudioCaptureClient audioCaptureClient;
+        private AudioClockClient audioClockClient;
+        private AudioStreamVolume audioStreamVolume;
+        private AudioClientShareMode shareMode;
 
-        internal AudioClient(IAudioClient audioClientInterface)
+        /// <summary>
+        /// Activate Async
+        /// </summary>
+        public static async Task<AudioClient> ActivateAsync(string deviceInterfacePath, AudioClientProperties? audioClientProperties)
+        {
+            var icbh = new ActivateAudioInterfaceCompletionHandler(
+                ac2 =>
+                {
+
+                    if (audioClientProperties != null)
+                    {
+                        IntPtr p = Marshal.AllocHGlobal(Marshal.SizeOf(audioClientProperties.Value));
+                        try
+                        {
+                            // TODO: consider whether we can marshal this without the need for AllocHGlobal
+                            Marshal.StructureToPtr(audioClientProperties.Value, p, false);
+                            ac2.SetClientProperties(p);
+                        }
+                        finally
+                        {
+                            Marshal.FreeHGlobal(p);
+
+                        }
+                    }
+
+                    /*var wfx = new WaveFormat(44100, 16, 2);
+                int hr = ac2.Initialize(AudioClientShareMode.Shared,
+                               AudioClientStreamFlags.EventCallback | AudioClientStreamFlags.NoPersist,
+                               10000000, 0, wfx, IntPtr.Zero);*/
+                });
+            var IID_IAudioClient2 = new Guid("726778CD-F60A-4eda-82DE-E47610CD78AA");
+            NativeMethods.ActivateAudioInterfaceAsync(deviceInterfacePath, IID_IAudioClient2, IntPtr.Zero, icbh, out var activationOperation);
+            var audioClient2 = await icbh;
+            return new AudioClient((IAudioClient)audioClient2);
+        }
+
+        public AudioClient(IAudioClient audioClientInterface)
         {
             this.audioClientInterface = audioClientInterface;
         }
 
         /// <summary>
-        /// Mix Format,
+        /// Retrieves the stream format that the audio engine uses for its internal processing of shared-mode streams.
         /// Can be called before initialize
         /// </summary>
-        public WaveFormat MixFormat
+        public WaveFormatExtensible MixFormat
         {
             get
             {
-                if(mixFormat == null)
+                if (mixFormat == null)
                 {
-                    IntPtr waveFormatPointer;
-                    Marshal.ThrowExceptionForHR(audioClientInterface.GetMixFormat(out waveFormatPointer));
-                    //WaveFormatExtensible waveFormat = new WaveFormatExtensible(44100,32,2);
-                    //Marshal.PtrToStructure(waveFormatPointer, waveFormat);
-                    WaveFormat waveFormat = WaveFormat.MarshalFromPtr(waveFormatPointer);
+                    Marshal.ThrowExceptionForHR(audioClientInterface.GetMixFormat(out var waveFormatPointer));
+                    //var waveFormat = WaveFormat.MarshalFromPtr(waveFormatPointer);
+                    var waveFormat = Marshal.PtrToStructure<WaveFormatExtensible>(waveFormatPointer);
                     Marshal.FreeCoTaskMem(waveFormatPointer);
                     mixFormat = waveFormat;
-                    return waveFormat;
                 }
-                else
-                {
-                    return mixFormat;
-                }
+                return mixFormat;
             }
         }
 
         /// <summary>
-        /// Initialize the Audio Client
+        /// Initializes the Audio Client
         /// </summary>
         /// <param name="shareMode">Share Mode</param>
         /// <param name="streamFlags">Stream Flags</param>
@@ -63,6 +97,7 @@ namespace CoreAudio
             WaveFormat waveFormat,
             Guid audioSessionGuid)
         {
+            this.shareMode = shareMode;
             int hresult = audioClientInterface.Initialize(shareMode, streamFlags, bufferDuration, periodicity, waveFormat, ref audioSessionGuid);
             Marshal.ThrowExceptionForHR(hresult);
             // may have changed the mix format so reset it
@@ -70,79 +105,109 @@ namespace CoreAudio
         }
 
         /// <summary>
-        /// Gets the buffer size (must initialize first)
+        /// Retrieves the size (maximum capacity) of the audio buffer associated with the endpoint. (must initialize first)
         /// </summary>
         public int BufferSize
         {
             get
             {
-                uint bufferSize;                
-                Marshal.ThrowExceptionForHR(audioClientInterface.GetBufferSize(out bufferSize));
-                return (int) bufferSize;
+                Marshal.ThrowExceptionForHR(audioClientInterface.GetBufferSize(out uint bufferSize));
+                return (int)bufferSize;
             }
         }
 
         /// <summary>
-        /// Gets the stream latency (must initialize first)
+        /// Retrieves the maximum latency for the current stream and can be called any time after the stream has been initialized.
         /// </summary>
-        public long StreamLatency
-        {
-            get
-            {
-                return audioClientInterface.GetStreamLatency();
-            }
-        }
+        public long StreamLatency => audioClientInterface.GetStreamLatency();
 
         /// <summary>
-        /// Gets the current padding (must initialize first)
+        /// Retrieves the number of frames of padding in the endpoint buffer (must initialize first)
         /// </summary>
         public int CurrentPadding
         {
             get
             {
-                int currentPadding;
-                Marshal.ThrowExceptionForHR(audioClientInterface.GetCurrentPadding(out currentPadding));
+                Marshal.ThrowExceptionForHR(audioClientInterface.GetCurrentPadding(out var currentPadding));
                 return currentPadding;
             }
         }
 
         /// <summary>
-        /// Gets the default device period (can be called before initialize)
+        /// Retrieves the length of the periodic interval separating successive processing passes by the audio engine on the data in the endpoint buffer.
+        /// (can be called before initialize)
         /// </summary>
         public long DefaultDevicePeriod
         {
             get
             {
-                long defaultDevicePeriod;
-                long minimumDevicePeriod;
-                Marshal.ThrowExceptionForHR(audioClientInterface.GetDevicePeriod(out defaultDevicePeriod, out minimumDevicePeriod));
+                Marshal.ThrowExceptionForHR(audioClientInterface.GetDevicePeriod(out var defaultDevicePeriod, out _));
                 return defaultDevicePeriod;
             }
         }
 
         /// <summary>
-        /// Gets the minimum device period (can be called before initialize)
+        /// Gets the minimum device period 
+        /// (can be called before initialize)
         /// </summary>
         public long MinimumDevicePeriod
         {
             get
             {
-                long defaultDevicePeriod;
-                long minimumDevicePeriod;
-                Marshal.ThrowExceptionForHR(audioClientInterface.GetDevicePeriod(out defaultDevicePeriod, out minimumDevicePeriod));
+                Marshal.ThrowExceptionForHR(audioClientInterface.GetDevicePeriod(out _, out var minimumDevicePeriod));
                 return minimumDevicePeriod;
             }
         }
 
         // TODO: GetService:
-        // IID_IAudioCaptureClient
-        // IID_IAudioClock
         // IID_IAudioSessionControl
-        // IID_IAudioStreamVolume
         // IID_IChannelAudioVolume
         // IID_ISimpleAudioVolume
 
-        
+        /// <summary>
+        /// Returns the AudioStreamVolume service for this AudioClient.
+        /// </summary>
+        /// <remarks>
+        /// This returns the AudioStreamVolume object ONLY for shared audio streams.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// This is thrown when an exclusive audio stream is being used.
+        /// </exception>
+        public AudioStreamVolume AudioStreamVolume
+        {
+            get
+            {
+                if (shareMode == AudioClientShareMode.Exclusive)
+                {
+                    throw new InvalidOperationException("AudioStreamVolume is ONLY supported for shared audio streams.");
+                }
+                if (audioStreamVolume == null)
+                {
+                    var audioStreamVolumeGuid = new Guid("93014887-242D-4068-8A15-CF5E93B90FE3");
+                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(audioStreamVolumeGuid, out var audioStreamVolumeInterface));
+                    audioStreamVolume = new AudioStreamVolume((IAudioStreamVolume)audioStreamVolumeInterface);
+                }
+                return audioStreamVolume;
+            }
+        }
+
+        /// <summary>
+        /// Gets the AudioClockClient service
+        /// </summary>
+        public AudioClockClient AudioClockClient
+        {
+            get
+            {
+                if (audioClockClient == null)
+                {
+                    var audioClockClientGuid = new Guid("CD63314F-3FBA-4a1b-812C-EF96358728E7");
+                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(audioClockClientGuid, out var audioClockClientInterface));
+                    audioClockClient = new AudioClockClient((IAudioClock)audioClockClientInterface);
+                }
+                return audioClockClient;
+            }
+        }
+
         /// <summary>
         /// Gets the AudioRenderClient service
         /// </summary>
@@ -152,9 +217,8 @@ namespace CoreAudio
             {
                 if (audioRenderClient == null)
                 {
-                    object audioRenderClientInterface;
-                    Guid audioRenderClientGuid = new Guid("F294ACFC-3146-4483-A7BF-ADDCA7C260E2");
-                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(ref audioRenderClientGuid, out audioRenderClientInterface));
+                    var audioRenderClientGuid = new Guid("F294ACFC-3146-4483-A7BF-ADDCA7C260E2");
+                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(audioRenderClientGuid, out var audioRenderClientInterface));
                     audioRenderClient = new AudioRenderClient((IAudioRenderClient)audioRenderClientInterface);
                 }
                 return audioRenderClient;
@@ -170,9 +234,8 @@ namespace CoreAudio
             {
                 if (audioCaptureClient == null)
                 {
-                    object audioCaptureClientInterface;
-                    Guid audioCaptureClientGuid = new Guid("c8adbd64-e71e-48a0-a4de-185c395cd317");
-                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(ref audioCaptureClientGuid, out audioCaptureClientInterface));
+                    var audioCaptureClientGuid = new Guid("c8adbd64-e71e-48a0-a4de-185c395cd317");
+                    Marshal.ThrowExceptionForHR(audioClientInterface.GetService(audioCaptureClientGuid, out var audioCaptureClientInterface));
                     audioCaptureClient = new AudioCaptureClient((IAudioCaptureClient)audioCaptureClientInterface);
                 }
                 return audioCaptureClient;
@@ -184,17 +247,17 @@ namespace CoreAudio
         /// </summary>
         /// <param name="shareMode">The share mode.</param>
         /// <param name="desiredFormat">The desired format.</param>
-        /// <returns>
-        /// 	<c>true</c> if [is format supported] [the specified share mode]; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns>True if the format is supported</returns>
         public bool IsFormatSupported(AudioClientShareMode shareMode,
             WaveFormat desiredFormat)
         {
-            WaveFormatExtensible closestMatchFormat;
-            return IsFormatSupported(shareMode, desiredFormat, out closestMatchFormat);
+            return IsFormatSupported(shareMode, desiredFormat, out _);
         }
 
-
+        private IntPtr GetPointerToPointer()
+        {
+            return Marshal.AllocHGlobal(Marshal.SizeOf<IntPtr>());
+        }
 
         /// <summary>
         /// Determines if the specified output format is supported in shared mode
@@ -202,15 +265,25 @@ namespace CoreAudio
         /// <param name="shareMode">Share Mode</param>
         /// <param name="desiredFormat">Desired Format</param>
         /// <param name="closestMatchFormat">Output The closest match format.</param>
-        /// <returns>
-        /// 	<c>true</c> if [is format supported] [the specified share mode]; otherwise, <c>false</c>.
-        /// </returns>
+        /// <returns>True if the format is supported</returns>
         public bool IsFormatSupported(AudioClientShareMode shareMode, WaveFormat desiredFormat, out WaveFormatExtensible closestMatchFormat)
         {
-            int hresult = audioClientInterface.IsFormatSupported(shareMode, desiredFormat, out closestMatchFormat);
+            IntPtr pointerToPtr = GetPointerToPointer(); // IntPtr.Zero; // Marshal.AllocHGlobal(Marshal.SizeOf<WaveFormatExtensible>());
+            closestMatchFormat = null;
+            int hresult = audioClientInterface.IsFormatSupported(shareMode, desiredFormat, pointerToPtr);
+
+            var closestMatchPtr = Marshal.PtrToStructure<IntPtr>(pointerToPtr);
+
+            if (closestMatchPtr != IntPtr.Zero)
+            {
+                closestMatchFormat = Marshal.PtrToStructure<WaveFormatExtensible>(closestMatchPtr);
+                Marshal.FreeCoTaskMem(closestMatchPtr);
+            }
+            Marshal.FreeHGlobal(pointerToPtr);
             // S_OK is 0, S_FALSE = 1
             if (hresult == 0)
             {
+
                 // directly supported
                 return true;
             }
@@ -218,18 +291,17 @@ namespace CoreAudio
             {
                 return false;
             }
-            else if (hresult == (int)AudioClientErrors.UnsupportedFormat)
+            if (hresult == AudioClientErrorCode.UnsupportedFormat)
             {
-                return false;
+                // documentation is confusing as to what this flag means
+                // https://docs.microsoft.com/en-us/windows/desktop/api/audioclient/nf-audioclient-iaudioclient-isformatsupported
+                // "Succeeded but the specified format is not supported in exclusive mode."
+                return false; // shareMode != AudioClientShareMode.Exclusive;
             }
-            else
-            {
-                Marshal.ThrowExceptionForHR(hresult);
-            }
+            Marshal.ThrowExceptionForHR(hresult);
             // shouldn't get here
-            throw new NotSupportedException("Unknown hresult " + hresult.ToString());
+            throw new NotSupportedException("Unknown hresult " + hresult);
         }
-
 
         /// <summary>
         /// Starts the audio stream
@@ -251,9 +323,9 @@ namespace CoreAudio
         /// Set the Event Handle for buffer synchro.
         /// </summary>
         /// <param name="eventWaitHandle">The Wait Handle to setup</param>
-        public void SetEventHandle(EventWaitHandle eventWaitHandle) 
+        public void SetEventHandle(IntPtr eventWaitHandle)
         {
-            audioClientInterface.SetEventHandle(eventWaitHandle.SafeWaitHandle.DangerousGetHandle());
+            audioClientInterface.SetEventHandle(eventWaitHandle);
         }
 
         /// <summary>
@@ -276,6 +348,11 @@ namespace CoreAudio
         {
             if (audioClientInterface != null)
             {
+                if (audioClockClient != null)
+                {
+                    audioClockClient.Dispose();
+                    audioClockClient = null;
+                }
                 if (audioRenderClient != null)
                 {
                     audioRenderClient.Dispose();
@@ -285,6 +362,11 @@ namespace CoreAudio
                 {
                     audioCaptureClient.Dispose();
                     audioCaptureClient = null;
+                }
+                if (audioStreamVolume != null)
+                {
+                    audioStreamVolume.Dispose();
+                    audioStreamVolume = null;
                 }
                 Marshal.ReleaseComObject(audioClientInterface);
                 audioClientInterface = null;
