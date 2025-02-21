@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CoreAudio\AudioCaptureClient.cs" />
+    <Compile Include="CoreAudio\AudioClient.cs" />
+    <Compile Include="CoreAudio\AudioRenderClient.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="CoreAudio\AudioEndpointVolume.cs" />
     <Compile Include="CoreAudio\AudioEndpointVolumeCallback.cs" />

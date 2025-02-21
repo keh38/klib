@@ -35,5 +35,13 @@ namespace CoreAudio
             return inputDevices;
         }
 
+        public static MMDevice GetDefaultDevice()
+        {
+            var deviceEnumerator = new MMDeviceEnumerator();
+            var defaultDevice = deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eRender,  ERole.eConsole);
+
+            return defaultDevice;
+        }
+
     }
 }

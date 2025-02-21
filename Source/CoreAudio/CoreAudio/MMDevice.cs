@@ -47,6 +47,13 @@ namespace CoreAudio
             _PropertyStore = new PropertyStore(propertyStore);
         }
 
+        private AudioClient GetAudioClient()
+        {
+            object result;
+            Marshal.ThrowExceptionForHR(_RealDevice.Activate(ref IIDs.IID_IAudioClient, CLSCTX.ALL, IntPtr.Zero, out result));
+            return new AudioClient(result as IAudioClient);
+        }
+
         void GetAudioSessionManager2()
         {
             Marshal.ThrowExceptionForHR(_RealDevice.Activate(ref IIDs.IID_IAudioSessionManager2, CLSCTX.ALL, IntPtr.Zero, out var result));

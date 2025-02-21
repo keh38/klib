@@ -35,30 +35,30 @@ namespace KLibUnitTests
                 //for (int k=0; k<d.Properties.Count; k++)
                 {
                     var v = d.Properties[PKEY.PKEY_AudioEndpoint_PhysicalSpeakers];
-                    sb.AppendLine(v.Value.ToString());
+                    //sb.AppendLine(v.Value.ToString());
 
-                    UInt32 mask = 1599;
-                    PropVariant pv = PropVariant.FromUInt(mask);
-                    d.Properties.SetValue(PKEY.PKEY_AudioEndpoint_PhysicalSpeakers, pv);
+                    //UInt32 mask = 1599;
+                    //PropVariant pv = PropVariant.FromUInt(mask);
+                    //d.Properties.SetValue(PKEY.PKEY_AudioEndpoint_PhysicalSpeakers, pv);
 
                     var v2 = d.Properties[PKEY.PKEY_AudioEngine_DeviceFormat];
                     byte[] b = v2.Value as byte[];
 
                     var wfe = WaveFormatEx.FromBytes(b);
                     sb.Append(wfe.ToString());
-                    wfe.nChannels = (ushort) (mask == 3 ? 2 : 8);
-                    wfe.nSamplesPerSec = 48000;
-                    wfe.nAvgBytesPerSec = wfe.nChannels * wfe.nSamplesPerSec * 2;
-                    wfe.nBlockAlign = (ushort)(wfe.nChannels * 2);
-                    wfe.dwChannelMask = mask;
+                    //wfe.nChannels = (ushort) (mask == 3 ? 2 : 8);
+                    //wfe.nSamplesPerSec = 48000;
+                    //wfe.nAvgBytesPerSec = wfe.nChannels * wfe.nSamplesPerSec * 2;
+                    //wfe.nBlockAlign = (ushort)(wfe.nChannels * 2);
+                    //wfe.dwChannelMask = mask;
 
-                    pv = PropVariant.FromBlob(wfe.ToBytes());
-                    d.Properties.SetValue(PKEY.PKEY_AudioEngine_DeviceFormat, pv);
+                    //pv = PropVariant.FromBlob(wfe.ToBytes());
+                    //d.Properties.SetValue(PKEY.PKEY_AudioEngine_DeviceFormat, pv);
                 }
 
 
                 Debug.WriteLine(sb.ToString());
-                break;
+                //break;
             }
         }
     }

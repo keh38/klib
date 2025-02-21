@@ -32,6 +32,7 @@ namespace CoreAudio
 {
     public class IIDs
     {
+        public static Guid IID_IAudioClient = typeof(IAudioClient).GUID;
         public static Guid IID_IAudioCaptureClient = typeof(IAudioCaptureClient).GUID;
         //public static Guid IID_IAudioClock
         //public static Guid IID_IAudioRenderClient
