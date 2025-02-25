@@ -44,19 +44,60 @@ namespace KLibUnitTests
                 Debug.WriteLine($"channel mask = {currentFormat.ChannelMask}");
                 Debug.WriteLine($"supports 7.1: {supports}");
 
-                //if (supports)
+                if (supports)
                 {
+
+                    //                    Utilities.SetDeviceFormat(d, desiredFormat);
+                    //currentFormat = audioClient.MixFormat;
+                    //Debug.WriteLine($"num channels = {currentFormat.Channels}");
+                    //Debug.WriteLine($"channel mask = {currentFormat.ChannelMask}");
+
+                    //Utilities.GetDeviceFormat(d, out WaveFormatExtensible fmt);
+                    //Debug.WriteLine($"read nchan = {fmt.Channels}");
+
+                    var v2 = d.Properties[PKEY.PKEY_AudioEngine_DeviceFormat];
+                    byte[] b = v2.Value as byte[];
+
+                    var wfe = WaveFormatEx.FromBytes(b);
+                    wfe.nChannels = 8;
+                    wfe.nSamplesPerSec = 48000;
+                    wfe.nAvgBytesPerSec = wfe.nChannels * wfe.nSamplesPerSec * 2;
+                    wfe.nBlockAlign = (ushort)(wfe.nChannels * 2);
+                    wfe.dwChannelMask = 1599;
+
+                    var pv = PropVariant.FromBlob(wfe.ToBytes());
+                    d.Properties.SetValue(PKEY.PKEY_AudioEngine_DeviceFormat, pv);
+
                     d.Selected = true;
 
-                    Utilities.SetDeviceFormat(d, desiredFormat);
-                    currentFormat = audioClient.MixFormat;
-                    Debug.WriteLine($"num channels = {currentFormat.Channels}");
-                    Debug.WriteLine($"channel mask = {currentFormat.ChannelMask}");
-
-                    Utilities.GetDeviceFormat(d, out WaveFormatExtensible fmt);
-                    Debug.WriteLine($"read nchan = {fmt.Channels}");
-
+                    RestartService();
                 }
+                break;
+            }
+        }
+
+        private void RestartService()
+        {
+            try
+            {
+                var processStartInfo = new ProcessStartInfo("net.exe", "stop " + "audiosrv");
+                processStartInfo.UseShellExecute = true;
+                processStartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                processStartInfo.WorkingDirectory = Environment.SystemDirectory;
+
+                Debug.WriteLine("stopping audiosrv");
+                var start = Process.Start(processStartInfo);
+                start.WaitForExit();
+
+                Debug.WriteLine("starting audiosrv");
+                processStartInfo.Arguments = "start audiosrv";
+                start = Process.Start(processStartInfo);
+                start.WaitForExit();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                throw ex;
             }
         }
     }

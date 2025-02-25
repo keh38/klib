@@ -276,6 +276,16 @@ namespace CoreAudio
             }
         }
 
+        public static PropVariant FromBlob(byte[] value)
+        {
+            Blob b = new Blob();
+            b.Length = value.Length;
+
+            b.Data = Marshal.AllocHGlobal(value.Length);
+            Marshal.Copy(value, 0, b.Data, value.Length);
+
+            return new PropVariant() { vt = (short)VarEnum.VT_BLOB, blobVal = b };
+        }
         /// <summary>
         /// Clears with a known pointer
         /// </summary>
