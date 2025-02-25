@@ -95,7 +95,7 @@ namespace NAudio.Wave
         public override string ToString()
         {
             return $"WAVE_FORMAT_EXTENSIBLE {AudioMediaSubtypes.GetAudioSubtypeName(subFormat)} " +
-                $"{SampleRate}Hz {Channels} channels {BitsPerSample} bit";
+                $"{SampleRate}Hz {Channels} channels {BitsPerSample} bit {(CoreAudio.ChannelMapping)dwChannelMask}";
         }
     }
 }

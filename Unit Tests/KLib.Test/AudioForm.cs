@@ -12,6 +12,7 @@ using System.Windows.Forms;
 
 using CoreAudio;
 using CoreAudio.Interfaces;
+using NAudio.Wave;
 
 namespace KLibUnitTests
 {
@@ -24,35 +25,38 @@ namespace KLibUnitTests
 
         private void EnumerateButton_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine((int)ChannelMapping.Surround7point1);
-
-            var sb = new StringBuilder(100);
             var mmde = new MMDeviceEnumerator();
             foreach (var d in mmde.EnumerateAudioEndPoints(EDataFlow.eRender, DEVICE_STATE.DEVICE_STATE_ACTIVE))
             {
-                sb.Clear();
-                sb.AppendLine($"name = {d.FriendlyName}");
-                sb.AppendLine($"selected = {d.Selected}");
+                Debug.WriteLine($"name = {d.FriendlyName}");
+                Debug.WriteLine($"selected = {d.Selected}");
 
                 var audioClient = d.AudioClient;
+                var currentFormat = audioClient.MixFormat;
 
-                var desiredFormat = new NAudio.Wave.WaveFormatExtensible(48000, 16, 8, (int)ChannelMapping.Surround7point1);
+                uint numJacks = d.DeviceTopology.GetConnector(0).GetConnectedTo.GetPart.JackDescription.Count;
+
+                var desiredFormat = new WaveFormatExtensible(48000, 16, 8, (int)ChannelMapping.Surround7point1);
                 var supports = audioClient.IsFormatSupported(AudioClientShareMode.Shared, desiredFormat);
-                sb.AppendLine($"supports 7.1: {supports}");
+                Debug.WriteLine($"supports 7.1: {supports}");
+                supports &= numJacks > 1;
+                Debug.WriteLine($"num channels = {currentFormat.Channels}");
+                Debug.WriteLine($"channel mask = {currentFormat.ChannelMask}");
+                Debug.WriteLine($"supports 7.1: {supports}");
 
-                d.Selected = true;
+                //if (supports)
+                {
+                    d.Selected = true;
 
-                IntPtr formatPointer = Marshal.AllocHGlobal(Marshal.SizeOf(desiredFormat));
-                Marshal.StructureToPtr(desiredFormat, formatPointer, false);
+                    Utilities.SetDeviceFormat(d, desiredFormat);
+                    currentFormat = audioClient.MixFormat;
+                    Debug.WriteLine($"num channels = {currentFormat.Channels}");
+                    Debug.WriteLine($"channel mask = {currentFormat.ChannelMask}");
 
-                Blob b = new Blob() { Length = Marshal.SizeOf(desiredFormat), Data = formatPointer };
-                PropVariant p = new PropVariant() { vt = (short)VarEnum.VT_BLOB, blobVal = b };
-                d.Properties.SetValue(PKEY.PKEY_AudioEngine_DeviceFormat, p);
+                    Utilities.GetDeviceFormat(d, out WaveFormatExtensible fmt);
+                    Debug.WriteLine($"read nchan = {fmt.Channels}");
 
-                Marshal.FreeHGlobal(formatPointer);
-
-                Debug.WriteLine(sb.ToString());
-                break;
+                }
             }
         }
     }

@@ -185,10 +185,16 @@ namespace CoreAudio
             return new PropVariant() { vt = (short)VarEnum.VT_I8, hVal = value };
         }
 
+        public static PropVariant FromUInt(uint value)
+        {
+            return new PropVariant() { vt = (short)VarEnum.VT_UI4, hVal = value };
+        }
+
+
         /// <summary>
         /// Helper method to gets blob data
         /// </summary>
-        private byte[] GetBlob()
+        public byte[] GetBlob()
         {
             var blob = new byte[blobVal.Length];
             Marshal.Copy(blobVal.Data, blob, 0, blob.Length);

@@ -58,7 +58,7 @@ namespace CoreAudio.Interfaces
         [PreserveSig]
         int IsFormatSupported(
             AudioClientShareMode shareMode,
-            [In] WaveFormat pFormat,
+            [In] WaveFormatExtensible pFormat,
             IntPtr closestMatchFormat); // or outIntPtr??
 
         int GetMixFormat(out IntPtr deviceFormatPointer);

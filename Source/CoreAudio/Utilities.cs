@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using CoreAudio.Interfaces;
+using NAudio.Wave;
 
 namespace CoreAudio
 {
@@ -41,6 +42,27 @@ namespace CoreAudio
             var defaultDevice = deviceEnumerator.GetDefaultAudioEndpoint(EDataFlow.eRender,  ERole.eConsole);
 
             return defaultDevice;
+        }
+
+        public static void SetDeviceFormat(MMDevice device, WaveFormatExtensible format)
+        {
+            IntPtr formatPointer = Marshal.AllocHGlobal(Marshal.SizeOf(format));
+            Marshal.StructureToPtr(format, formatPointer, false);
+
+            Blob b = new Blob() { Length = Marshal.SizeOf(format), Data = formatPointer };
+            PropVariant p = new PropVariant() { vt = (short)VarEnum.VT_BLOB, blobVal = b };
+            device.Properties.SetValue(PKEY.PKEY_AudioEngine_DeviceFormat, p);
+
+            Marshal.FreeHGlobal(formatPointer);
+        }
+
+        public static void GetDeviceFormat(MMDevice device, out WaveFormatExtensible format)
+        {
+            var variant = device.Properties.GetValue(PKEY.PKEY_AudioEngine_DeviceFormat);
+            IntPtr formatPointer = Marshal.AllocHGlobal(variant.blobVal.Length);
+            Marshal.Copy(variant.GetBlob(), 0, formatPointer, variant.blobVal.Length);
+            format = Marshal.PtrToStructure<WaveFormatExtensible>(formatPointer);
+            Marshal.FreeHGlobal(formatPointer);
         }
 
     }

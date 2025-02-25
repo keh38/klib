@@ -92,6 +92,12 @@ namespace CoreAudio
             return result;
         }
 
+        public PropVariant GetValue(PROPERTYKEY key)
+        {
+            Marshal.ThrowExceptionForHR(_Store.GetValue(ref key, out var result));
+            return result;
+        }
+
         internal PropertyStore(IPropertyStore store)
         {
             _Store = store;
