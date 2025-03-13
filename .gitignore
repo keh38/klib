@@ -31,3 +31,6 @@
 /Unit Tests/KLib.Test/bin
 /Unit Tests/KLib.Test/.vs
 /Unit Tests/KLib.Test/MSGraphDemo/obj
+/WindowsVoice/.vs
+/Source/WindowsVoice/obj
+/Source/WindowsVoice/bin
