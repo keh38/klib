@@ -88,6 +88,7 @@
     <Compile Include="KLib.Expressions.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Graphics\XmlColor.cs" />
+    <Compile Include="KLib.FileIO.cs" />
     <Compile Include="KLib.KString.cs" />
     <Compile Include="KLib.KFile.cs" />
     <Compile Include="KLib.Windows.cs" />
@@ -105,7 +106,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "D:\Development\KLib\Framework"</PostBuildEvent>
+    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Framework"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

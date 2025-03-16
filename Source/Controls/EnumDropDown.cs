@@ -109,6 +109,7 @@ namespace KLib.Controls
             foreach (Enum e in list)
             {
                 string name = System.Enum.GetName(typeof(Enum), e).Replace('_', ' ');
+                //name = KString.InsertSpacesAtCaseChanges(name);
                 _cbItems.Add(name, Convert.ToInt32(e));
 
                 items.Add(name);
@@ -158,7 +159,6 @@ namespace KLib.Controls
             SelectedIndex = 0;
             _ignoreEvents = false;
         }
-
         private void EnumDropDown_SelectedIndexChanged(object sender, EventArgs e)
         {
             _value = SelectedIndex >= 0 ? _cbItems[SelectedItem as string] : 0;
