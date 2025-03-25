@@ -13,6 +13,53 @@ namespace KLib.Net
     {
         public static string ByteFormat { get; private set; }
 
+        public static IPEndPoint FindNextAvailableEndPoint()
+        {
+            int numPortsToTry = 1000;
+            int port = 4950;
+
+            string address = FindServerAddress();
+
+            IPAddress ipAddress = null;
+            if (address.Equals("localhost"))
+            {
+                ipAddress = IPAddress.Loopback;
+            }
+            else
+            {
+                ipAddress = IPAddress.Parse(address);
+            }
+
+            TcpListener listener = null; ;
+            bool success = false;
+            for (int k=0; k < numPortsToTry; k++)
+            {
+                try
+                {
+                    listener = new TcpListener(ipAddress, port);
+                    listener.Start();
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    port++;
+                }
+
+                if (success)
+                {
+                    listener?.Stop();
+                    break;
+                }
+            }
+
+            if (success)
+            {
+                return new IPEndPoint(ipAddress, port);
+            }
+
+            return null;
+        }
+
         public static string FindServerAddress()
         {
             return FindServerAddress(true);
@@ -103,7 +150,7 @@ namespace KLib.Net
             try
             {
                 var addy = string.IsNullOrEmpty(server) ? FindServerAddress() : server;
-                Debug.WriteLine("discovering on: " + addy);
+                //Debug.WriteLine("discovering on: " + addy);
 
                 IPAddress localAddress;
                 if (addy.Equals("localhost"))
@@ -115,7 +162,8 @@ namespace KLib.Net
                     localAddress = IPAddress.Parse(addy);
                 }
 
-                var ipLocal = new IPEndPoint(localAddress, 5555);
+                var ipLocal = new IPEndPoint(localAddress, 5555 + name.Length);
+                Debug.WriteLine($"discovering {name} on: " + ipLocal);
 
                 var address = IPAddress.Parse("234.5.6.7");
                 var ipEndPoint = new IPEndPoint(address, 10000);
@@ -141,7 +189,7 @@ namespace KLib.Net
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"Discover error: {ex.Message}");
+                //Debug.WriteLine($"Discover error, {name}: {ex.Message}");
             }
 
             if (udp != null)

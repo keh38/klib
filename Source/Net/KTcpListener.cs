@@ -52,6 +52,15 @@ namespace KLib.Net
             return true;
         }
 
+        public bool StartListener(IPEndPoint endpoint)
+        {
+            _listener = new TcpListener(endpoint);
+            _listener.Start();
+            _address = endpoint.Address.ToString();
+            _port = endpoint.Port;
+            return true;
+        }
+
         public string ListeningOn { get { return $"{_address}:{_port}"; } }
 
         public void CloseListener()
