@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
 
 
 namespace KLib.Net
@@ -25,6 +26,18 @@ namespace KLib.Net
         public static int SendMessage(IPEndPoint localEP, string message)
         {
             return SendMessage(localEP.Address.ToString(), localEP.Port, message);
+        }
+        public static async Task<int> SendMessageAsync(IPEndPoint localEP, string message)
+        {
+            return await Task.Run(() => SendMessage(localEP.Address.ToString(), localEP.Port, message));
+        }
+        public static async Task<int> SendMessageReceiveIntAsync(IPEndPoint localEP, string message)
+        {
+            return await Task.Run(() => SendMessageReceiveInt(localEP, message));
+        }
+        public static async Task<long> SendMessageReceiveLongAsync(IPEndPoint localEP, string message)
+        {
+            return await Task.Run(() => SendMessageReceiveLong(localEP, message));
         }
 
         public static int SendMessage(string address, int port, string message)
@@ -108,6 +121,42 @@ namespace KLib.Net
                 var client = new KTcpClient();
                 client.Connect(localEP.Address.ToString(), localEP.Port);
                 result = client.SendMessageReceiveString(message, data);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static int SendMessageReceiveInt(IPEndPoint localEP, string message)
+        {
+            int result = -1;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessageReceiveInt(message);
+                client.Close();
+            }
+            catch (Exception ex)
+            {
+            }
+
+            return result;
+        }
+
+        public static long SendMessageReceiveLong(IPEndPoint localEP, string message)
+        {
+            long result = 0;
+
+            try
+            {
+                var client = new KTcpClient();
+                client.Connect(localEP.Address.ToString(), localEP.Port);
+                result = client.SendMessageReceiveLong(message);
                 client.Close();
             }
             catch (Exception ex)
@@ -225,6 +274,36 @@ namespace KLib.Net
                 theWriter.Flush();
 
                 result = ProcessInt32(theReader.ReadInt32());
+            }
+
+            return result;
+        }
+
+        public int SendMessageReceiveInt(string message)
+        {
+            int result = 0;
+
+            using (NetworkStream theStream = _socket.GetStream())
+            using (BinaryReader theReader = new BinaryReader(theStream))
+            using (BinaryWriter theWriter = new BinaryWriter(theStream))
+            {
+                WriteStringAsByteArray(theWriter, message);
+                result = theReader.ReadInt32();
+            }
+
+            return result;
+        }
+
+        public long SendMessageReceiveLong(string message)
+        {
+            long result = 0;
+
+            using (NetworkStream theStream = _socket.GetStream())
+            using (BinaryReader theReader = new BinaryReader(theStream))
+            using (BinaryWriter theWriter = new BinaryWriter(theStream))
+            {
+                WriteStringAsByteArray(theWriter, message);
+                result = theReader.ReadInt64();
             }
 
             return result;
