@@ -135,14 +135,17 @@ namespace KLib.Net
 
             return address;
         }
-
+        public static IPEndPoint Discover(string name, int timeOut)
+        {
+            return Discover(name, timeOut, "");
+        }
         /// <summary>
         /// Send UDP multicast message to find discoverable TCP server address
         /// </summary>
         /// <param name="name">Name of desired TCP server (typically all caps)</param>
         /// <param name="address"></param>
         /// <returns>Returns IPEndPoint object</returns>
-        public static IPEndPoint Discover(string name, string server="")
+        public static IPEndPoint Discover(string name, int timeOut = 500, string server="")
         {
             UdpClient udp = null;
             IPEndPoint endPoint = null;
@@ -169,7 +172,7 @@ namespace KLib.Net
                 var ipEndPoint = new IPEndPoint(address, 10000);
 
                 udp = new UdpClient(ipLocal);
-                udp.Client.ReceiveTimeout = 500;
+                udp.Client.ReceiveTimeout = timeOut;
 
                 udp.JoinMulticastGroup(address, localAddress);
                 udp.Send(Encoding.UTF8.GetBytes(name), name.Length, ipEndPoint);
