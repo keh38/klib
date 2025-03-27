@@ -39,6 +39,10 @@ namespace KLib.Net
         {
             return await Task.Run(() => SendMessageReceiveLong(localEP, message));
         }
+        public static async Task<byte[]> SendMessageReceiveByteArrayAsync(IPEndPoint localEP, string message)
+        {
+            return await Task.Run(() => SendMessageReceiveByteArray(localEP, message));
+        }
 
         public static int SendMessage(string address, int port, string message)
         {
