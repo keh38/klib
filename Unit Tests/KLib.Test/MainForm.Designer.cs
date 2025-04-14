@@ -38,6 +38,9 @@
             this.TestControlsButton = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.AudioButton = new System.Windows.Forms.Button();
+            this.brightnessNumeric = new KLib.Controls.KNumericBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -145,11 +148,58 @@
             this.AudioButton.UseVisualStyleBackColor = true;
             this.AudioButton.Click += new System.EventHandler(this.AudioButton_Click);
             // 
+            // brightnessNumeric
+            // 
+            this.brightnessNumeric.AllowInf = false;
+            this.brightnessNumeric.AutoSize = true;
+            this.brightnessNumeric.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.brightnessNumeric.ClearOnDisable = false;
+            this.brightnessNumeric.FloatValue = 0F;
+            this.brightnessNumeric.IntValue = 0;
+            this.brightnessNumeric.IsInteger = false;
+            this.brightnessNumeric.Location = new System.Drawing.Point(268, 195);
+            this.brightnessNumeric.MaxCoerce = false;
+            this.brightnessNumeric.MaximumSize = new System.Drawing.Size(20000, 20);
+            this.brightnessNumeric.MaxValue = 1.7976931348623157E+308D;
+            this.brightnessNumeric.MinCoerce = false;
+            this.brightnessNumeric.MinimumSize = new System.Drawing.Size(10, 20);
+            this.brightnessNumeric.MinValue = 0D;
+            this.brightnessNumeric.Name = "brightnessNumeric";
+            this.brightnessNumeric.Size = new System.Drawing.Size(100, 20);
+            this.brightnessNumeric.TabIndex = 6;
+            this.brightnessNumeric.TextFormat = "K4";
+            this.brightnessNumeric.ToolTip = "";
+            this.brightnessNumeric.Units = "";
+            this.brightnessNumeric.Value = 0D;
+            this.brightnessNumeric.ValueChanged += new System.EventHandler(this.brightnessNumeric_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(265, 179);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Brightness";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(374, 192);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 235);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.brightnessNumeric);
             this.Controls.Add(this.AudioButton);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -162,6 +212,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -177,6 +228,9 @@
         private System.Windows.Forms.Button TestControlsButton;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button AudioButton;
+        private KLib.Controls.KNumericBox brightnessNumeric;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

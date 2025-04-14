@@ -54,6 +54,7 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -78,6 +79,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BrightnessController.cs" />
     <Compile Include="Crypto\Crypto.PublicKey.cs" />
     <Compile Include="Crypto\Crypto.cs" />
     <Compile Include="Graphics\KPointF.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="KMath\GaussianRandom.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Graphics\ZedGraphUtils.cs" />
+    <Compile Include="WindowsSettingsBrightnessController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

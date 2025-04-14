@@ -61,5 +61,16 @@ namespace KLibUnitTests
             var dlg = new AudioForm();
             dlg.ShowDialog();
         }
+
+        private void brightnessNumeric_ValueChanged(object sender, EventArgs e)
+        {
+            KLib.WindowsSettingsBrightnessController.SetBrightness((byte) brightnessNumeric.IntValue);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var brightness = KLib.WindowsSettingsBrightnessController.GetBrightness();
+            brightnessNumeric.IntValue = brightness;
+        }
     }
 }
