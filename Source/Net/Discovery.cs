@@ -101,6 +101,12 @@ namespace KLib.Net
                                       select piece).ToArray();
 
                         // auto-configured LAN
+                        if (line.StartsWith("Interface:") && pieces[1].StartsWith("192.168"))
+                        {
+                            address = pieces[1];
+                            return address;
+                        }
+                        // auto-configured direct connection
                         if (line.StartsWith("Interface:") && pieces[1].StartsWith("169.254"))
                         {
                             address = pieces[1];
