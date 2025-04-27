@@ -14,6 +14,11 @@ namespace KLib
 {
     public static class KFile
     {
+        public static void JSONSerialize<T>(T t, string path)
+        {
+            File.WriteAllText(path, JSONSerializeToString(t));
+        }
+
         public static string JSONSerializeToString<T>(T t)
         {
             return JsonConvert.SerializeObject(t, Newtonsoft.Json.Formatting.Indented, new StringEnumConverter { CamelCaseText = false });
