@@ -134,12 +134,18 @@ namespace KLib.MSGraph
             _authResult = null;
             try
             {
-                if (File.Exists(_acctInfoPath))
+                var accounts = await _app.GetAccountsAsync();
+                foreach (var ac in accounts)
+                {
+                    Debug.WriteLine(ac.Username);
+                }
+
+                //if (File.Exists(_acctInfoPath))
                 {
                     var acct = KFile.XmlDeserialize<AccountInfo>(_acctInfoPath);
                     var a = new MsalAccount(acct.ObjectID, acct.TokenID);
 
-                    _authResult = await _app.AcquireTokenSilent(_scopes, a)
+                    _authResult = await _app.AcquireTokenSilent(_scopes, accounts.First())
                         .ExecuteAsync();
                 }
             }
