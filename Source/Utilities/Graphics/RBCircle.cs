@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
-using Vector = System.Windows.Vector;
+//using Vector = System.Windows.Vector;
 
 
 namespace KLib.KGraphics
@@ -18,7 +18,7 @@ namespace KLib.KGraphics
     /// </summary>
     public class RBCircle
     {
-        private Point location;
+/*        private Point location;
         private int radius;
 
         private Point[] controlPoints;
@@ -26,7 +26,7 @@ namespace KLib.KGraphics
         private Point dragStartControl;
         private Point dragStartLocation;
         private int dragStartRadius;
-        private Vector Vref;
+        //private Vector Vref;
 
         private int top;
         private int left;
@@ -338,6 +338,7 @@ namespace KLib.KGraphics
 
 
         }
-
+*/
     }
+
 }

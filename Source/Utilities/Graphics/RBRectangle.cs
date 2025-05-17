@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Runtime.Serialization;
 
-using Vector = System.Windows.Vector;
+//using Vector = System.Windows.Vector;
 
 
 namespace KLib.KGraphics
@@ -19,7 +19,7 @@ namespace KLib.KGraphics
     /// </summary>
     public class RBRectangle
     {
-        private Rectangle rect;
+/*        private Rectangle rect;
 
         private Point[] controlPoints;
 
@@ -302,6 +302,6 @@ namespace KLib.KGraphics
 
             return new RBRectangle(x, y, w, h);
         }
-
+*/
     }
 }

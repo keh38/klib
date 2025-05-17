@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Runtime.Versioning;
 using System.Windows.Forms;
 
 namespace KLib.Controls
@@ -11,6 +12,7 @@ namespace KLib.Controls
     /// </summary>
     [ToolboxBitmap(typeof(TrackBar))]
     [DefaultEvent("Scroll"), DefaultProperty("BarInnerColor")]
+    [SupportedOSPlatform("windows")]
     public partial class ColorSlider : Control
     {
         #region Events

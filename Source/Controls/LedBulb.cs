@@ -4,17 +4,19 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Runtime.Versioning;
 
 namespace KLib.Controls
 {
 
-	/// <summary>
-	/// The LEDBulb is a .Net control for Windows Forms that emulates an
-	/// LED light with two states On and Off.  The purpose of the control is to 
-	/// provide a sleek looking representation of an LED light that is sizable, 
-	/// has a transparent background and can be set to different colors.  
-	/// </summary>
-	public partial class LedBulb : Control
+    /// <summary>
+    /// The LEDBulb is a .Net control for Windows Forms that emulates an
+    /// LED light with two states On and Off.  The purpose of the control is to 
+    /// provide a sleek looking representation of an LED light that is sizable, 
+    /// has a transparent background and can be set to different colors.  
+    /// </summary>
+    [SupportedOSPlatform("windows")]
+    public partial class LedBulb : Control
     {
 
 		#region Public and Private Members

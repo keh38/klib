@@ -127,15 +127,15 @@ namespace KLib.Controls
 
         private void BrowseFolders()
         {
-            var dlg = new Ookii.Dialogs.VistaFolderBrowserDialog();
-            dlg.ShowNewFolderButton = true;
-            dlg.SelectedPath = _value;
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                _value = dlg.SelectedPath;
-                ShowValue();
-                OnValueChanged();
-            }
+            //var dlg = new Ookii.Dialogs.VistaFolderBrowserDialog();
+            //dlg.ShowNewFolderButton = true;
+            //dlg.SelectedPath = _value;
+            //if (dlg.ShowDialog() == DialogResult.OK)
+            //{
+            //    _value = dlg.SelectedPath;
+            //    ShowValue();
+            //    OnValueChanged();
+            //}
         }
 
         private void ShowValue()
