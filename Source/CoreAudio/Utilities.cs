@@ -55,6 +55,18 @@ namespace CoreAudio
 
             //Marshal.FreeHGlobal(formatPointer);
         }
+        public static void SetDeviceFormat(MMDevice device, PROPERTYKEY key, WaveFormatExtensible format)
+        {
+            Blob b = new Blob() { Length = Marshal.SizeOf(format) };
+            b.Data = Marshal.AllocHGlobal(Marshal.SizeOf(format));
+            Marshal.StructureToPtr(format, b.Data, false);
+
+            PropVariant p = new PropVariant() { vt = (short)VarEnum.VT_BLOB, blobVal = b };
+            device.Properties.SetValue(key, p);
+
+            //Marshal.FreeHGlobal(formatPointer);
+        }
+
 
         public static void GetDeviceFormat(MMDevice device, out WaveFormatExtensible format)
         {
