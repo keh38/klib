@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
+	<VersionPrefix>1.0.10</VersionPrefix>
+	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -45,6 +46,11 @@
     <Compile Update="LedBulb.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Update="TNumEditBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -62,11 +68,18 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
   </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Library\net8"
 
 </PostBuildEvent>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>KLib.Controls</Title>
+    <PackageOutputPath>C:\Development\klib\Packages</PackageOutputPath>
   </PropertyGroup>
 </Project>

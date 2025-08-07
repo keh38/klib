@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
-    <OutputType>Library</OutputType>
+	  <VersionPrefix>1.0.0</VersionPrefix>
+	  <OutputType>Library</OutputType>
     <RootNamespace>KLib</RootNamespace>
     <AssemblyName>KLib</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -26,5 +27,6 @@
   </ItemGroup>
   <PropertyGroup>
     <PostBuildEvent>copy /y "$(TargetDir)*.dll" "$(SolutionDir)\..\Library\net8"</PostBuildEvent>
+    <PackageOutputPath>C:\Development\klib\Packages</PackageOutputPath>
   </PropertyGroup>
 </Project>

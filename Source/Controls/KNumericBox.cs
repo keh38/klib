@@ -9,10 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Runtime.Versioning;
 
 namespace KLib.Controls
 {
     [DefaultEvent(nameof(ValueChanged))]
+    [SupportedOSPlatform("windows")]
     public partial class KNumericBox : UserControl
     {
         private double _minVal = 0;
