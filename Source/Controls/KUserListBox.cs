@@ -222,6 +222,7 @@ namespace KLib.Controls
                 this.index = index;
             }
         }
+
         public class ChangedItems : EventArgs
         {
             public List<string> names;

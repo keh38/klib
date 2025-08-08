@@ -11,6 +11,7 @@ using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static KLib.Controls.KUserListBox;
 
 namespace KLib.Controls
 {
@@ -147,16 +148,10 @@ namespace KLib.Controls
             _selectedIndex = listBox.SelectedIndex;
             if (_selectedIndex >= 0 && _selectedIndex < _collection.Count)
             {
-                _collection.RemoveAt(_selectedIndex);
+                var removed = _collection[_selectedIndex];
+                _collection.Remove(removed);
                 UpdateCollectionList();
-                //if (_selectedIndex >=0 && _selectedIndex < _collection.Count)
-                //{
-                //    ShowItemInPropertyGrid(_collection[_selectedIndex]);
-                //}
-                //else
-                //{
-                //    listBox.SelectedIndex = _selectedIndex - 1;
-                //}
+                OnItemRemoved(removed);
             }
         }
 
@@ -196,6 +191,7 @@ namespace KLib.Controls
                     _collection.Add(item);
                     UpdateCollectionList();
                     listBox.SelectedIndex = _collection.Count - 1;
+                    OnItemAdded(item);
                 }
                 addDropDown.SelectedIndex = -1;
             }
@@ -209,6 +205,8 @@ namespace KLib.Controls
                 _collection.Add(item);
                 UpdateCollectionList();
                 listBox.SelectedIndex = _collection.Count - 1;
+
+                OnItemAdded(item);
             }
         }
 
@@ -223,6 +221,7 @@ namespace KLib.Controls
             else
             {
                 ShowItemInPropertyGrid(_collection[_selectedIndex]);
+                OnSelectedItemChanged(_collection[_selectedIndex]);
             }
         }
 
@@ -244,6 +243,11 @@ namespace KLib.Controls
         {
             _propertyGrid.Refresh();
             UpdateCollectionList();
+
+            if (e.ChangedItem.Label == "Name")
+            {
+                OnItemRenamed(e.OldValue as string, e.ChangedItem.Value as string);
+            }
         }
 
         private void addDropDown_VisibleChanged(object sender, EventArgs e)
@@ -256,7 +260,49 @@ namespace KLib.Controls
                     addDropDown.Items.Add(item);
                 }
             }
-
         }
+
+        public event EventHandler<RenamedItem> ItemRenamed;
+        private void OnItemRenamed(string oldName, string newName)
+        {
+            ItemRenamed?.Invoke(this, new RenamedItem(oldName, newName));
+        }
+
+        public class RenamedItem : EventArgs
+        {
+            public string oldName;
+            public string newName;
+            public RenamedItem(string oldName, string newName)
+            {
+                this.oldName = oldName;
+                this.newName = newName;
+            }
+        }
+
+        public event EventHandler<ChangedItem> ItemAdded;
+        private void OnItemAdded(object item)
+        {
+            ItemAdded?.Invoke(this, new ChangedItem(item));
+        }
+
+        public event EventHandler<ChangedItem> ItemRemoved;
+        private void OnItemRemoved(object item)
+        {
+            ItemRemoved?.Invoke(this, new ChangedItem(item));
+        }
+
+        public event EventHandler<ChangedItem> SelectedItemChanged;
+        private void OnSelectedItemChanged(object item)
+        {
+            SelectedItemChanged?.Invoke(this, new ChangedItem(item));
+        }
+
+        public class ChangedItem : EventArgs
+        {
+            public object item;
+            public ChangedItem(object item) { this.item = item; }
+        }
+
+
     }
 }
