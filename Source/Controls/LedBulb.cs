@@ -15,7 +15,9 @@ namespace KLib.Controls
     /// provide a sleek looking representation of an LED light that is sizable, 
     /// has a transparent background and can be set to different colors.  
     /// </summary>
+#if !NET48
     [SupportedOSPlatform("windows")]
+#endif
     public partial class LedBulb : Control
     {
 

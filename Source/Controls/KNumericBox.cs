@@ -14,7 +14,9 @@ using System.Runtime.Versioning;
 namespace KLib.Controls
 {
     [DefaultEvent(nameof(ValueChanged))]
+#if !NET48
     [SupportedOSPlatform("windows")]
+#endif
     public partial class KNumericBox : UserControl
     {
         private double _minVal = 0;

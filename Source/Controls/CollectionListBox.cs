@@ -15,7 +15,9 @@ using static KLib.Controls.KUserListBox;
 
 namespace KLib.Controls
 {
+#if !NET48
     [SupportedOSPlatform("windows")]
+#endif
     public partial class CollectionListBox : UserControl
     {
         private IList _collection;

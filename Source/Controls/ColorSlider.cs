@@ -12,7 +12,9 @@ namespace KLib.Controls
     /// </summary>
     [ToolboxBitmap(typeof(TrackBar))]
     [DefaultEvent("Scroll"), DefaultProperty("BarInnerColor")]
+#if !NET48
     [SupportedOSPlatform("windows")]
+#endif
     public partial class ColorSlider : Control
     {
         #region Events

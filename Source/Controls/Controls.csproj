@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
-	<VersionPrefix>1.0.12</VersionPrefix>
+    <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
+	<VersionPrefix>1.1</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
@@ -10,7 +10,10 @@
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="ColorSlider.cs">
+	  <Compile Update="CollectionListBox.cs">
+		  <SubType>Component</SubType>
+	  </Compile>
+	  <Compile Update="ColorSlider.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="EnumDropDown.cs">
