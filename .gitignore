@@ -34,3 +34,9 @@
 /WindowsVoice/.vs
 /Source/WindowsVoice/obj
 /Source/WindowsVoice/bin
+/Source/packages/protobuf-net.Core.3.2.30
+/Source/packages/Microsoft.Identity.Client.Desktop.4.36.1
+/Source/packages/Microsoft.Identity.Client.4.36.1
+/Source/packages
+/Unit Tests/KLib.Test/ControlTests/bin
+/Unit Tests/KLib.Test/ControlTests/obj
