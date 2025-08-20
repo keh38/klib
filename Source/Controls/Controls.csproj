@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	<VersionPrefix>1.1</VersionPrefix>
+	<VersionPrefix>1.2</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Version>$(VersionPrefix)</Version>
   </PropertyGroup>
   <ItemGroup>
 	  <Compile Update="CollectionListBox.cs">
@@ -77,11 +78,11 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Library\net8"
 
 </PostBuildEvent>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>KLib.Controls</Title>
     <PackageOutputPath>C:\Development\klib\Packages</PackageOutputPath>
   </PropertyGroup>

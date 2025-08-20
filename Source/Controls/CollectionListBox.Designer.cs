@@ -63,9 +63,9 @@
             // 
             // removeButton
             // 
-            removeButton.Location = new System.Drawing.Point(120, 254);
+            removeButton.Location = new System.Drawing.Point(114, 254);
             removeButton.Name = "removeButton";
-            removeButton.Size = new System.Drawing.Size(94, 29);
+            removeButton.Size = new System.Drawing.Size(100, 29);
             removeButton.TabIndex = 2;
             removeButton.Text = "Remove";
             removeButton.UseVisualStyleBackColor = true;
@@ -83,9 +83,10 @@
             // downButton
             // 
             downButton.Image = (System.Drawing.Image)resources.GetObject("downButton.Image");
-            downButton.Location = new System.Drawing.Point(220, 80);
+            downButton.Location = new System.Drawing.Point(220, 64);
+            downButton.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             downButton.Name = "downButton";
-            downButton.Size = new System.Drawing.Size(48, 48);
+            downButton.Size = new System.Drawing.Size(32, 32);
             downButton.TabIndex = 5;
             downButton.UseVisualStyleBackColor = true;
             downButton.Click += downButton_Click;
@@ -94,8 +95,9 @@
             // 
             upButton.Image = (System.Drawing.Image)resources.GetObject("upButton.Image");
             upButton.Location = new System.Drawing.Point(220, 26);
+            upButton.Margin = new System.Windows.Forms.Padding(3, 3, 6, 3);
             upButton.Name = "upButton";
-            upButton.Size = new System.Drawing.Size(48, 48);
+            upButton.Size = new System.Drawing.Size(32, 32);
             upButton.TabIndex = 6;
             upButton.UseVisualStyleBackColor = true;
             upButton.Click += upButton_Click;
@@ -104,7 +106,7 @@
             // 
             addButton.Location = new System.Drawing.Point(4, 254);
             addButton.Name = "addButton";
-            addButton.Size = new System.Drawing.Size(94, 29);
+            addButton.Size = new System.Drawing.Size(100, 29);
             addButton.TabIndex = 7;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
@@ -112,8 +114,8 @@
             // 
             // CollectionListBox
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             AutoSize = true;
             AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             Controls.Add(addButton);
@@ -123,8 +125,10 @@
             Controls.Add(removeButton);
             Controls.Add(addDropDown);
             Controls.Add(listBox);
+            MinimumSize = new System.Drawing.Size(200, 225);
             Name = "CollectionListBox";
-            Size = new System.Drawing.Size(271, 286);
+            Size = new System.Drawing.Size(258, 286);
+            Resize += CollectionListBox_Resize;
             ResumeLayout(false);
             PerformLayout();
         }

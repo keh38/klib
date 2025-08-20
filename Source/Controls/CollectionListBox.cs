@@ -11,6 +11,7 @@ using System.Runtime.Versioning;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static KLib.Controls.KUserListBox;
 
 namespace KLib.Controls
@@ -53,7 +54,7 @@ namespace KLib.Controls
         [Browsable(false)]
         public GetDisplayTextDelegate GetDisplayText { set; get; }
 
-        public delegate object CreateNewItemDelegate(string itemType);
+        public delegate object CreateNewItemDelegate(object item);
         [Browsable(false)]
         public CreateNewItemDelegate CreateNewItem { set; get; }
 
@@ -305,6 +306,113 @@ namespace KLib.Controls
             public ChangedItem(object item) { this.item = item; }
         }
 
+        private void CollectionListBox_Resize(object sender, EventArgs e)
+        {
+            int nominalButtonWidth = 100;
 
+            int x = this.Bounds.Width;
+
+            int xButton = this.Bounds.Width
+                - upButton.Width
+                - upButton.Margin.Right;
+
+            upButton.Left = xButton;
+            downButton.Left = xButton;
+
+            listBox.Width = xButton
+                - upButton.Margin.Left
+                - listBox.Margin.Left
+                - listBox.Margin.Right;
+
+            int xRemove = listBox.Right - nominalButtonWidth;
+
+            bool twoRows = false;
+            if (xRemove - removeButton.Margin.Left < addButton.Left + nominalButtonWidth + addButton.Margin.Right)
+            {
+                twoRows = true;
+                removeButton.Left = listBox.Left;
+                removeButton.Width = listBox.Width;
+
+                addButton.Left = listBox.Left;
+                addButton.Width = listBox.Width;
+                addDropDown.Left = listBox.Left;
+                addDropDown.Width = listBox.Width;
+            }
+            else
+            {
+                removeButton.Left = xRemove;
+                removeButton.Width = nominalButtonWidth;
+
+                addButton.Left = listBox.Left;
+                addButton.Width = nominalButtonWidth;
+                addDropDown.Left = listBox.Left;
+                addDropDown.Width = nominalButtonWidth;
+            }
+
+            int nominalListBoxBottom = this.Bounds.Height
+                - removeButton.Margin.Bottom
+                - removeButton.Height
+                - removeButton.Margin.Top
+                - listBox.Margin.Bottom;
+
+            if (twoRows)
+            {
+                nominalListBoxBottom = nominalListBoxBottom
+                    - addButton.Margin.Bottom
+                    - addButton.Height
+                    - addButton.Margin.Top;
+            }
+
+            listBox.Height = nominalListBoxBottom - listBox.Top;
+
+            int yButton = listBox.Bottom
+                + listBox.Margin.Bottom
+                + removeButton.Margin.Top;
+
+            addButton.Top = yButton;
+            addDropDown.Top = yButton;
+
+            if (twoRows)
+            {
+                yButton += addButton.Margin.Bottom + addButton.Height + removeButton.Margin.Top;
+            }
+            removeButton.Top = yButton;
+
+            this.Height = yButton + removeButton.Height + removeButton.Margin.Bottom;
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.D))
+            {
+                //true if key was processed by control, false otherwise
+                return DuplicateItem();
+            }
+            else
+            {
+                return base.ProcessCmdKey(ref msg, keyData);
+            }
+        }
+
+        private bool DuplicateItem()
+        {
+            if (CreateNewItem == null) return false;
+
+            _selectedIndex = listBox.SelectedIndex;
+            if (_selectedIndex >= 0 && _selectedIndex < _collection.Count)
+            {
+                var item = _collection[_selectedIndex];
+                var duplicate = CreateNewItem(item);
+
+
+                _collection.Insert(_selectedIndex + 1, duplicate);
+                UpdateCollectionList();
+                listBox.SelectedIndex = _selectedIndex + 1;
+
+                OnItemAdded(item);
+                return true;
+            }
+            return false;
+        }
     }
 }

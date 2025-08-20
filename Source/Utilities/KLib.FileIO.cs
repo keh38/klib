@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using ProtoBuf;
+//using ProtoBuf;
 
 namespace KLib
 {
@@ -144,27 +144,27 @@ namespace KLib
             }
         }
 
-        public static byte[] ToProtoBuf<T>(T obj)
-        {
-            byte[] pbuf;
-            using (var ms = new System.IO.MemoryStream())
-            {
-                Serializer.Serialize<T>(ms, obj);
-                pbuf = ms.ToArray();
-            }
-            return pbuf;
-        }
+        //public static byte[] ToProtoBuf<T>(T obj)
+        //{
+        //    byte[] pbuf;
+        //    using (var ms = new System.IO.MemoryStream())
+        //    {
+        //        Serializer.Serialize<T>(ms, obj);
+        //        pbuf = ms.ToArray();
+        //    }
+        //    return pbuf;
+        //}
 
-        public static T FromProtoBuf<T>(byte[] pbuf)
-        {
-            T obj = default(T);
-            using (var ms = new System.IO.MemoryStream(pbuf))
-            {
-                obj = Serializer.Deserialize<T>(ms);
-            }
+        //public static T FromProtoBuf<T>(byte[] pbuf)
+        //{
+        //    T obj = default(T);
+        //    using (var ms = new System.IO.MemoryStream(pbuf))
+        //    {
+        //        obj = Serializer.Deserialize<T>(ms);
+        //    }
 
-            return obj;
-        }
+        //    return obj;
+        //}
 
     }
 }
