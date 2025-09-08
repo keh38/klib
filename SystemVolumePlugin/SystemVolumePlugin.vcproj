@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="ASimplePlugin"
+	Name="SystemVolumePlugin"
 	ProjectGUID="{05036C7A-18C6-4A79-BC31-3ABD5C3B0593}"
-	RootNamespace="ASimplePlugin"
+	RootNamespace="SystemVolumePlugin"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="131072"
 	>
@@ -142,7 +142,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="$(OutDir)/ASimplePlugin.dll"
+				OutputFile="$(OutDir)/SystemVolumePlugin.dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -150,7 +150,7 @@
 				EnableCOMDATFolding="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="$(OutDir)/ASimplePlugin.lib"
+				ImportLibrary="$(OutDir)/SystemVolumePlugin.lib"
 				TargetMachine="1"
 			/>
 			<Tool

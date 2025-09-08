@@ -40,3 +40,6 @@
 /Source/packages
 /Unit Tests/KLib.Test/ControlTests/bin
 /Unit Tests/KLib.Test/ControlTests/obj
+/SystemVolumePlugin/build
+/SystemVolumePlugin/.vs
+/SystemVolumePlugin/x64
