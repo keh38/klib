@@ -19,6 +19,11 @@ namespace KLib
             return JsonConvert.SerializeObject(t, Newtonsoft.Json.Formatting.Indented, new StringEnumConverter { CamelCaseText = false });
         }
 
+        public static string JSONSerializeToString<T>(T t, Formatting formatting)
+        {
+            return JsonConvert.SerializeObject(t, formatting, new StringEnumConverter { CamelCaseText = false });
+        }
+
         public static T JSONDeserializeFromString<T>(string text)
         {
             return JsonConvert.DeserializeObject<T>(text);
