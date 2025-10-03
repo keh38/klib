@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -386,6 +387,44 @@ namespace KLib.Net
         {
             var bytes = SendMessageReceiveByteArray(message, data);
             return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
+        }
+
+        private NetworkStream _networkStream;
+        private BinaryReader _reader;
+        private BinaryWriter _writer;
+        public void StartBufferedSend()
+        {
+            _networkStream = _socket.GetStream();
+            _writer = new BinaryWriter(_networkStream);
+            _reader = new BinaryReader(_networkStream);
+        }
+        public void EndBufferedSend()
+        {
+            _writer.Close();
+            _reader.Close();
+            _networkStream.Close();
+        }
+
+        public int SendBuffer(string message)
+        {
+            var byteArray = Encoding.UTF8.GetBytes(message);
+
+            _writer.Write(ProcessInt32(byteArray.Length));
+            _writer.Write(byteArray);
+            _writer.Flush();
+
+            int result = _reader.ReadInt32();
+            return result;
+        }
+
+        public int SendBuffer(byte[] buffer)
+        {
+            _writer.Write(ProcessInt32(buffer.Length));
+            _writer.Write(buffer);
+            _writer.Flush();
+
+            int result = _reader.ReadInt32();
+            return result;
         }
 
         public void Close()
