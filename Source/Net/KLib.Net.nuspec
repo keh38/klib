@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>KLib.Net</id>
+    <version>1.1.0</version>
+    <title>KLib.Net</title>
+    <authors>KLib.Net</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="88d1251d66814a1724d85bc17936eed3291a3807" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.8">
+        <dependency id="KLib" version="1.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CSharp" version="4.7.0" exclude="Build,Analyzers" />
+        <dependency id="System.Data.DataSetExtensions" version="4.5.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETFramework4.8" />
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Development\klib\Source\Net\bin\Release\KLib.Net.dll" target="lib\net48\KLib.Net.dll" />
+  </files>
+</package>
