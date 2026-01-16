@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	<VersionPrefix>1.2</VersionPrefix>
+	<VersionPrefix>1.3</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
