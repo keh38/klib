@@ -117,7 +117,7 @@ namespace KLib.Net
             _theWriter.Flush();
         }
 
-        public void WriteByteArray(byte[] byteArray)
+        public void WriteByteArray(byte[] byteArray, bool prependLength = true)
         {
             int nbytes = byteArray.Length;
 
@@ -128,7 +128,11 @@ namespace KLib.Net
                 nbytes = BitConverter.ToInt32(bytes, 0);
             }
 
-            _theWriter.Write(nbytes);
+            if (prependLength)
+            {
+                _theWriter.Write(nbytes);
+            }
+
             _theWriter.Write(byteArray);
             _theWriter.Flush();
         }
@@ -149,7 +153,7 @@ namespace KLib.Net
             }
         }
 
-        public string ReadString()
+        public string ReadString(bool acknowledge = true)
         {
             string result = null;
 
@@ -158,7 +162,10 @@ namespace KLib.Net
 
             result = System.Text.Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
 
-            _theWriter.Write((int)1);
+            if (acknowledge)
+            {
+                _theWriter.Write((int)1);
+            }
             _theWriter.Flush();
 
             return result;

@@ -2,10 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>KLib.Net</id>
-    <version>1.1.0</version>
+    <version>1.2.2</version>
     <title>KLib.Net</title>
     <authors>KLib.Net</authors>
     <description>Package Description</description>
+	<readme>README.md</readme>
     <repository type="git" commit="88d1251d66814a1724d85bc17936eed3291a3807" />
     <dependencies>
       <group targetFramework=".NETFramework4.8">
@@ -19,6 +20,7 @@
     </frameworkReferences>
   </metadata>
   <files>
-    <file src="C:\Development\klib\Source\Net\bin\Release\KLib.Net.dll" target="lib\net48\KLib.Net.dll" />
+    <file src="D:\Development\klib\Source\Net\bin\Release\KLib.Net.dll" target="lib\net48\KLib.Net.dll" />
+	<file src="README.md" target="\" />
   </files>
 </package>
