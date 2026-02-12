@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>KLib.Net</id>
-    <version>1.2.2</version>
+    <version>1.3</version>
     <title>KLib.Net</title>
     <authors>KLib.Net</authors>
     <description>Package Description</description>
@@ -20,7 +20,7 @@
     </frameworkReferences>
   </metadata>
   <files>
-    <file src="D:\Development\klib\Source\Net\bin\Release\KLib.Net.dll" target="lib\net48\KLib.Net.dll" />
+    <file src="C:\Development\klib\Source\Net\bin\Release\KLib.Net.dll" target="lib\net48\KLib.Net.dll" />
 	<file src="README.md" target="\" />
   </files>
 </package>

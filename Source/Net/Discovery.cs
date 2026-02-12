@@ -141,17 +141,44 @@ namespace KLib.Net
 
             return address;
         }
+
         public static IPEndPoint Discover(string name, int timeOut)
         {
             return Discover(name, timeOut, "");
         }
+
+        public static string GetDiscoveryAddress(bool multicast, string localAddress)
+        {
+            string discoveryAddress = "234.5.6.7";
+            if (!multicast)
+            {
+                if (localAddress.StartsWith("169.254"))
+                {
+                    discoveryAddress = "169.254.255.255";
+                }
+                else if (localAddress.StartsWith("192.168"))
+                {
+                    discoveryAddress = "192.168.1.255";
+                }
+                else if (localAddress.StartsWith("11.12"))
+                {
+                    discoveryAddress = "11.12.13.255";
+                }
+                else if (localAddress.Equals("127.0.0.1") || localAddress.Equals("localhost"))
+                {
+                    discoveryAddress = "127.0.0.1";
+                }
+            }
+            return discoveryAddress;
+        }
+
         /// <summary>
         /// Send UDP multicast message to find discoverable TCP server address
         /// </summary>
         /// <param name="name">Name of desired TCP server (typically all caps)</param>
         /// <param name="address"></param>
         /// <returns>Returns IPEndPoint object</returns>
-        public static IPEndPoint Discover(string name, int timeOut = 500, string server="")
+        public static IPEndPoint Discover(string name, int timeOut = 500, string server = "", bool multicast = true)
         {
             UdpClient udp = null;
             IPEndPoint endPoint = null;
@@ -174,13 +201,16 @@ namespace KLib.Net
                 var ipLocal = new IPEndPoint(localAddress, 5555 + name.Length);
                 Debug.WriteLine($"discovering {name} on: " + ipLocal);
 
-                var address = IPAddress.Parse("234.5.6.7");
+                var address = IPAddress.Parse(GetDiscoveryAddress(multicast, addy));
                 var ipEndPoint = new IPEndPoint(address, 10000);
 
                 udp = new UdpClient(ipLocal);
                 udp.Client.ReceiveTimeout = timeOut;
 
-                udp.JoinMulticastGroup(address, localAddress);
+                if (multicast)
+                {
+                    udp.JoinMulticastGroup(address, localAddress);
+                }
                 udp.Send(Encoding.UTF8.GetBytes(name), name.Length, ipEndPoint);
 
                 var anyIP = new IPEndPoint(IPAddress.Any, 0);

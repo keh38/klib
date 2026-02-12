@@ -20,7 +20,7 @@
             <param name="canUseLocalhost">specifies whether a localhost connection is allowed. Defaults to true.</param>
             <returns>IP address of NIC attached to LAN</returns>
         </member>
-        <member name="M:KLib.Net.Discovery.Discover(System.String,System.Int32,System.String)">
+        <member name="M:KLib.Net.Discovery.Discover(System.String,System.Int32,System.String,System.Boolean)">
             <summary>
             Send UDP multicast message to find discoverable TCP server address
             </summary>
