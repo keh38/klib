@@ -42,10 +42,22 @@ namespace KLib.Controls
             set { listBoxLabel.Text = value; }
         }
 
+        public bool ShowUpDownButtons
+        {
+            get { return upButton.Visible; }
+            set { upButton.Visible = value; downButton.Visible = value; }
+        }
+
         public bool ShowAddDropDown
         {
             get { return addDropDown.Visible; }
             set { addDropDown.Visible = value; addButton.Visible = !value; }
+        }
+
+        public bool Alphabetize
+        {
+            get { return listBox.Sorted; }
+            set { listBox.Sorted = value; }
         }
 
         public BindingList<string> AddDropDownItems { get; set; } = new BindingList<string>();
@@ -312,17 +324,25 @@ namespace KLib.Controls
 
             int x = this.Bounds.Width;
 
-            int xButton = this.Bounds.Width
+            int xButton = this.Bounds.Width;
+            if (upButton.Visible)
+            {
+                xButton = xButton
                 - upButton.Width
                 - upButton.Margin.Right;
 
-            upButton.Left = xButton;
-            downButton.Left = xButton;
+                upButton.Left = xButton;
+                downButton.Left = xButton;
+            }
 
             listBox.Width = xButton
-                - upButton.Margin.Left
                 - listBox.Margin.Left
                 - listBox.Margin.Right;
+
+            if (upButton.Visible)
+            {
+                listBox.Width -= upButton.Margin.Left;
+            }
 
             int xRemove = listBox.Right - nominalButtonWidth;
 

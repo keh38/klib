@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	<VersionPrefix>1.3</VersionPrefix>
+	<VersionPrefix>1.4</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
@@ -85,5 +85,10 @@
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>KLib.Controls</Title>
     <PackageOutputPath>C:\Development\klib\Packages</PackageOutputPath>
+	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="\"/>
+	</ItemGroup>
+
 </Project>

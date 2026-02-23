@@ -1,5 +1,11 @@
 ## KLib Utilities
 
+### v1.4 (2026-02-22)
+#### Added
+- KLib.Utilities.DeepClone
+
+---
+
 ### v1.3 (2026-01-21)
 #### Added
 - HighPrecisionClock

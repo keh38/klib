@@ -35,17 +35,19 @@
             // collectionListBox1
             // 
             collectionListBox1.AddDropDownItems = (System.ComponentModel.BindingList<string>)resources.GetObject("collectionListBox1.AddDropDownItems");
+            collectionListBox1.Alphabetize = true;
             collectionListBox1.AutoSize = true;
             collectionListBox1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             collectionListBox1.Collection = null;
             collectionListBox1.CreateNewItem = null;
             collectionListBox1.GetDisplayText = null;
             collectionListBox1.ListTitle = "Collection";
-            collectionListBox1.Location = new System.Drawing.Point(337, 91);
+            collectionListBox1.Location = new System.Drawing.Point(67, 43);
             collectionListBox1.MinimumSize = new System.Drawing.Size(200, 225);
             collectionListBox1.Name = "collectionListBox1";
             collectionListBox1.ShowAddDropDown = false;
-            collectionListBox1.Size = new System.Drawing.Size(236, 225);
+            collectionListBox1.ShowUpDownButtons = true;
+            collectionListBox1.Size = new System.Drawing.Size(258, 225);
             collectionListBox1.TabIndex = 0;
             // 
             // Form1
