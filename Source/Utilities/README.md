@@ -1,5 +1,11 @@
 ## KLib Utilities
 
+### v1.5 (2026-03-04)
+#### Added
+- ComponentModel
+
+---
+
 ### v1.4 (2026-02-22)
 #### Added
 - KLib.Utilities.DeepClone
