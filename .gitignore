@@ -43,3 +43,6 @@
 /SystemVolumePlugin/build
 /SystemVolumePlugin/.vs
 /SystemVolumePlugin/x64
+/Source/SystemVolumePlugin/x64
+/Source/SystemVolumePlugin/.vs
+/Source/SystemVolumePlugin/build

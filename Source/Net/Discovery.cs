@@ -3,241 +3,103 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KLib.Net
 {
+    /// <summary>
+    /// Provides network discovery utilities for finding available endpoints and addresses.
+    /// </summary>
     public static class Discovery
     {
-        public static string ByteFormat { get; private set; }
-
+        /// <summary>
+        /// Finds the next available TCP endpoint on the best server address and an open port.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="IPEndPoint"/> representing the next available address and port,
+        /// or <c>null</c> if no suitable address is found.
+        /// </returns>
         public static IPEndPoint FindNextAvailableEndPoint()
         {
-            int numPortsToTry = 1000;
-            int port = 4950;
-
-            string address = FindServerAddress();
-
-            IPAddress ipAddress = null;
-            if (address.Equals("localhost"))
+            var ipAddress = FindServerAddress();
+            if (ipAddress == null)
             {
-                ipAddress = IPAddress.Loopback;
-            }
-            else
-            {
-                ipAddress = IPAddress.Parse(address);
+                return null;
             }
 
-            TcpListener listener = null; ;
-            bool success = false;
-            for (int k=0; k < numPortsToTry; k++)
-            {
-                try
-                {
-                    listener = new TcpListener(ipAddress, port);
-                    listener.Start();
-                    success = true;
-                }
-                catch (Exception ex)
-                {
-                    port++;
-                }
+            int port = GetAvailablePort(ipAddress);
 
-                if (success)
-                {
-                    listener?.Stop();
-                    break;
-                }
+            return new IPEndPoint(ipAddress, port);
+        }
+
+        /// <summary>
+        /// Finds the best available IP address for a TCP server.
+        /// Priority: LAN (192.168.x.x) → Direct Ethernet (169.254.x.x) → localhost.
+        /// Excludes organisation network (10.10.x.x).
+        /// </summary>
+        /// <param name="canUseLocalhost">If true, allows localhost as a fallback address.</param>
+        /// <returns>
+        /// The best available <see cref="IPAddress"/> for server use, or <c>null</c> if none found.
+        /// </returns>
+        public static IPAddress FindServerAddress(bool canUseLocalhost = true)
+        {
+            var candidates = NetworkInterface.GetAllNetworkInterfaces()
+                .Where(nic => nic.OperationalStatus == OperationalStatus.Up)
+                .SelectMany(nic => nic.GetIPProperties().UnicastAddresses)
+                .Select(addr => addr.Address)
+                .Where(addr => addr.AddressFamily == AddressFamily.InterNetwork)
+                .ToList();
+
+            return candidates.FirstOrDefault(a => a.GetAddressBytes()[0] == 192 && a.GetAddressBytes()[1] == 168)
+                ?? candidates.FirstOrDefault(a => a.GetAddressBytes()[0] == 169 && a.GetAddressBytes()[1] == 254)
+                ?? (canUseLocalhost ? IPAddress.Loopback : null);
+        }
+
+        /// <summary>
+        /// Gets the appropriate discovery address for multicast or broadcast scenarios.
+        /// </summary>
+        /// <param name="multicast">If true, returns a fixed multicast address.</param>
+        /// <param name="address">The base address to determine the broadcast address.</param>
+        /// <returns>
+        /// The discovery <see cref="IPAddress"/> for the given scenario, or <c>null</c> if not applicable.
+        /// </returns>
+        public static IPAddress GetDiscoveryAddress(bool multicast, IPAddress address)
+        {
+            if (multicast)
+            {
+                return IPAddress.Parse("234.5.6.7");
             }
-
-            if (success)
+            if (address.ToString().StartsWith("169.254"))
             {
-                return new IPEndPoint(ipAddress, port);
+                return IPAddress.Parse("169.254.255.255");
+            }
+            if (address.ToString().StartsWith("192.168"))
+            {
+                return IPAddress.Parse("192.168.1.255");
+            }
+            if (address.ToString().Equals("127.0.0.1") || address.ToString().Equals("localhost"))
+            {
+                return IPAddress.Parse("127.0.0.1");
             }
 
             return null;
         }
 
-        public static string FindServerAddress()
-        {
-            return FindServerAddress(true);
-        }
-
         /// <summary>
-        /// Finds IP address belonging to a LAN on which to run a TCP server.
+        /// Finds an available TCP port on the specified IP address.
         /// </summary>
-        /// <remarks>
-        /// Parses ARP table to find a valid LAN address (starting with 169.254 or 11.12.13). Optionally defaults to localhost if no NIC found.
-        /// </remarks>
-        /// <param name="canUseLocalhost">specifies whether a localhost connection is allowed. Defaults to true.</param>
-        /// <returns>IP address of NIC attached to LAN</returns>
-        public static string FindServerAddress(bool canUseLocalhost)
+        /// <param name="ipAddress">The IP address to check for an available port.</param>
+        /// <returns>An available port number.</returns>
+        private static int GetAvailablePort(IPAddress ipAddress)
         {
-            Process p = null;
-            string output = string.Empty;
-            string address = string.Empty;
-
-            try
-            {
-                p = Process.Start(new ProcessStartInfo("arp", "-a")
-                {
-                    CreateNoWindow = true,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true
-                });
-
-                output = p.StandardOutput.ReadToEnd();
-                p.Close();
-
-                foreach (var line in output.Split(new char[] { '\n', '\r' }))
-                {
-                    // Parse out all the MAC / IP Address combinations
-                    if (!string.IsNullOrEmpty(line))
-                    {
-                        var pieces = (from piece in line.Split(new char[] { ' ', '\t' })
-                                      where !string.IsNullOrEmpty(piece)
-                                      select piece).ToArray();
-
-                        // auto-configured LAN
-                        if (line.StartsWith("Interface:") && pieces[1].StartsWith("192.168"))
-                        {
-                            address = pieces[1];
-                            return address;
-                        }
-                        // auto-configured direct connection
-                        if (line.StartsWith("Interface:") && pieces[1].StartsWith("169.254"))
-                        {
-                            address = pieces[1];
-                            return address;
-                        }
-                        // LAN configured using 11.12.13.xxx convention
-                        if (line.StartsWith("Interface:") && pieces[1].StartsWith("11.12.13"))
-                        {
-                            address = pieces[1];
-                            return address;
-                        }
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error retrieving 'arp -a' results", ex);
-            }
-            finally
-            {
-                if (p != null)
-                {
-                    p.Close();
-                }
-            }
-
-            if (string.IsNullOrEmpty(address) && canUseLocalhost)
-            {
-                address = "localhost";
-            }
-
-            return address;
+            TcpListener listener = new TcpListener(ipAddress, 0);
+            listener.Start();
+            int port = ((IPEndPoint)listener.LocalEndpoint).Port;
+            listener.Stop();
+            return port;
         }
-
-        public static IPEndPoint Discover(string name, int timeOut)
-        {
-            return Discover(name, timeOut, "");
-        }
-
-        public static string GetDiscoveryAddress(bool multicast, string localAddress)
-        {
-            string discoveryAddress = "234.5.6.7";
-            if (!multicast)
-            {
-                if (localAddress.StartsWith("169.254"))
-                {
-                    discoveryAddress = "169.254.255.255";
-                }
-                else if (localAddress.StartsWith("192.168"))
-                {
-                    discoveryAddress = "192.168.1.255";
-                }
-                else if (localAddress.StartsWith("11.12"))
-                {
-                    discoveryAddress = "11.12.13.255";
-                }
-                else if (localAddress.Equals("127.0.0.1") || localAddress.Equals("localhost"))
-                {
-                    discoveryAddress = "127.0.0.1";
-                }
-            }
-            return discoveryAddress;
-        }
-
-        /// <summary>
-        /// Send UDP multicast message to find discoverable TCP server address
-        /// </summary>
-        /// <param name="name">Name of desired TCP server (typically all caps)</param>
-        /// <param name="address"></param>
-        /// <returns>Returns IPEndPoint object</returns>
-        public static IPEndPoint Discover(string name, int timeOut = 500, string server = "", bool multicast = true)
-        {
-            UdpClient udp = null;
-            IPEndPoint endPoint = null;
-
-            try
-            {
-                var addy = string.IsNullOrEmpty(server) ? FindServerAddress() : server;
-                //Debug.WriteLine("discovering on: " + addy);
-
-                IPAddress localAddress;
-                if (addy.Equals("localhost"))
-                {
-                    localAddress = IPAddress.Loopback;
-                }
-                else
-                {
-                    localAddress = IPAddress.Parse(addy);
-                }
-
-                var ipLocal = new IPEndPoint(localAddress, 5555 + name.Length);
-                Debug.WriteLine($"discovering {name} on: " + ipLocal);
-
-                var address = IPAddress.Parse(GetDiscoveryAddress(multicast, addy));
-                var ipEndPoint = new IPEndPoint(address, 10000);
-
-                udp = new UdpClient(ipLocal);
-                udp.Client.ReceiveTimeout = timeOut;
-
-                if (multicast)
-                {
-                    udp.JoinMulticastGroup(address, localAddress);
-                }
-                udp.Send(Encoding.UTF8.GetBytes(name), name.Length, ipEndPoint);
-
-                var anyIP = new IPEndPoint(IPAddress.Any, 0);
-
-                var bytes = udp.Receive(ref anyIP);
-                var response = Encoding.Default.GetString(bytes);
-                var responseParts = response.Split(';');
-
-                var port = Int32.Parse(responseParts[0]);
-                endPoint = new IPEndPoint(anyIP.Address, port);
-
-                //Debug.WriteLine("host = " + endPoint);
-
-                ByteFormat = (responseParts.Length > 1) ? responseParts[1] : "";
-            }
-            catch (Exception ex)
-            {
-                //Debug.WriteLine($"Discover error, {name}: {ex.Message}");
-            }
-
-            if (udp != null)
-            {
-                udp.Close();
-            }
-
-            return endPoint;
-        }
-
     }
 }

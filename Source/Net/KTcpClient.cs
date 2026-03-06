@@ -12,39 +12,23 @@ using System.Threading.Tasks;
 
 namespace KLib.Net
 {
+    /// <summary>
+    /// Provides TCP client functionality for sending and receiving TcpMessage objects using a length-prefixed wire protocol.
+    /// </summary>
     public class KTcpClient
     {
-        private TcpClient _socket = null;
+        private TcpClient _client;
+        private NetworkStream _networkStream;
+        private BinaryReader _reader;
+        private BinaryWriter _writer;
 
-        public int SendTimeout { get; set; }
-        public int ReceiveTimeout { get; set; }
-        public string LastError { get { return _lastError; } }
-        public static bool ReverseBytes { set; get; } = false;
-
-        private string _lastError;
-
-        #region Static methods
-        public static int SendMessage(IPEndPoint localEP, string message)
-        {
-            return SendMessage(localEP.Address.ToString(), localEP.Port, message);
-        }
-        public static async Task<int> SendMessageAsync(IPEndPoint localEP, string message)
-        {
-            return await Task.Run(() => SendMessage(localEP.Address.ToString(), localEP.Port, message));
-        }
-        public static async Task<int> SendMessageReceiveIntAsync(IPEndPoint localEP, string message)
-        {
-            return await Task.Run(() => SendMessageReceiveInt(localEP, message));
-        }
-        public static async Task<long> SendMessageReceiveLongAsync(IPEndPoint localEP, string message)
-        {
-            return await Task.Run(() => SendMessageReceiveLong(localEP, message));
-        }
-        public static async Task<byte[]> SendMessageReceiveByteArrayAsync(IPEndPoint localEP, string message)
-        {
-            return await Task.Run(() => SendMessageReceiveByteArray(localEP, message));
-        }
-
+        /// <summary>
+        /// Sends a TcpMessage request to the specified remote endpoint and returns the response.
+        /// Handles connection setup and teardown automatically.
+        /// </summary>
+        /// <param name="remoteEndPoint">The remote server endpoint to connect to.</param>
+        /// <param name="request">The TcpMessage request to send.</param>
+        /// <returns>The TcpMessage response from the server.</returns>
         public static TcpMessage SendRequest(IPEndPoint remoteEndPoint, TcpMessage request)
         {
             var client = new KTcpClient();
@@ -63,212 +47,56 @@ namespace KLib.Net
             }
         }
 
-        public static int SendMessage(string address, int port, string message)
+        /// <summary>
+        /// Establishes a TCP connection to the specified endpoint.
+        /// </summary>
+        /// <param name="localEP">The remote endpoint to connect to.</param>
+        private void Connect(IPEndPoint localEP)
         {
-            int result = -1;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(address, port);
-                result = client.SendMessage(message);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
+            _client = new TcpClient(localEP.Address.ToString(), localEP.Port);
         }
 
-        public static int SendMessage(IPEndPoint localEP, string s, byte[] data)
+        /// <summary>
+        /// Closes the TCP client and releases associated resources.
+        /// </summary>
+        private void Close()
         {
-            int result = -1;
-
-            try
+            if (_client != null)
             {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessage(s, data);
-                client.Close();
+                _client.Close();
+                _client = null;
             }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
         }
 
-        public static int SendMessage(IPEndPoint localEP, string s, string data)
+        /// <summary>
+        /// Starts a buffered send session by connecting to the specified endpoint and initializing stream readers/writers.
+        /// </summary>
+        /// <param name="localEP">The remote endpoint to connect to.</param>
+        public void StartBufferedSend(IPEndPoint localEP)
         {
-            int result = -1;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessage(s, data);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
+            _client = new TcpClient(localEP.Address.ToString(), localEP.Port);
+            _networkStream = _client.GetStream();
+            _writer = new BinaryWriter(_networkStream);
+            _reader = new BinaryReader(_networkStream);
         }
 
-        public static string SendMessageReceiveString(IPEndPoint localEP, string message)
+        /// <summary>
+        /// Ends the buffered send session and closes all associated streams and the client.
+        /// </summary>
+        public void EndBufferedSend()
         {
-            string result = null;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveString(message);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static string SendMessageReceiveString(IPEndPoint localEP, string message, string data)
-        {
-            string result = null;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveString(message, data);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static int SendMessageReceiveInt(IPEndPoint localEP, string message)
-        {
-            int result = -1;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveInt(message);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static long SendMessageReceiveLong(IPEndPoint localEP, string message)
-        {
-            long result = 0;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveLong(message);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static byte[] SendMessageReceiveByteArray(IPEndPoint localEP, string message)
-        {
-            byte[] result = null;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveByteArray(message);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        public static byte[] SendMessageReceiveByteArray(IPEndPoint localEP, string message, byte[] data)
-        {
-            byte[] result = null;
-
-            try
-            {
-                var client = new KTcpClient();
-                client.Connect(localEP.Address.ToString(), localEP.Port);
-                result = client.SendMessageReceiveByteArray(message, data);
-                client.Close();
-            }
-            catch (Exception ex)
-            {
-            }
-
-            return result;
-        }
-
-        #endregion
-
-
-        public void Connect(IPEndPoint localEP)
-        {
-            _socket = new TcpClient(localEP.Address.ToString(), localEP.Port);
-        }
-
-        public void Connect(string server)
-        {
-            var parts = server.Split(':');
-            if (parts.Length != 2)
-                throw new Exception("Invalid server specification: " + server);
-
-            _socket = new TcpClient(parts[0], int.Parse(parts[1]));
-        }
-
-        public void Connect(string hostName, int port)
-        {
-            _socket = new TcpClient(hostName, port);
-            _socket.SendTimeout = 1000;
-            _socket.ReceiveTimeout = 1000;
-        }
-
-        public int SendMessage(string message)
-        {
-            int success = 0;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-
-                success = ProcessInt32(theReader.ReadInt32());
-            }
-
-            return success;
+            _writer.Close();
+            _reader.Close();
+            _networkStream.Close();
+            Close();
         }
 
         /// <summary>
         /// Sends a TcpMessage request and blocks until a TcpMessage response arrives.
         /// This is the single method all new client code should use.
         /// </summary>
+        /// <param name="request">The TcpMessage request to send.</param>
+        /// <returns>The TcpMessage response from the server.</returns>
         public TcpMessage SendRequest(TcpMessage request)
         {
             string responseJson = SendRequestReceiveResponse(request.Serialize());
@@ -276,12 +104,37 @@ namespace KLib.Net
         }
 
         /// <summary>
+        /// Writes a byte array to the network stream, prefixed with its length as a 32-bit integer.
+        /// </summary>
+        /// <param name="buffer">The byte array to send.</param>
+        public void WriteBuffer(byte[] buffer)
+        {
+            _writer.Write(ProcessInt32(buffer.Length));
+            _writer.Write(buffer);
+            _writer.Flush();
+        }
+
+        /// <summary>
+        /// Reads a buffered TcpMessage response from the network stream.
+        /// </summary>
+        /// <returns>The TcpMessage response received from the server.</returns>
+        public TcpMessage ReadBufferedSendResponse()
+        {
+            int length = ProcessInt32(_reader.ReadInt32());
+            byte[] responseBytes = _reader.ReadBytes(length);
+            string responseJson = Encoding.UTF8.GetString(responseBytes);
+            return TcpMessage.Deserialize(responseJson);
+        }
+
+        /// <summary>
         /// Low-level: sends a JSON string, receives a JSON string back.
         /// Sits directly on top of your existing length-prefix wire protocol.
         /// </summary>
+        /// <param name="jsonRequest">The JSON string to send.</param>
+        /// <returns>The JSON string response received from the server.</returns>
         private string SendRequestReceiveResponse(string jsonRequest)
         {
-            using (NetworkStream networkStream = _socket.GetStream())
+            using (NetworkStream networkStream = _client.GetStream())
             using (BinaryReader binaryReader = new BinaryReader(networkStream))
             using (BinaryWriter binaryWriter = new BinaryWriter(networkStream))
             {
@@ -295,195 +148,11 @@ namespace KLib.Net
             }
         }
 
-        public int SendMessage(string s, string data)
-        {
-            int result = -1;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, s);
-                WriteStringAsByteArray(theWriter, data);
-
-                result = ProcessInt32(theReader.ReadInt32());
-            }
-
-            return result;
-        }
-
-        public int SendMessage(string s, byte[] data)
-        {
-            int result = -1;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, s);
-
-                theWriter.Write(ProcessInt32(data.Length));
-                theWriter.Write(data);
-                theWriter.Flush();
-
-                result = ProcessInt32(theReader.ReadInt32());
-            }
-
-            return result;
-        }
-
-        public int SendMessageReceiveInt(string message)
-        {
-            int result = 0;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-                result = theReader.ReadInt32();
-            }
-
-            return result;
-        }
-
-        public long SendMessageReceiveLong(string message)
-        {
-            long result = 0;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-                result = theReader.ReadInt64();
-            }
-
-            return result;
-        }
-
-        public byte[] SendMessageReceiveByteArray(string message)
-        {
-            byte[] result = null;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-
-                int count = ProcessInt32(theReader.ReadInt32());
-                result = theReader.ReadBytes(count);
-            }
-
-            return result;
-        }
-
-        public byte[] SendMessageReceiveByteArray(string message, byte[] data)
-        {
-            byte[] result = null;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-
-                theWriter.Write(data.Length);
-                theWriter.Write(data);
-                theWriter.Flush();
-
-                int count = ProcessInt32(theReader.ReadInt32());
-                if (count > 0)
-                {
-                    result = theReader.ReadBytes(count);
-                }
-            }
-
-            return result;
-        }
-
-        public byte[] SendMessageReceiveByteArray(string message, string data)
-        {
-            byte[] result = null;
-
-            using (NetworkStream theStream = _socket.GetStream())
-            using (BinaryReader theReader = new BinaryReader(theStream))
-            using (BinaryWriter theWriter = new BinaryWriter(theStream))
-            {
-                WriteStringAsByteArray(theWriter, message);
-                WriteStringAsByteArray(theWriter, data);
-                theWriter.Flush();
-
-                int count = ProcessInt32(theReader.ReadInt32());
-                if (count > 0)
-                {
-                    result = theReader.ReadBytes(count);
-                }
-            }
-
-            return result;
-        }
-
-        public string SendMessageReceiveString(string message)
-        {
-            var bytes = SendMessageReceiveByteArray(message);
-            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-        }
-
-        public string SendMessageReceiveString(string message, string data)
-        {
-            var bytes = SendMessageReceiveByteArray(message, data);
-            return Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-        }
-
-        private NetworkStream _networkStream;
-        private BinaryReader _reader;
-        private BinaryWriter _writer;
-        public void StartBufferedSend()
-        {
-            _networkStream = _socket.GetStream();
-            _writer = new BinaryWriter(_networkStream);
-            _reader = new BinaryReader(_networkStream);
-        }
-        public void EndBufferedSend()
-        {
-            _writer.Close();
-            _reader.Close();
-            _networkStream.Close();
-        }
-
-        public int SendBuffer(string message)
-        {
-            var byteArray = Encoding.UTF8.GetBytes(message);
-
-            _writer.Write(ProcessInt32(byteArray.Length));
-            _writer.Write(byteArray);
-            _writer.Flush();
-
-            int result = _reader.ReadInt32();
-            return result;
-        }
-
-        public int SendBuffer(byte[] buffer)
-        {
-            _writer.Write(ProcessInt32(buffer.Length));
-            _writer.Write(buffer);
-            _writer.Flush();
-
-            int result = _reader.ReadInt32();
-            return result;
-        }
-
-        public void Close()
-        {
-            if (_socket != null)
-            {
-                _socket.Close();
-                _socket = null;
-            }
-        }
-
+        /// <summary>
+        /// Writes a UTF-8 encoded string to the network stream, prefixed with its length as a 32-bit integer.
+        /// </summary>
+        /// <param name="theWriter">The BinaryWriter to use.</param>
+        /// <param name="message">The string message to write.</param>
         private void WriteStringAsByteArray(BinaryWriter theWriter, string message)
         {
             var byteArray = Encoding.UTF8.GetBytes(message);
@@ -493,16 +162,21 @@ namespace KLib.Net
             theWriter.Flush();
         }
 
+        /// <summary>
+        /// Processes a 32-bit integer, optionally reversing byte order if needed.
+        /// </summary>
+        /// <param name="raw">The raw integer value.</param>
+        /// <returns>The processed integer value.</returns>
         private int ProcessInt32(int raw)
         {
             int value = raw;
 
-            if (ReverseBytes)
-            {
-                var bytes = BitConverter.GetBytes(value);
-                Array.Reverse(bytes);
-                value = BitConverter.ToInt32(bytes, 0);
-            }
+            //if (ReverseBytes)
+            //{
+            //    var bytes = BitConverter.GetBytes(value);
+            //    Array.Reverse(bytes);
+            //    value = BitConverter.ToInt32(bytes, 0);
+            //}
 
             return value;
         }

@@ -7,9 +7,11 @@ using System.Net;
 using System.Text;
 using System.Net.Sockets;
 
-
 namespace KLib.Net
 {
+    /// <summary>
+    /// Provides TCP server functionality for accepting client connections and exchanging TcpMessage objects.
+    /// </summary>
     public class KTcpListener
     {
         private TcpListener _listener = null;
@@ -19,50 +21,25 @@ namespace KLib.Net
         private BinaryReader _theReader;
         private BinaryWriter _theWriter;
 
-        private string _address;
-        private int _port;
+        private IPEndPoint _ipEndPoint;
 
-        private bool _reverseWriteBytes = false;
-
-        public bool StartListener(int port)
-        {
-            return StartListener(port, true);
-        }
-
-        public bool StartListener(int port, bool reverseWriteBytes)
-        {
-            _reverseWriteBytes = reverseWriteBytes;
-
-            _address = Discovery.FindServerAddress();
-            _port = port;
-
-            IPAddress localAddress;
-            if (_address.Equals("localhost"))
-            {
-                localAddress = IPAddress.Loopback;
-            }
-            else
-            {
-                localAddress = IPAddress.Parse(_address);
-            }
-            _listener = new TcpListener(localAddress, port);
-//            _listener = new TcpListener(port);
-            _listener.Start();
-            
-            return true;
-        }
-
+        /// <summary>
+        /// Starts listening for incoming TCP connections on the specified endpoint.
+        /// </summary>
+        /// <param name="endpoint">The IP endpoint to listen on.</param>
+        /// <returns>True if the listener started successfully.</returns>
         public bool StartListener(IPEndPoint endpoint)
         {
             _listener = new TcpListener(endpoint);
             _listener.Start();
-            _address = endpoint.Address.ToString();
-            _port = endpoint.Port;
+
+            _ipEndPoint = (IPEndPoint)_listener.LocalEndpoint;
             return true;
         }
 
-        public string ListeningOn { get { return $"{_address}:{_port}"; } }
-
+        /// <summary>
+        /// Stops the TCP listener and releases associated resources.
+        /// </summary>
         public void CloseListener()
         {
             if (_listener != null)
@@ -72,11 +49,18 @@ namespace KLib.Net
             }
         }
 
+        /// <summary>
+        /// Checks if there are pending client connection requests.
+        /// </summary>
+        /// <returns>True if a client is waiting to connect; otherwise, false.</returns>
         public bool Pending()
         {
             return _listener.Pending();
         }
 
+        /// <summary>
+        /// Accepts a pending TCP client connection and initializes the network stream and readers/writers.
+        /// </summary>
         public void AcceptTcpClient()
         {
             _client = _listener.AcceptTcpClient();
@@ -85,78 +69,18 @@ namespace KLib.Net
             _theWriter = new BinaryWriter(_network);
         }
 
+        /// <summary>
+        /// Closes the current TCP client connection and disposes the network stream.
+        /// </summary>
         public void CloseTcpClient()
         {
             _network.Dispose();
         }
 
-        public void WriteLineToOutputStream(string s)
-        {
-            using (NetworkStream theStream = _client.GetStream())
-            using (StreamWriter theWriter = new StreamWriter(theStream))
-            {
-                theWriter.WriteLine(s);
-                theWriter.Flush();
-            }
-        }
-
-        public void WriteStringAsByteArray(string s)
-        {
-            var byteArray = System.Text.Encoding.UTF8.GetBytes(s);
-            int nbytes = byteArray.Length;
-
-            if (_reverseWriteBytes)
-            {
-                var bytes = BitConverter.GetBytes(nbytes);
-                Array.Reverse(bytes);
-                nbytes = BitConverter.ToInt32(bytes, 0);
-            }
-
-            _theWriter.Write(nbytes);
-            _theWriter.Write(byteArray);
-            _theWriter.Flush();
-        }
-
-        public void WriteByteArray(byte[] byteArray, bool prependLength = true)
-        {
-            int nbytes = byteArray.Length;
-
-            if (_reverseWriteBytes)
-            {
-                var bytes = BitConverter.GetBytes(nbytes);
-                Array.Reverse(bytes);
-                nbytes = BitConverter.ToInt32(bytes, 0);
-            }
-
-            if (prependLength)
-            {
-                _theWriter.Write(nbytes);
-            }
-
-            _theWriter.Write(byteArray);
-            _theWriter.Flush();
-        }
-
-        public void WriteInt32ToOutputStream(int value)
-        {
-            _theWriter.Write(value);
-            _theWriter.Flush();
-        }
-
-        public void WriteIntToOutputStream(int value)
-        {
-            using (NetworkStream theStream = _client.GetStream())
-            using (StreamWriter theWriter = new StreamWriter(theStream))
-            {
-                theWriter.Write(value);
-                theWriter.Flush();
-            }
-        }
-
         /// <summary>
-        /// Reads the next incoming message from the stream and deserialises it
-        /// as a TcpMessage. Replaces your current ReadString() + manual Split().
+        /// Reads the next incoming message from the stream and deserializes it as a TcpMessage.
         /// </summary>
+        /// <returns>The deserialized TcpMessage received from the client.</returns>
         public TcpMessage ReadRequest()
         {
             string json = ReadString();  // your existing method
@@ -164,32 +88,46 @@ namespace KLib.Net
         }
 
         /// <summary>
-        /// Serialises a TcpMessage and writes it back to the client.
-        /// Replaces SendAcknowledgement() and WriteStringAsByteArray() at call sites.
+        /// Serializes a TcpMessage and writes it back to the client.
         /// </summary>
+        /// <param name="response">The TcpMessage to send to the client.</param>
         public void WriteResponse(TcpMessage response)
         {
             WriteStringAsByteArray(response.Serialize());  // your existing method
         }
 
-        public string ReadString(bool acknowledge = true)
+        /// <summary>
+        /// Reads a UTF-8 encoded string from the network stream.
+        /// The string is prefixed with its length as a 32-bit integer.
+        /// </summary>
+        /// <returns>The string read from the stream.</returns>
+        public string ReadString()
         {
-            string result = null;
-
             int nbytes = _theReader.ReadInt32();
             var byteArray = _theReader.ReadBytes(nbytes);
 
-            result = System.Text.Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-
-            if (acknowledge)
-            {
-                _theWriter.Write((int)1);
-            }
-            _theWriter.Flush();
-
-            return result;
+            return System.Text.Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
         }
 
+        /// <summary>
+        /// Writes a UTF-8 encoded string to the network stream, prefixed with its length as a 32-bit integer.
+        /// </summary>
+        /// <param name="s">The string to write.</param>
+        public void WriteStringAsByteArray(string s)
+        {
+            var byteArray = System.Text.Encoding.UTF8.GetBytes(s);
+            int nbytes = byteArray.Length;
+
+            _theWriter.Write(nbytes);
+            _theWriter.Write(byteArray);
+            _theWriter.Flush();
+        }
+
+        /// <summary>
+        /// Reads a byte array from the network stream, prefixed with its length as a 32-bit integer.
+        /// Sends an acknowledgement (int value 1) after reading.
+        /// </summary>
+        /// <returns>The byte array read from the stream.</returns>
         public byte[] ReadBytes()
         {
             byte[] result = null;
@@ -201,58 +139,6 @@ namespace KLib.Net
             _theWriter.Flush();
 
             return result;
-        }
-
-        public string ReadStringFromInputStream()
-        {
-            string result = null;
-
-            int nbytes = _theReader.ReadInt32();
-            if (_reverseWriteBytes)
-            {
-                var bytes = BitConverter.GetBytes(nbytes);
-                Array.Reverse(bytes);
-                nbytes = BitConverter.ToInt32(bytes, 0);
-            }
-
-            var byteArray = _theReader.ReadBytes(nbytes);
-            result = System.Text.Encoding.UTF8.GetString(byteArray, 0, byteArray.Length);
-
-            return result;
-        }
-
-        public byte[] ReadByteArrayFromInputStream()
-        {
-            byte[] result = null;
-
-            int nbytes = _theReader.ReadInt32();
-            if (_reverseWriteBytes)
-            {
-                var bytes = BitConverter.GetBytes(nbytes);
-                Array.Reverse(bytes);
-                nbytes = BitConverter.ToInt32(bytes, 0);
-            }
-
-            result = _theReader.ReadBytes(nbytes);
-
-            return result;
-        }
-
-        public int ReadInt32FromInputStream()
-        {
-            int result = _theReader.ReadInt32();
-            return result;
-        }
-
-        public void SendAcknowledgement()
-        {
-            _theWriter.Write((int)1);
-            _theWriter.Flush();
-        }
-        public void SendAcknowledgement(bool success)
-        {
-            _theWriter.Write(success ? (int)1 : (int)-1);
-            _theWriter.Flush();
         }
 
     }
