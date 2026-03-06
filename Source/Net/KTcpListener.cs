@@ -153,6 +153,25 @@ namespace KLib.Net
             }
         }
 
+        /// <summary>
+        /// Reads the next incoming message from the stream and deserialises it
+        /// as a TcpMessage. Replaces your current ReadString() + manual Split().
+        /// </summary>
+        public TcpMessage ReadRequest()
+        {
+            string json = ReadString();  // your existing method
+            return TcpMessage.Deserialize(json);
+        }
+
+        /// <summary>
+        /// Serialises a TcpMessage and writes it back to the client.
+        /// Replaces SendAcknowledgement() and WriteStringAsByteArray() at call sites.
+        /// </summary>
+        public void WriteResponse(TcpMessage response)
+        {
+            WriteStringAsByteArray(response.Serialize());  // your existing method
+        }
+
         public string ReadString(bool acknowledge = true)
         {
             string result = null;

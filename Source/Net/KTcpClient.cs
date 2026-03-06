@@ -45,6 +45,24 @@ namespace KLib.Net
             return await Task.Run(() => SendMessageReceiveByteArray(localEP, message));
         }
 
+        public static TcpMessage SendRequest(IPEndPoint remoteEndPoint, TcpMessage request)
+        {
+            var client = new KTcpClient();
+            try
+            {
+                client.Connect(remoteEndPoint);
+                return client.SendRequest(request);
+            }
+            catch (Exception ex)
+            {
+                return new TcpMessage { Code = 500, Command = "Error", Payload = ex.Message };
+            }
+            finally
+            {
+                client.Close();
+            }
+        }
+
         public static int SendMessage(string address, int port, string message)
         {
             int result = -1;
@@ -245,6 +263,36 @@ namespace KLib.Net
             }
 
             return success;
+        }
+
+        /// <summary>
+        /// Sends a TcpMessage request and blocks until a TcpMessage response arrives.
+        /// This is the single method all new client code should use.
+        /// </summary>
+        public TcpMessage SendRequest(TcpMessage request)
+        {
+            string responseJson = SendRequestReceiveResponse(request.Serialize());
+            return TcpMessage.Deserialize(responseJson);
+        }
+
+        /// <summary>
+        /// Low-level: sends a JSON string, receives a JSON string back.
+        /// Sits directly on top of your existing length-prefix wire protocol.
+        /// </summary>
+        private string SendRequestReceiveResponse(string jsonRequest)
+        {
+            using (NetworkStream networkStream = _socket.GetStream())
+            using (BinaryReader binaryReader = new BinaryReader(networkStream))
+            using (BinaryWriter binaryWriter = new BinaryWriter(networkStream))
+            {
+
+                WriteStringAsByteArray(binaryWriter, jsonRequest);  // your existing method
+                binaryWriter.Flush();
+
+                int length = ProcessInt32(binaryReader.ReadInt32());  // your existing method
+                byte[] responseBytes = binaryReader.ReadBytes(length);
+                return Encoding.UTF8.GetString(responseBytes);
+            }
         }
 
         public int SendMessage(string s, string data)
