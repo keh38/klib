@@ -1,5 +1,12 @@
 ## KLib.Net
 
+### v2.0 (2026-03-06)
+#### Changed
+- Complete overhaul of TCP messaging
+- Added UDP discovery
+
+---
+
 ### v1.2 (2026-01-21)
 #### Changed
 - KTcpListener.WriteByteArray: added argument to control whether to prepend array length
