@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KLib.Net</name>
+    </assembly>
+    <members>
+        <member name="T:KLib.Net.Discovery">
+            <summary>
+            Provides network discovery utilities for finding available endpoints and addresses.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.Discovery.FindNextAvailableEndPoint">
+            <summary>
+            Finds the next available TCP endpoint on the best server address and an open port.
+            </summary>
+            <returns>
+            An <see cref="T:System.Net.IPEndPoint"/> representing the next available address and port,
+            or <c>null</c> if no suitable address is found.
+            </returns>
+        </member>
+        <member name="M:KLib.Net.Discovery.FindServerAddress(System.Boolean)">
+            <summary>
+            Finds the best available IP address for a TCP server.
+            Priority: LAN (192.168.x.x) → Direct Ethernet (169.254.x.x) → localhost.
+            Excludes organisation network (10.10.x.x).
+            </summary>
+            <param name="canUseLocalhost">If true, allows localhost as a fallback address.</param>
+            <returns>
+            The best available <see cref="T:System.Net.IPAddress"/> for server use, or <c>null</c> if none found.
+            </returns>
+        </member>
+        <member name="M:KLib.Net.Discovery.GetDiscoveryAddress(System.Boolean,System.Net.IPAddress)">
+            <summary>
+            Gets the appropriate discovery address for multicast or broadcast scenarios.
+            </summary>
+            <param name="multicast">If true, returns a fixed multicast address.</param>
+            <param name="address">The base address to determine the broadcast address.</param>
+            <returns>
+            The discovery <see cref="T:System.Net.IPAddress"/> for the given scenario, or <c>null</c> if not applicable.
+            </returns>
+        </member>
+        <member name="M:KLib.Net.Discovery.GetAvailablePort(System.Net.IPAddress)">
+            <summary>
+            Finds an available TCP port on the specified IP address.
+            </summary>
+            <param name="ipAddress">The IP address to check for an available port.</param>
+            <returns>An available port number.</returns>
+        </member>
+        <member name="M:KLib.Net.DiscoveryBeacon.#ctor(System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <param name="name">Unique server name.</param>
+            <param name="tcpAddress">IP address of this server's TCP service.</param>
+            <param name="tcpPort">Port of this server's TCP service.</param>
+            <param name="discoveryPort">UDP port to broadcast on. Must match DiscoveryListener.</param>
+            <param name="intervalSeconds">How often to broadcast the beacon.</param>
+        </member>
+        <member name="M:KLib.Net.DiscoveryBeacon.Start">
+            <summary>Start broadcasting beacons.</summary>
+        </member>
+        <member name="M:KLib.Net.DiscoveryBeacon.Stop">
+            <summary>Stop broadcasting beacons.</summary>
+        </member>
+        <member name="E:KLib.Net.DiscoveryListener.HostDiscovered">
+            <summary>Raised on the listener thread when a new host is discovered.</summary>
+        </member>
+        <member name="E:KLib.Net.DiscoveryListener.HostDisappeared">
+            <summary>Raised on the watchdog timer thread when a host has stopped beaconing.</summary>
+        </member>
+        <member name="P:KLib.Net.DiscoveryListener.KnownHosts">
+            <summary>
+            Returns a snapshot of currently known hosts, keyed by server name.
+            Safe to call from any thread.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.DiscoveryListener.#ctor(System.Int32,System.Int32,System.Int32)">
+            <param name="discoveryPort">UDP port to listen on. Must match DiscoveryBeacon.</param>
+            <param name="disappearThresholdSeconds">
+                How long a host can go without beaconing before it is considered gone.
+                Should be several multiples of the beacon interval.
+            </param>
+            <param name="watchdogIntervalSeconds">How often the watchdog checks for disappeared hosts.</param>
+        </member>
+        <member name="M:KLib.Net.DiscoveryListener.Start">
+            <summary>Start listening for beacons and watching for disappeared hosts.</summary>
+        </member>
+        <member name="M:KLib.Net.DiscoveryListener.Stop">
+            <summary>Stop listening and clear the known hosts registry.</summary>
+        </member>
+        <member name="T:KLib.Net.KTcpClient">
+            <summary>
+            Provides TCP client functionality for sending and receiving TcpMessage objects using a length-prefixed wire protocol.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.SendRequest(System.Net.IPEndPoint,KLib.Net.TcpMessage)">
+            <summary>
+            Sends a TcpMessage request to the specified remote endpoint and returns the response.
+            Handles connection setup and teardown automatically.
+            </summary>
+            <param name="remoteEndPoint">The remote server endpoint to connect to.</param>
+            <param name="request">The TcpMessage request to send.</param>
+            <returns>The TcpMessage response from the server.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.Connect(System.Net.IPEndPoint)">
+            <summary>
+            Establishes a TCP connection to the specified endpoint.
+            </summary>
+            <param name="localEP">The remote endpoint to connect to.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.Close">
+            <summary>
+            Closes the TCP client and releases associated resources.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.StartBufferedSend(System.Net.IPEndPoint)">
+            <summary>
+            Starts a buffered send session by connecting to the specified endpoint and initializing stream readers/writers.
+            </summary>
+            <param name="localEP">The remote endpoint to connect to.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.EndBufferedSend">
+            <summary>
+            Ends the buffered send session and closes all associated streams and the client.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.SendRequest(KLib.Net.TcpMessage)">
+            <summary>
+            Sends a TcpMessage request and blocks until a TcpMessage response arrives.
+            This is the single method all new client code should use.
+            </summary>
+            <param name="request">The TcpMessage request to send.</param>
+            <returns>The TcpMessage response from the server.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.WriteBuffer(System.Byte[])">
+            <summary>
+            Writes a byte array to the network stream, prefixed with its length as a 32-bit integer.
+            </summary>
+            <param name="buffer">The byte array to send.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.ReadBufferedSendResponse">
+            <summary>
+            Reads a buffered TcpMessage response from the network stream.
+            </summary>
+            <returns>The TcpMessage response received from the server.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.SendRequestReceiveResponse(System.String)">
+            <summary>
+            Low-level: sends a JSON string, receives a JSON string back.
+            Sits directly on top of your existing length-prefix wire protocol.
+            </summary>
+            <param name="jsonRequest">The JSON string to send.</param>
+            <returns>The JSON string response received from the server.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.WriteStringAsByteArray(System.IO.BinaryWriter,System.String)">
+            <summary>
+            Writes a UTF-8 encoded string to the network stream, prefixed with its length as a 32-bit integer.
+            </summary>
+            <param name="theWriter">The BinaryWriter to use.</param>
+            <param name="message">The string message to write.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpClient.ProcessInt32(System.Int32)">
+            <summary>
+            Processes a 32-bit integer, optionally reversing byte order if needed.
+            </summary>
+            <param name="raw">The raw integer value.</param>
+            <returns>The processed integer value.</returns>
+        </member>
+        <member name="T:KLib.Net.KTcpListener">
+            <summary>
+            Provides TCP server functionality for accepting client connections and exchanging TcpMessage objects.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.StartListener(System.Net.IPEndPoint)">
+            <summary>
+            Starts listening for incoming TCP connections on the specified endpoint.
+            </summary>
+            <param name="endpoint">The IP endpoint to listen on.</param>
+            <returns>True if the listener started successfully.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.CloseListener">
+            <summary>
+            Stops the TCP listener and releases associated resources.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.Pending">
+            <summary>
+            Checks if there are pending client connection requests.
+            </summary>
+            <returns>True if a client is waiting to connect; otherwise, false.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.AcceptTcpClient">
+            <summary>
+            Accepts a pending TCP client connection and initializes the network stream and readers/writers.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.CloseTcpClient">
+            <summary>
+            Closes the current TCP client connection and disposes the network stream.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.ReadRequest">
+            <summary>
+            Reads the next incoming message from the stream and deserializes it as a TcpMessage.
+            </summary>
+            <returns>The deserialized TcpMessage received from the client.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.WriteResponse(KLib.Net.TcpMessage)">
+            <summary>
+            Serializes a TcpMessage and writes it back to the client.
+            </summary>
+            <param name="response">The TcpMessage to send to the client.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.ReadString">
+            <summary>
+            Reads a UTF-8 encoded string from the network stream.
+            The string is prefixed with its length as a 32-bit integer.
+            </summary>
+            <returns>The string read from the stream.</returns>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.WriteStringAsByteArray(System.String)">
+            <summary>
+            Writes a UTF-8 encoded string to the network stream, prefixed with its length as a 32-bit integer.
+            </summary>
+            <param name="s">The string to write.</param>
+        </member>
+        <member name="M:KLib.Net.KTcpListener.ReadBytes">
+            <summary>
+            Reads a byte array from the network stream, prefixed with its length as a 32-bit integer.
+            Sends an acknowledgement (int value 1) after reading.
+            </summary>
+            <returns>The byte array read from the stream.</returns>
+        </member>
+        <member name="P:KLib.Net.ServerBeacon.Name">
+            <summary>Unique name identifying this server (e.g. "SERVER_A").</summary>
+        </member>
+        <member name="P:KLib.Net.ServerBeacon.Address">
+            <summary>IP address of the server's TCP service.</summary>
+        </member>
+        <member name="P:KLib.Net.ServerBeacon.TcpPort">
+            <summary>Port of the server's TCP service.</summary>
+        </member>
+        <member name="P:KLib.Net.ServerBeacon.Version">
+            <summary>Protocol version. Increment if the beacon format changes.</summary>
+        </member>
+        <member name="T:KLib.Net.TcpMessage">
+            <summary>
+            Unified message envelope used for all TCP communication.
+            Both requests (client→server) and responses (server→client) use this shape.
+            </summary>
+        </member>
+        <member name="P:KLib.Net.TcpMessage.Code">
+            <summary>
+            Status code. Follows HTTP conventions:
+              200 = OK
+              400 = Bad request (client error)
+              404 = Command not recognised
+              500 = Server error
+            On outgoing requests from the client, Code can be left 0.
+            </summary>
+        </member>
+        <member name="P:KLib.Net.TcpMessage.Command">
+            <summary>
+            The command name on a request (e.g. "GetHostName", "Ping").
+            On a response, used optionally for a human-readable status message.
+            </summary>
+        </member>
+        <member name="P:KLib.Net.TcpMessage.Payload">
+            <summary>
+            Always a JSON string. Use "{}" when there is no meaningful payload.
+            Never null — the receiver can always safely deserialise this.
+            </summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.Ok(System.String)">
+            <summary>Creates a 200-OK response with an optional JSON payload.</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.Ok(System.Object)">
+            <summary>Creates a 200-OK response by serialising any object as the payload.</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.BadRequest(System.String)">
+            <summary>Creates a 400 Bad Request response.</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.NotFound(System.String)">
+            <summary>Creates a 404 Not Found response (unrecognised command).</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.Error(System.String)">
+            <summary>Creates a 500 Internal Server Error response.</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.Request(System.String,System.String)">
+            <summary>Creates a command-only request with no payload. The most concise way
+            to send an instruction that requires no accompanying data.</summary>
+        </member>
+        <member name="M:KLib.Net.TcpMessage.GetPayload``1">
+            <summary>
+            Deserialises the Payload JSON string into a typed object.
+            Usage: var result = response.GetPayload&lt;MyType&gt;();
+            </summary>
+        </member>
+    </members>
+</doc>

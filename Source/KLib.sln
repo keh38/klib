@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlackAPI", "SlackAPI\SlackA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsVoice", "WindowsVoice\WindowsVoice.csproj", "{42BDB4B6-FA0D-4273-B660-E21E54EE0CA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTestApp", "NetTestApp\NetTestApp.csproj", "{93447420-377A-41FE-BDF5-FAB0729CE26F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -191,6 +193,22 @@ Global
 		{42BDB4B6-FA0D-4273-B660-E21E54EE0CA1}.Release|x64.Build.0 = Release|x64
 		{42BDB4B6-FA0D-4273-B660-E21E54EE0CA1}.Release|x86.ActiveCfg = Release|Any CPU
 		{42BDB4B6-FA0D-4273-B660-E21E54EE0CA1}.Release|x86.Build.0 = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|x64.Build.0 = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Debug|x86.Build.0 = Debug|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|x64.ActiveCfg = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|x64.Build.0 = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|x86.ActiveCfg = Release|Any CPU
+		{93447420-377A-41FE-BDF5-FAB0729CE26F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
