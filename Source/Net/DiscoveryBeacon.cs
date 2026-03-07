@@ -31,6 +31,7 @@ namespace KLib.Net
 
         private Timer _timer;
         private UdpClient _udpClient;
+        private IPAddress _broadcastAddress;
         private bool _disposed;
         private readonly object _lock = new object();
 
@@ -56,6 +57,8 @@ namespace KLib.Net
                 TcpPort = tcpPort,
                 Version = 1
             };
+
+            _broadcastAddress = Discovery.GetDiscoveryAddress(multicast: false, address: IPAddress.Parse(tcpAddress)); 
             _discoveryPort = discoveryPort;
             _intervalMs = intervalSeconds * 1000;
         }
@@ -105,7 +108,7 @@ namespace KLib.Net
                 string json = JsonConvert.SerializeObject(_beacon);
                 byte[] data = Encoding.UTF8.GetBytes(json);
                 client.Send(data, data.Length,
-                    new IPEndPoint(IPAddress.Broadcast, _discoveryPort));
+                    new IPEndPoint(_broadcastAddress, _discoveryPort));
             }
             catch
             {
