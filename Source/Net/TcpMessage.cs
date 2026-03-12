@@ -44,14 +44,19 @@ namespace KLib.Net
             return JsonConvert.DeserializeObject<TcpMessage>(json);
         }
 
+        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+        {
+            TypeNameHandling = TypeNameHandling.Auto
+        };
+
         // -------------------------------------------------------------------------
         // Factory helpers — keep response construction concise at call sites
         // -------------------------------------------------------------------------
 
         /// <summary>Creates a 200-OK response with an optional JSON payload.</summary>
-        public static TcpMessage Ok(string payload = "{}")
+        public static TcpMessage Ok()
         {
-            return new TcpMessage { Code = 200, Payload = payload };
+            return new TcpMessage { Code = 200, Payload = "{}" };
         }
 
         /// <summary>Creates a 200-OK response by serialising any object as the payload.</summary>
@@ -60,7 +65,7 @@ namespace KLib.Net
             return new TcpMessage
             {
                 Code = 200,
-                Payload = JsonConvert.SerializeObject(payloadObject)
+                Payload = JsonConvert.SerializeObject(payloadObject, Settings)
             };
         }
 
@@ -96,7 +101,7 @@ namespace KLib.Net
 
         public static TcpMessage Request(string command, object payloadObject)
         {
-            var payload = JsonConvert.SerializeObject(payloadObject);
+            var payload = JsonConvert.SerializeObject(payloadObject, Settings);
             return new TcpMessage { Command = command, Payload = payload };
         }
 
@@ -112,7 +117,7 @@ namespace KLib.Net
         /// </summary>
         public T GetPayload<T>()
         {
-            return JsonConvert.DeserializeObject<T>(Payload);
+            return JsonConvert.DeserializeObject<T>(Payload, Settings);
         }
     }
 }
