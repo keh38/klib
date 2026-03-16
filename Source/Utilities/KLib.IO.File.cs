@@ -10,21 +10,21 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 //using ProtoBuf;
 
-namespace KLib
+namespace KLib.IO
 {
-    public static class FileIO
+    public static class Files
     {
-        public static string JSONSerializeToString<T>(T t)
+        public static void JSONSerialize<T>(T t, string path)
+        {
+            File.WriteAllText(path, JSONSerializeToString(t));
+        }
+
+        private static string JSONSerializeToString<T>(T t)
         {
             return JsonConvert.SerializeObject(t, Newtonsoft.Json.Formatting.Indented, new StringEnumConverter { CamelCaseText = false });
         }
 
-        public static string JSONSerializeToString<T>(T t, Formatting formatting)
-        {
-            return JsonConvert.SerializeObject(t, formatting, new StringEnumConverter { CamelCaseText = false });
-        }
-
-        public static T JSONDeserializeFromString<T>(string text)
+        private static T JSONDeserializeFromString<T>(string text)
         {
             return JsonConvert.DeserializeObject<T>(text);
         }
@@ -146,6 +146,17 @@ namespace KLib
             {
                 byte[] b = System.Text.Encoding.ASCII.GetBytes(text);
                 s.Write(b, 0, b.Length);
+            }
+        }
+
+        public static string ReadAllTextShared(string file)
+        {
+            // Use FileMode.Open, FileAccess.Read, and FileShare.ReadWrite 
+            // to allow other processes to continue reading and writing to the file.
+            using (var fileStream = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (var textReader = new StreamReader(fileStream))
+            {
+                return textReader.ReadToEnd();
             }
         }
 

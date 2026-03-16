@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	  <VersionPrefix>1.5</VersionPrefix>
+	  <VersionPrefix>1.6</VersionPrefix>
 	  <OutputType>Library</OutputType>
     <RootNamespace>KLib</RootNamespace>
     <AssemblyName>KLib</AssemblyName>
@@ -25,7 +25,6 @@
 	  <PackageReference Include="ZedGraph" Version="1.0.0" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "$(SolutionDir)\..\Library\net8"</PostBuildEvent>
     <PackageOutputPath>$(SolutionDir)..\Packages</PackageOutputPath>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
