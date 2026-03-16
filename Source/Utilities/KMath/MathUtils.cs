@@ -99,6 +99,43 @@ namespace KLib.KMath
             return Math.Log(value) / Math.Log(2);
         }
 
+        public static float Interp1(float[] X, float[] Y, float U)
+        {
+            float V = float.NaN;
+
+            int tableIndex = X.Length;
+            for (int k = 0; k < X.Length; k++)
+            {
+                if (X[k] > U)
+                {
+                    tableIndex = k;
+                    break;
+                }
+            }
+
+            if (tableIndex == 0)
+            {
+                V = Y[0];
+            }
+            else if (tableIndex == X.Length)
+            {
+                V = Y[X.Length - 1];
+            }
+            else if (X[tableIndex - 1] == U)
+            {
+                V = Y[tableIndex - 1];
+            }
+            else
+            {
+                float f0 = X[tableIndex - 1];
+                float f1 = X[tableIndex];
+                V = (U - f0) / (f1 - f0) * (Y[tableIndex] - Y[tableIndex - 1]) + Y[tableIndex - 1];
+            }
+
+            return V;
+        }
+
+
         public static double Min(double[] data)
         {
             double val = double.PositiveInfinity;
