@@ -41,7 +41,6 @@
             collectionListBox1.Collection = null;
             collectionListBox1.CreateNewItem = null;
             collectionListBox1.GetDisplayText = null;
-            collectionListBox1.ListTitle = "Collection";
             collectionListBox1.Location = new System.Drawing.Point(67, 43);
             collectionListBox1.MinimumSize = new System.Drawing.Size(200, 225);
             collectionListBox1.Name = "collectionListBox1";

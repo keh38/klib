@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	<VersionPrefix>1.4</VersionPrefix>
+	<VersionPrefix>1.5</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
@@ -9,6 +9,8 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
     <Version>$(VersionPrefix)</Version>
+    <PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
 	  <Compile Update="CollectionListBox.cs">
@@ -79,16 +81,13 @@
     </None>
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
-    <PostBuildEvent>copy /y "$(TargetDir)*.dll" "C:\Development\KLib\Library\net8"
-
-</PostBuildEvent>
+      <Title>KLib.Controls</Title>
+	  <PackageOutputPath>$(SolutionDir)..\Packages</PackageOutputPath>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>KLib.Controls</Title>
-    <PackageOutputPath>C:\Development\klib\Packages</PackageOutputPath>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 	<ItemGroup>
-		<None Include="README.md" Pack="true" PackagePath="\"/>
+		<None Include="README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
 
 </Project>
