@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.705
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signals", "Signals\Signals.csproj", "{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{264C784D-482B-4E01-91EE-61DCB9627908}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controls", "Controls\Controls.csproj", "{C2D9C28F-AC50-488B-B604-770683BD0C64}"
@@ -37,20 +35,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|x64.Build.0 = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|x64.ActiveCfg = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|x64.Build.0 = Release|Any CPU
-		{7D1BB5A7-624B-4438-8802-D8684FC1C3FB}.Release|x86.ActiveCfg = Release|Any CPU
 		{264C784D-482B-4E01-91EE-61DCB9627908}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{264C784D-482B-4E01-91EE-61DCB9627908}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{264C784D-482B-4E01-91EE-61DCB9627908}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

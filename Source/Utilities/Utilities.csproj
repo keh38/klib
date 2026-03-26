@@ -34,6 +34,5 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="ComponentModel\" />
-	  <Folder Include="Expressions\" />
 	</ItemGroup>
 </Project>
