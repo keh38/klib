@@ -1,3 +1,4 @@
+using System;
 using Newtonsoft.Json;
 
 namespace KLib.Net
@@ -23,6 +24,8 @@ namespace KLib.Net
         /// On a response, used optionally for a human-readable status message.
         /// </summary>
         public string Command { get; set; }
+
+        public string PayloadEncoding { get; set; } = "json";
 
         /// <summary>
         /// Always a JSON string. Use "{}" when there is no meaningful payload.
@@ -94,9 +97,9 @@ namespace KLib.Net
 
         /// <summary>Creates a command-only request with no payload. The most concise way
         /// to send an instruction that requires no accompanying data.</summary>
-        public static TcpMessage Request(string command, string payload = "{}")
+        public static TcpMessage Request(string command)
         {
-            return new TcpMessage { Command = command, Payload = payload };
+            return new TcpMessage { Command = command, Payload = "{}" };
         }
 
         public static TcpMessage Request(string command, object payloadObject)
@@ -105,6 +108,13 @@ namespace KLib.Net
             return new TcpMessage { Command = command, Payload = payload };
         }
 
+        public static TcpMessage XmlRequest(string command, object payload)
+        => new TcpMessage
+        {
+            Command = command,
+            Payload = XmlSerialize(payload.GetType(), payload),
+            PayloadEncoding = "xml"
+        };
         // -------------------------------------------------------------------------
         // Convenience
         // -------------------------------------------------------------------------
@@ -117,7 +127,35 @@ namespace KLib.Net
         /// </summary>
         public T GetPayload<T>()
         {
+            if (PayloadEncoding == "xml")
+            {
+                return XmlDeserialize<T>(Payload);
+            }
             return JsonConvert.DeserializeObject<T>(Payload, Settings);
+        }
+
+        public static string XmlSerialize(Type type, object obj)
+        {
+            var sb = new System.Text.StringBuilder();
+            using (var writer = new System.IO.StringWriter(sb))
+            {
+                var serializer = new System.Xml.Serialization.XmlSerializer(type);
+                serializer.Serialize(writer, obj);
+            }
+            return sb.ToString();
+        }
+
+        // Keep the generic version as a convenience wrapper
+        public static string XmlSerialize<T>(T obj)
+            => XmlSerialize(typeof(T), obj);
+
+        private static T XmlDeserialize<T>(string xml)
+        {
+            using (var reader = new System.IO.StringReader(xml))
+            {
+                var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
+                return (T)serializer.Deserialize(reader);
+            }
         }
     }
 }
