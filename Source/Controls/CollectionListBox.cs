@@ -36,6 +36,12 @@ namespace KLib.Controls
             }
         }
 
+        public string ListTitle
+        {
+            get { return listBoxLabel.Text; }
+            set { listBoxLabel.Text = value; }
+        }
+
         public bool ShowUpDownButtons
         {
             get { return upButton.Visible; }

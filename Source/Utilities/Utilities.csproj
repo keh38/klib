@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	  <VersionPrefix>1.7</VersionPrefix>
+	  <VersionPrefix>1.8.1</VersionPrefix>
 	  <OutputType>Library</OutputType>
     <RootNamespace>KLib</RootNamespace>
     <AssemblyName>KLib</AssemblyName>
@@ -22,7 +22,6 @@
     <PackageReference Include="System.Management" Version="9.0.5" />
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	  <PackageReference Include="ZedGraph" Version="1.0.0" />
   </ItemGroup>
   <PropertyGroup>
     <PackageOutputPath>$(SolutionDir)..\Packages</PackageOutputPath>
