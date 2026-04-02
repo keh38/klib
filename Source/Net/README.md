@@ -1,5 +1,11 @@
 ## KLib.Net
 
+### v2.0.1 (unreleased)
+#### Fixed
+- add delay to discovery server listen loop to help prevent CPU spinning
+
+---
+
 ### v2.0 (2026-03-06)
 #### Changed
 - Complete overhaul of TCP messaging

@@ -179,6 +179,7 @@ namespace KLib.Net
                 }
                 catch
                 {
+                    Thread.Sleep(10);
                     // Malformed packet or other transient error — keep going.
                 }
             }
