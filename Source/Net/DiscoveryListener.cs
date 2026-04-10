@@ -133,6 +133,13 @@ namespace KLib.Net
             _listenerThread = null;
         }
 
+        public void ForgetHost(string name)
+        {
+            // Remove the entry from whatever dictionary/set tracks known beacons
+            if (_knownHosts.ContainsKey(name))
+                _knownHosts.Remove(name);   // adjust to match actual field name
+        }
+
         private void ListenLoop()
         {
             var endpoint = new IPEndPoint(IPAddress.Any, 0);

@@ -1,6 +1,12 @@
 ## KLib.Net
 
-### v2.0.1 (unreleased)
+### v2.4 (2026-04-10)
+#### Added
+- ForgetHost to DiscoveryListener
+
+---
+
+### v2.3.2 (2026-03-27)
 #### Fixed
 - add delay to discovery server listen loop to help prevent CPU spinning
 
