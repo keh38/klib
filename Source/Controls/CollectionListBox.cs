@@ -32,6 +32,7 @@ namespace KLib.Controls
                 if (_collection != null && _collection.Count > 0)
                 {
                     listBox.SelectedIndex = 0;
+                    _propertyGrid.SelectedObject = _collection[0];
                 }
             }
         }
@@ -97,35 +98,36 @@ namespace KLib.Controls
 
         private void UpdateCollectionList()
         {
-            if (_collection == null)
+            if (_collection == null || _collection.Count == 0)
             {
-                listBox.Items.Clear();
+                listBox.Items.Clear();                
+                if (_propertyGrid != null)
+                    _propertyGrid.SelectedObject = null;
+                return;
             }
-            else
+
+            for (int k = 0; k < _collection.Count; k++)
             {
-                for (int k = 0; k < _collection.Count; k++)
+                var item = _collection[k];
+                string displayText = item.ToString();
+                if (GetDisplayText != null)
                 {
-                    var item = _collection[k];
-                    string displayText = item.ToString();
-                    if (GetDisplayText != null)
-                    {
-                        displayText = GetDisplayText(item);
-                    }
-
-                    if (k < listBox.Items.Count)
-                    {
-                        listBox.Items[k] = displayText;
-                    }
-                    else
-                    {
-                        listBox.Items.Add(displayText);
-                    }
+                    displayText = GetDisplayText(item);
                 }
 
-                for (int k = _collection.Count; k < listBox.Items.Count; k++)
+                if (k < listBox.Items.Count)
                 {
-                    listBox.Items.RemoveAt(k);
+                    listBox.Items[k] = displayText;
                 }
+                else
+                {
+                    listBox.Items.Add(displayText);
+                }
+            }
+
+            for (int k = _collection.Count; k < listBox.Items.Count; k++)
+            {
+                listBox.Items.RemoveAt(k);
             }
         }
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0-windows;net48</TargetFrameworks>
-	<VersionPrefix>1.5.1</VersionPrefix>
+	<VersionPrefix>1.6.2</VersionPrefix>
 	<OutputType>Library</OutputType>
     <RootNamespace>KLib.Controls</RootNamespace>
     <AssemblyName>KLib.Controls</AssemblyName>
@@ -82,7 +82,7 @@
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
       <Title>KLib.Controls</Title>
-	  <PackageOutputPath>$(SolutionDir)..\Packages</PackageOutputPath>
+	  <PackageOutputPath>$(DEVROOT)\Packages</PackageOutputPath>
 	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 	  <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
