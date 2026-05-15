@@ -126,6 +126,27 @@ namespace KLib.Net
             return TcpMessage.Deserialize(responseJson);
         }
 
+        public byte[] ReadRawBytes()
+        {
+            int nbytes = _reader.ReadInt32();
+            return _reader.ReadBytes(nbytes);
+        }
+
+        public void WriteResponse(TcpMessage response)
+        {
+            WriteStringAsByteArray(response.Serialize());  // your existing method
+        }
+
+        public void WriteStringAsByteArray(string s)
+        {
+            var byteArray = System.Text.Encoding.UTF8.GetBytes(s);
+            int nbytes = byteArray.Length;
+
+            _writer.Write(nbytes);
+            _writer.Write(byteArray);
+            _writer.Flush();
+        }
+
         /// <summary>
         /// Low-level: sends a JSON string, receives a JSON string back.
         /// Sits directly on top of your existing length-prefix wire protocol.
