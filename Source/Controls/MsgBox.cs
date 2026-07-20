@@ -152,12 +152,15 @@ namespace KLib.Controls
                 switch (ctlId)
                 {
                     case Win32.MBCancel:
+                    case Win32.MBIgnore:
                         Win32.SetWindowText(hWnd, _cancelText);
                         break;
                     case Win32.MBYes:
+                    case Win32.MBAbort:
                         Win32.SetWindowText(hWnd, _yesText);
                         break;
                     case Win32.MBNo:
+                    case Win32.MBRetry:
                         Win32.SetWindowText(hWnd, _noText);
                         break;
                 }
