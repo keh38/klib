@@ -157,6 +157,9 @@ namespace KLib.Net
                         continue;
 
                     bool isNew;
+                    bool endpointChanged = false;
+                    ServerBeacon oldBeacon = null;
+
                     lock (_knownHosts)
                     {
                         isNew = !_knownHosts.ContainsKey(beacon.Name);
@@ -170,14 +173,29 @@ namespace KLib.Net
                         }
                         else
                         {
-                            // Refresh timestamp and update address/port in case they changed.
-                            _knownHosts[beacon.Name].LastSeen = DateTime.UtcNow;
-                            _knownHosts[beacon.Name].Beacon = beacon;
+                            var existing = _knownHosts[beacon.Name];
+                            endpointChanged =
+                                !string.Equals(existing.Beacon.Address, beacon.Address, StringComparison.OrdinalIgnoreCase)
+                                || existing.Beacon.TcpPort != beacon.TcpPort;
+                            oldBeacon = existing.Beacon;
+
+                            existing.LastSeen = DateTime.UtcNow;
+                            existing.Beacon = beacon;
                         }
                     }
 
                     if (isNew)
+                    {
                         HostDiscovered?.Invoke(this, beacon);
+                    }
+                    else if (endpointChanged)
+                    {
+                        // Endpoint moved (HTS restarted onto a new port) without ever missing a
+                        // beacon. Consumers cache the old endpoint in their discover handler, so
+                        // surface this as disappear+rediscover to drive their existing recovery.
+                        HostDisappeared?.Invoke(this, oldBeacon);
+                        HostDiscovered?.Invoke(this, beacon);
+                    }
                 }
                 catch (SocketException)
                 {
