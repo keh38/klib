@@ -175,6 +175,49 @@ err:
 	return hr;
 }
 
+// Identifies volume/mute changes originating from this plugin, so that a
+// future IAudioEndpointVolumeCallback can ignore its own corrections.
+static const GUID kEventContext =
+{ 0x2f8c1e4b, 0x7a63, 0x4d19, { 0x9c, 0x0a, 0x5e, 0xb7, 0x11, 0x44, 0x8d, 0x22 } };
+
+// Returns 0 = unmuted, 1 = muted, negative = error (HRESULT or -ERROR_NOT_READY).
+int EXPORT_API GetMute()
+{
+	if (!master_volume)
+	{
+		UnityLogError("GetMute() called before InitializeVolume()", ERROR_NOT_READY);
+		return -static_cast<int>(ERROR_NOT_READY);
+	}
+
+	BOOL mute = FALSE;
+	const HRESULT hr = master_volume->GetMute(&mute);
+	if (FAILED(hr))
+	{
+		UnityLogError("GetMute failed", hr);
+		return hr;              // HRESULT failure codes are already negative
+	}
+
+	return mute ? 1 : 0;
+}
+
+// mute: nonzero = mute, zero = unmute. Returns HRESULT (S_OK or S_FALSE on success).
+int EXPORT_API SetMute(const int mute)
+{
+	if (!master_volume)
+	{
+		UnityLogError("SetMute() called before InitializeVolume()", ERROR_NOT_READY);
+		return -static_cast<int>(ERROR_NOT_READY);
+	}
+
+	const HRESULT hr = master_volume->SetMute(mute ? TRUE : FALSE, &kEventContext);
+	if (FAILED(hr))
+	{
+		UnityLogError("SetMute failed", hr);
+	}
+
+	return hr;
+}
+
 static void UnityLogError(const char *message, HRESULT hr)
 {
 	_com_error error(hr);

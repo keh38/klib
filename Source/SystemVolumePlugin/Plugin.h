@@ -33,5 +33,8 @@ extern "C"
 	// On failure, return nonzero error code.
 	int EXPORT_API SetVolumeDB(const float);
 
+	int EXPORT_API GetMute();
+	int EXPORT_API SetMute(const int mute);
+
 	BSTR EXPORT_API GetFriendlyName();
 }
